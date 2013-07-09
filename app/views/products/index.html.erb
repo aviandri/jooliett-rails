@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body class="subnavbar">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="home.html">Jooliett</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav" role="navigation">
+              <li class="dropdown">
+                <a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Woman <b class="caret"></b></a>
+                <!-- Dropdown Menu -->
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="products.html">New Arrival</a></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="products.html">Tops</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="products.html">Bottoms</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="products.html">Dress</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="products.html">Outwear</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="products.html">Sepatu</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="products.html">Tas</a></li>
+                </ul>
+              </li>
+              <li><a href="#mixmatch">Mix &amp; Match</a></li>
+              <li><a href="#socmed">Social Media</a></li>
+            </ul>
+            <ul class="nav pull-right">
+              <li id="fat-menu" class="dropdown">
+                <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="qcart-count">3</span> Cart<b class="caret"></b></a>
+                <div class="dropdown-menu quickcart" role="menu" aria-labelledby="drop3">
+                  <!-- QuickCart -->
+                  <div class="qcart-item row">
+                      <div class="span1">
+                          <img src="img/dummy-data/jooliett-0993-small.jpg">
+                      </div>
+                      <div class="span2 qcart-details">
+                          <span class="qcart-item-name">Yellow Mickey Mouse</span>
+                          <span class="qcart-item-price">IDR 249.000</span>
+                      </div>
+                  </div>
+
+                  <!-- QuickCart -->
+                  <div class="qcart-item row">
+                      <div class="span1">
+                          <img src="img/dummy-data/jooliett-0996-small.jpg">
+                      </div>
+                      <div class="span2 qcart-details">
+                          <span class="qcart-item-name">Yellow Mickey Mouse</span>
+                          <span class="qcart-item-price">IDR 249.000</span>
+                      </div>
+                  </div>
+                  <!-- /qcart-item -->
+                  <div class="qcart-action">
+                      <p class="msg success">Successfully Added to cart</p>
+                      <button class="btnflat-fluid dark">View Shopping Cart!</button>
+                      <p>or</p>
+                      <button class="btnflat-fluid action">Checkout</button>
+                  </div>
+                </div><!-- ./quickcart -->
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!-- ./container -->
+      </div><!-- ./navbar-inner -->
+    </div><!-- ./navbar navbar-inverse -->
+
+    <!-- Sub Navigation Bar: Tools, Filter, Search etc. Only displayed in products page -->
+    <div class="sub-navbar hidden-phone">
+      <div class="container">
+      Home / Products / <%= @category.nil? ? "" : @category.name %>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Products -->
+      <div class="row-fluid">
+        
+        <% @master_products.each do |master_product| %>
+	        <div class="span3">
+	          <div class="prod">
+	            <a href="product-details.html"><img src="img/dummy-data/item06.jpg"></a>
+	            <div class="prod-meta">
+	              <span class="prod-title"><%= master_product.name%></span>
+	              <span class="prod-price">IDR <%= master_product.price %></span>
+	            </div>
+	          </div>
+	        </div>       
+	    <% end %>
+      </div><!-- closing row-fluid  -->
+
+    </div> <!-- /container -->
+
+    <!-- Footer -->
+    <div id="footer">
+      <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="navbar-inner">
+          <div class="container">
+            <div class="span2">&copy; 2013 Jooliett</div>
+            <div class="span9">
+                <ul class="inline">
+                  <li><a href="#company">Company</a></li>
+                  <li><a href="#policies">Policies</a></li>
+                  <li><a href="#shipping">Shipping</a></li>
+                  <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>

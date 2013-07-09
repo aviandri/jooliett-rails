@@ -1,0 +1,57 @@
+models :
+
+MasterProduct :
+	* name
+	* price
+	* description
+	* discount_price
+	* discount_precent
+
+Product :
+	* color
+	* photos
+	* main_photo
+	* size
+
+ProductItem :
+	* product
+	* status	
+
+Photos:
+	* full
+	* gallery
+	* thumb
+
+Color:
+	* name
+	* hex
+
+HomePhotos:
+
+User :
+	* name
+	* email
+	* password
+	
+Order :
+	* user
+	* products
+	* delivery
+	* payment
+
+Delivery :
+	* name
+	* phone
+	* mobile
+	* province
+	* city
+	* address
+	* postal code
+
+Payment :
+	* payment_type
+	* processing_code
+
+Cart:
+	* product
+	* user
