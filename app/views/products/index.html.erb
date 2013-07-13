@@ -8,7 +8,7 @@
         <div class="span3">
           <div class="prod" id="<%= master_product.id %>" data-id="<%= master_product.id %>">
             <%= link_to product_path(:id => master_product.id) do %>
-               <%= image_tag(master_product.color_products.primary.image.medium.url) %>d                
+               <%= image_tag(master_product.product_colors.primary.image.medium.url) %>d                
             <% end %>
             <div class="prod-meta">
               <span class="prod-title"><%= master_product.name%></span>

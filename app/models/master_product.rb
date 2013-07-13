@@ -1,5 +1,8 @@
 class MasterProduct < ActiveRecord::Base
 	has_and_belongs_to_many :categories
+	has_many :colors, through: :product_colors
+	has_many :product_colors
+
 	validates :name, :description, :price, :presence => true
 	has_many :products
 	mount_uploader :image, ImageUploader
@@ -25,7 +28,17 @@ class MasterProduct < ActiveRecord::Base
 		end
 	end
 
-	def product_colors 
+	def primary_product_color
+		if product_colors.primaries.blank?
+			if product_colors.blank?
+				nil
+			else
+				product_colors.first
+			end
+		else
+			product_colors.primaries.first
+		end
+
 	end
 
 end

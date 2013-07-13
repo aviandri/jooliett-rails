@@ -14,6 +14,19 @@ describe Color do
 		it "should not be valid" do
 			not_valid_color.should_not be_valid
 		end		
-
 	end
+
+	describe "product color" do
+		it "should have product colors" do
+			valid_color.product_colors.should_not be_nil 
+		end
+	end
+
+	describe "master products" do
+		it "should have master products" do
+			valid_color.master_products.should_not be_nil
+		end
+	end
+
+
 end

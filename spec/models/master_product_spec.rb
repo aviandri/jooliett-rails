@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe MasterProduct do
 	let(:valid_master_product){MasterProduct.new(:name => "Dress", :description => "Dress Description", :price => 10000)}
@@ -47,9 +48,41 @@ describe MasterProduct do
   	end 
 
   	describe "product colors" do
-  	 	  it "should have product colors" do
+  	 	 it "should have product colors" do
   	 	    @master_product.product_colors.should_not be_nil
-  	 	  end
-  	 	end 	
+  	 	 end
+  	 end 	
 
+  	 describe "colors" do
+  	   	it "should have multiple colors" do
+  	     	@master_product.colors.should_not be_nil	
+  	   	end
+  	 end
+
+  	 describe "primaries" do
+  	  	before do
+  	  		@product_color = FactoryGirl.create(:product_color, :primary => true)
+  	     	@master_product = FactoryGirl.create(:master_product, :product_colors => [@product_color])
+  	     	@product_color_not_primary = FactoryGirl.create(:product_color)
+  	     	@master_product_no_primary = FactoryGirl.create(:master_product, :product_colors => [@product_color_not_primary])
+
+  	 	end
+  	   it "should description" do  	   		
+  	     	@master_product.product_colors.primaries.should include(@product_color)
+  	   end
+
+  	   it "should return primary product when it have primary product color" do
+  	     	@master_product.primary_product_color.should eq(@product_color)
+  	   end
+
+  	   it "should return primary product of first product color if no primary product color" do
+  	   		@master_product_no_primary.primary_product_color.should eq(@product_color_not_primary)
+  		end
+
+  		it "should return nil product color" do
+  	   		master_product = FactoryGirl.create(:master_product)
+  	   		master_product.primary_product_color.should be_nil
+  		end
+  	 end
+  	 
 end	
