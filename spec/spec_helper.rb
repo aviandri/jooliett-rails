@@ -68,6 +68,12 @@ Spork.prefork do
     config.after(:each) do
       DatabaseCleaner.clean
     end
+
+     if Rails.env.test? || Rails.env.cucumber?
+      tmp = FactoryGirl.create(:product)
+      store_path = File.dirname(File.dirname(tmp.image.url))
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/#{store_path}/[^.]*"])
+    end
   end
 
 end

@@ -5,7 +5,8 @@ describe MasterProduct do
 	let(:invalid_master_product_name){MasterProduct.new()}	
 
 	before(:each) do 
-		@master_product = FactoryGirl.create(:master_product)
+		@category = FactoryGirl.create(:category, :name => "dress")
+		@master_product = FactoryGirl.create(:master_product, :categories => [@category])
 	end 
 
 	describe "create" do
@@ -20,10 +21,35 @@ describe MasterProduct do
 	 end 
 
 	describe "find by category name" do
-	  	it "it should return MasterProduct with that have a particular catory name" do	  		
+	  	it "should return MasterProduct with that have a particular catory name" do	  		
 			Category.any_instance.stub(:where => @master_product.categories.first)	  					
 	  		MasterProduct.find_by_category_name("dress").should include(@master_product)	  		
 	  	end
   	end
+
+  	describe "products" do
+  		it "should return empty product" do
+  			@master_product.products.should eq([])
+  		end
+  	end
+  	describe "primary product" do
+  		it "should return product of this master item primary flag true" do
+  			master_product = FactoryGirl.create(:master_product)
+			product = FactoryGirl.create(:product, :master_product => master_product, :primary => true)
+  			master_product.primary_product.should eq(product)
+  		end
+
+  		it "should return first product if don't have any primary flag products" do
+  			master_product = FactoryGirl.create(:master_product)
+			product = FactoryGirl.create(:product, :master_product => master_product)
+  			master_product.primary_product.should eq(product)
+  		end
+  	end 
+
+  	describe "product colors" do
+  	 	  it "should have product colors" do
+  	 	    @master_product.product_colors.should_not be_nil
+  	 	  end
+  	 	end 	
 
 end	

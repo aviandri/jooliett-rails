@@ -3,7 +3,6 @@ FactoryGirl.define do
 		master_product.name "Dress"
 		master_product.description "Description"
 		master_product.price 150000
-		master_product.categories{[FactoryGirl.create(:category)]}
-
+		master_product.categories{[FactoryGirl.create(:category)]}		
 	end	
 end

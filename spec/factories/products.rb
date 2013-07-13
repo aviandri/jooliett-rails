@@ -1,7 +1,7 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
-  factory :product do
+  factory :product do |product|
   	master_product
+  	product.image{File.open(Rails.root + 'spec/fixtures/images/img.jpg')}
   end
 end
+	

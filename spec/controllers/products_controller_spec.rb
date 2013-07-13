@@ -3,7 +3,8 @@ require 'spec_helper'
 describe ProductsController do
 
   before(:each) do
-  	@master_product = FactoryGirl.create(:master_product)
+    @category = FactoryGirl.create(:category, :name => "dress")
+  	@master_product = FactoryGirl.create(:master_product, :categories => [@category])
   end
 
   describe "GET 'index' for new arrival" do
