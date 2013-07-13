@@ -4,14 +4,11 @@ end
 
 When(/^I click on "(.*?)" at the menu bar$/) do |arg1|
   @category = FactoryGirl.create(:category, :name => "dress")
-	@master_product = FactoryGirl.create(:master_product, :categories => [@category])
-  @product_1 = FactoryGirl.create(:product, :primary => true)
-  @product_2 = FactoryGirl.create(:product)
-  @master_product.products << @product_1
-  @master_product.products << @product_2
+  @product_image = FactoryGirl.create(:product_image)
+  @product_color = FactoryGirl.create(:product_color, :product_images => [@product_image])
+	@master_product = FactoryGirl.create(:master_product, :categories => [@category], :product_colors => [@product_color])
 
   click_link arg1
-
 end
 
 Then(/^I should see products with category dress$/) do
@@ -31,9 +28,7 @@ Then(/^I should see "(.*?)" dress item with name "(.*?)", price "(.*?)" and Phot
   	within ".prod-price" do
   		page.should have_content @master_product.price
   	end
-
-
-    page.should have_xpath("//img[@src=\"#{@product_1.image.medium.url}\"]")
+    page.should have_xpath("//img[@src=\"#{@product_image.image.medium.url}\"]")
   	
 end
 

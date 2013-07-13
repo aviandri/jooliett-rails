@@ -2,14 +2,18 @@
       <!-- Item Details -->
       <div class="row-fluid prod-details-container">
         <div class="span5">
-          <img src="img/dummy-data/Jooliett-0994-b.jpg" alt="Item Details">
+          <%= image_tag @master_product.primary_product_color.primary_image.image.url %>
+          <!-- <img src="img/dummy-data/Jooliett-0994-b.jpg" alt="Item Details"> -->
         </div><!-- ./span6 -->
         <div class="span1">
-          <ul class="unstyled prod-minithumb">
-            <li><a href="#action1"><img src="img/dummy-data/Jooliett-0994-small.jpg" class="prod-minithumb" alt="Thumb01"></a></li>
-             <li><a href="#action2"><img src="img/dummy-data/Jooliett-0993-small.jpg" class="prod-minithumb" alt="Thumb01"></a></li>
-             <li><a href="#action3"><img src="img/dummy-data/Jooliett-0996-small.jpg" class="prod-minithumb" alt="Thumb01"></a></li>
-             <li><a href="#action4"><img src="img/dummy-data/Jooliett-0997-small.jpg" class="prod-minithumb" alt="Thumb01"></a></li>
+          <ul class="unstyled prod-minithumb" id="mini-thumb">
+            <li>
+            <% @master_product.primary_product_color.product_images.each do |product_image| %>
+              <a href="#action">
+                <%= image_tag(product_image.image.thumb.url, :class => "prod-minithumb") %>
+              </a>
+            </li>
+            <% end %>
           </ul>
         </div><!-- ./span1 -->
 
@@ -107,13 +111,11 @@ will vary between brands, please use the charts as a general guide to compare th
             <div class="row-fluid">
               <div class="span6">
                 <h4>Color Options</h4>
-                <div class="wrapper color-tag">
-                  <span class="color-tag salmon"><a href="">Salmon</a></span>
-                  <span class="color-tag golden"><a href="">Golden</a></span>
-                  <span class="color-tag hotpink"><a href="">Pink</a></span>
-                  <span class="color-tag teal"><a href="">Teal</a></a></span>
-                  <span class="color-tag navyblue"><a href="">Navy Blue</a></span>
-                  <span class="color-tag crimson"><a href="">Crimson</a></span>
+                <div class="wrapper color-tag" id="colors">
+                  <% @master_product.product_colors.each do |product_color| %>
+                    <span class="color-tag salmon">
+                      <a href=""><%= product_color.color.name %></a></span>
+                  <% end %>                  
                 </div>
               </div>
               <div class="span6">
