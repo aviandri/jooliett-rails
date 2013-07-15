@@ -1,4 +1,10 @@
-
+ <!-- Sub Navigation Bar: Tools, Filter, Search etc. Only displayed in products page -->
+  <div class="sub-navbar hidden-phone">
+    <div class="container">
+    Home / Products / <%= @category.nil? ? "" : @category.name %>
+    </div>
+  </div>
+    
   
   <div class="container">
     <!-- Products -->

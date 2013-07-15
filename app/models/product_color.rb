@@ -4,6 +4,7 @@ class ProductColor < ActiveRecord::Base
 	scope :primaries, -> {where("primary" => true)}
 
 	has_many :product_images
+	accepts_nested_attributes_for :product_images
 
 	def primary_image
 		if product_images.primaries.blank?

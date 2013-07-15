@@ -81,30 +81,26 @@
           </div><!--/.nav-collapse -->
         </div><!-- ./container -->
       </div><!-- ./navbar-inner -->
-    </div><!-- ./navbar navbar-inverse -->
-
-   <!-- Sub Navigation Bar: Tools, Filter, Search etc. Only displayed in products page -->
-    <div class="sub-navbar hidden-phone">
-      <div class="container">
-      Home / Products / <%= @category.nil? ? "" : @category.name %>
-      </div>
-    </div>
+    </div><!-- ./navbar navbar-inverse -->  
 
 <%= yield %>
 
-  <!-- Footer -->
+  
+    <!-- Footer -->
     <div id="footer">
       <div class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="navbar-inner">
           <div class="container">
-            <div class="span2">&copy; 2013 Jooliett</div>
-            <div class="span9">
-                <ul class="inline">
-                  <li><a href="#company">Company</a></li>
-                  <li><a href="#policies">Policies</a></li>
-                  <li><a href="#shipping">Shipping</a></li>
-                  <li><a href="#contact">Contact Us</a></li>
-                </ul>
+            <div class="row-fluid">
+              <div class="span2">&copy; 2013 Jooliett</div>
+              <div class="span9">
+                  <ul class="inline">
+                    <li><a href="#company">Company</a></li>
+                    <li><a href="#policies">Policies</a></li>
+                    <li><a href="#shipping">Shipping</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                  </ul>
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,7 @@
 JooliettRails::Application.routes.draw do
   
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   get "products/index/:category_name", :controller => :products, :action => :index
   root :to => 'covers#index'
   resources :covers
