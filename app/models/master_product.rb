@@ -2,6 +2,7 @@ class MasterProduct < ActiveRecord::Base
 	has_and_belongs_to_many :categories
 	has_many :colors, through: :product_colors
 	has_many :product_colors
+	has_and_belongs_to_many :product_sizes
 
 	validates :name, :description, :price, :presence => true
 	has_many :products
@@ -38,7 +39,12 @@ class MasterProduct < ActiveRecord::Base
 		else
 			product_colors.primaries.first
 		end
-
 	end
+
+
+	def self.suggestions
+		MasterProduct.all.sample(4)
+	end
+
 
 end

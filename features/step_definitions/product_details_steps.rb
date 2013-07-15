@@ -1,3 +1,5 @@
+
+
 Given(/^I am in Product list page of category Dress$/) do  
   @category = FactoryGirl.create(:category, :name => "dress")  
   @product_image = FactoryGirl.create(:product_image, :primary => true)
@@ -5,6 +7,8 @@ Given(/^I am in Product list page of category Dress$/) do
   @color = FactoryGirl.create(:color)
   @product_color = FactoryGirl.create(:product_color, :product_images => [@product_image, @product_image_2], :color => @color)
   @master_product = FactoryGirl.create(:master_product, :categories => [@category], :product_colors => [@product_color])
+  @product = FactoryGirl.create(:product, :product_color_id => @product_color.id, :master_product_id => @master_product.id)
+  @product_2 = FactoryGirl.create(:product, :product_color_id => @product_color.id, :master_product_id => @master_product.id)
 
   @product_image_1 = FactoryGirl.create(:product_image)
   @product_color_1 = FactoryGirl.create(:product_color, :product_images => [@product_image_1], :color => @color)
@@ -37,6 +41,18 @@ Then(/^I should see the detail of the product$/) do
   within "#colors" do
     page.all('span').count(1)
   end
+
+  within "div.size-tag" do
+    page.should have_content(@product.product_size.name)
+    page.should have_content(@product_2.product_size.name)
+    page.should have_css("span.size-tag", :count => 2)
+  end
+
+  within 'div.prod-related' do
+    page.should have_css("div.prod2-meta", :count => 2)
+  end
+  
+
 
 end
 

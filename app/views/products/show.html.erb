@@ -121,11 +121,9 @@ will vary between brands, please use the charts as a general guide to compare th
               <div class="span6">
                 <h4>Size</h4>
                 <div class="wrapper size-tag">
-                  <span class="size-tag"><a href="">S</a></span>
-                  <span class="size-tag"><a href="">M</a></span>
-                  <span class="size-tag"><a href="">L</a></span>
-                  <span class="size-tag"><a href="">XL</a></span>
-                  <span class="size-tag"><a href="">XXL</a></span>
+                  <% @master_product.primary_product_color.products.each do |product| %>
+                    <span class="size-tag"><a href=""><%= product.product_size.name%></a></span>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -147,9 +145,11 @@ will vary between brands, please use the charts as a general guide to compare th
       <!-- Products You May Like -->
       <h4 class="section-title"><span>You may also like</span></h4>
       <div class="row-fluid prod-related">
+        <% MasterProduct.suggestions.each do |master_product| %>
           <div class="span3">
+              
               <div class="prod2">
-                  <img src="img/dummy-data/item01.jpg">
+                  <%= image_tag(master_product.primary_product_color.primary_image.image.thumb.url) %>                
                   <div class="prod2-meta">
                       <span class="prod-title"><a href="#link2" title="Link 1">Red Skirt</a></span>
                       <span class="prod-desc">Handmade product by raniya dress</span>
@@ -157,40 +157,8 @@ will vary between brands, please use the charts as a general guide to compare th
                   </div>
               </div>
           </div>
-          <div class="span3">
-              <div class="prod2">
-                  <img src="img/dummy-data/item02.jpg">
-                  <div class="prod2-meta">
-                      <span class="prod-title"><a href="#link2" title="link 2">Yellow Square Skirts Pattern</a></span>
-                      <span class="prod-desc">Chiara Maxi Skirt</span>
-                      <span class="prod-status disc">OFF 50%</span>
-                      <span class="prod-price line-through">IDR 250.000</span>
-                      <span class="prod-price">IDR 125.000</span>
-                  </div>
-              </div>
-          </div>
-          <div class="span3">
-              <div class="prod2">
-                  <img src="img/dummy-data/item03.jpg">
-                  <div class="prod2-meta">
-                      <span class="prod-title"><a href="#link3" title="link 3">Yellow Square Skirts Pattern</a></span>
-                      <span class="prod-desc">Chiara Maxi Skirt</span>
-                      <span class="prod-price">IDR 234.567</span>
-                      <span class="prod-status outstock">Out of Stock</span>
-                      
-                  </div>
-              </div>
-          </div>
-          <div class="span3">
-              <div class="prod2">
-                  <img src="img/dummy-data/item04.jpg">
-                  <div class="prod2-meta">
-                      <span class="prod-title"><a href="#link4" title="link 4">Yellow Square Skirts Pattern</a></span>
-                      <span class="prod-desc">Chiara Maxi Skirt</span>
-                      <span class="prod-price">IDR 234.567</span>
-                  </div>
-              </div>
-          </div>  
+        <% end %>
+
       </div><!-- ./row-fluid -->
 
     </div><!-- ./container -->

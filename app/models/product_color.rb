@@ -17,4 +17,18 @@ class ProductColor < ActiveRecord::Base
 		end
 	end
 
+	def products
+		Product.where(product_color_id: self.id, master_product_id: master_product.id)
+	end
+
+	def available?
+		products = self.products
+		flag = true
+		products.each do |product|
+			unless product.available?
+				flag = false
+			end
+		end
+		flag
+	end
 end

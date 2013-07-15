@@ -84,5 +84,24 @@ describe MasterProduct do
   	   		master_product.primary_product_color.should be_nil
   		end
   	 end
+
+  	 describe "sizes" do
+  	   it "should have an empty product sizes" do
+  	     	@master_product.product_sizes.should_not be_nil
+  	   end
+
+  	   it "should have multiple product sizes" do
+  	   		product_sizes = [FactoryGirl.create(:product_size, :name => "S"), FactoryGirl.create(:product_size, :name => "XL")]
+  	   		master_product = FactoryGirl.create(:master_product, :product_sizes => product_sizes)
+
+  	   		master_product.product_sizes.should eq(product_sizes)
+  	   end
+  	 end
+
+     describe "sugestions" do
+       it "should return suggested products" do
+          MasterProduct.suggestions.should_not be_nil
+       end
+     end
   	 
 end	

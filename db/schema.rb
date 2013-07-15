@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130713172136) do
+ActiveRecord::Schema.define(version: 20130715132000) do
 
   create_table "categories", force: true do |t|
     t.datetime "created_at"
@@ -48,6 +48,18 @@ ActiveRecord::Schema.define(version: 20130713172136) do
     t.integer "master_products_id"
   end
 
+  create_table "master_products_product_sizes", force: true do |t|
+    t.integer "master_product_id"
+    t.integer "product_size_id"
+  end
+
+  create_table "order_items", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "product_colors", force: true do |t|
     t.integer  "color_id"
     t.integer  "master_product_id"
@@ -64,12 +76,20 @@ ActiveRecord::Schema.define(version: 20130713172136) do
     t.integer  "product_color_id"
   end
 
+  create_table "product_sizes", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "master_product_id"
     t.boolean  "primary"
-    t.string   "image"
+    t.integer  "product_color_id"
+    t.integer  "product_size_id"
+    t.integer  "quantity"
   end
 
 end

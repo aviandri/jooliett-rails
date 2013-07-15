@@ -22,7 +22,6 @@ describe ProductImage do
 
   describe "image" do
     it "should have medium image" do
-    	p @product_image.image.medium
       	@product_image.image.medium.should_not be_nil
     end
   end

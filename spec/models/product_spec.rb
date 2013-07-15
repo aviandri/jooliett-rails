@@ -41,16 +41,56 @@ describe Product do
     end
   end
 
-  describe "image" do
-      it "should create image url" do
-        @product.image.url.should_not be_nil
-      end
-      it "should create medium url" do
-        @product.image.medium.url.should_not be_nil
-      end
-      it "should create thumb url" do
-        @product.image.thumb.url.should_not be_nil
-      end
+  describe "product color" do
+    it "should have product color" do
+      product_color = ProductColor.new
+      @product.product_color = product_color
+      @product.product_color.should eq(product_color)
     end
+
+    it "should return products by product color" do
+      product_color = FactoryGirl.create(:product_color)
+      @product = FactoryGirl.create(:product, :product_color => product_color)
+      products = Product.where(product_color: product_color)
+      products.should include(@product)
+    end
+  end
+
+  describe "product size" do
+    it "should have product size" do
+      product_size = ProductSize.new
+      @product.product_size = product_size
+      @product.product_size.should eq(product_size)      
+    end
+  end
+
+  describe "quantity" do
+    it "should have a quantity" do
+      product = Product.new(:quantity => 2)
+      product.quantity.should eq(2)
+    end
+  end
+
+  describe "is available" do
+    before(:each) do
+      @product = FactoryGirl.create(:product, :quantity => 2)
+      @order_item = FactoryGirl.create(:order_item, :quantity => 1, :product_id => @product.id)
+    end
+
+    it "should return true if product is available" do
+      @product.available?.should eq(true)
+    end
+
+    it "should return false if product not available" do
+      @product.quantity = 1
+      @product.available?.should eq(false)
+    end
+
+    it "should return false if product not available multiple order item" do
+      @product.quantity = 2
+      FactoryGirl.create(:order_item, :quantity => 1, :product_id => @product.id)
+      @product.available?.should eq(false)
+    end
+  end
   
 end
