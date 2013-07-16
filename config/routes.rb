@@ -7,4 +7,8 @@ JooliettRails::Application.routes.draw do
   resources :covers
   resources :products, :only => [:show]
 
+  namespace :api do
+  	resources :product_colors, :only => [:show]
+  end
+
 end

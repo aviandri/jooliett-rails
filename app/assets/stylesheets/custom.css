@@ -1,15 +1,15 @@
 /* General */
 @font-face {
     font-family: proxima_light;
-    src: local(proxima_light), url('../css/fonts/ProximaNova-Light.otf') format('opentype');
+    src: local(proxima_light), url('fonts/ProximaNova-Light.otf') format('opentype');
 }
 @font-face {
     font-family: proxima_reg;
-    src: local(proxima_reg), url('../css/fonts/ProximaNova-Regular.otf') format('opentype');
+    src: local(proxima_reg), url('fonts/ProximaNova-Regular.otf') format('opentype');
 }
 @font-face {
     font-family: proxima_bold;
-    src: local(proxima_bold), url('../css/fonts/ProximaNova-Bold.otf') format('opentype');
+    src: local(proxima_bold), url('fonts/ProximaNova-Bold.otf') format('opentype');
 }
 .navbar .brand {
 	color: #f2108a

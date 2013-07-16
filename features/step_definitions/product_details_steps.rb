@@ -34,11 +34,11 @@ Then(/^I should see the detail of the product$/) do
   end
   page.should have_xpath("//img[@src=\"#{@product_image.image.url}\"]")
   
-  within '#mini-thumb' do
+  within 'ul.prod-minithumb' do
     page.all('li').count(2)
   end  
 
-  within "#colors" do
+  within "div.color-tag" do
     page.all('span').count(1)
   end
 
@@ -50,9 +50,13 @@ Then(/^I should see the detail of the product$/) do
 
   within 'div.prod-related' do
     page.should have_css("div.prod2-meta", :count => 2)
-  end
-  
+    page.should have_content @master_product.price
+    page.should have_content @master_product_discounted.price
+    page.should have_content @master_product.name
+    page.should have_content @master_product_discounted.name
+  end    
 
+  page.should have_xpath("//span[@data-color-id=\'#{@product_color.id}\']")
 
 end
 

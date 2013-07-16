@@ -11,8 +11,7 @@
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	<%= csrf_meta_tags %>
 </head>
-<body class="subnavbar">
-
+ <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -40,8 +39,8 @@
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="products.html">Tas</a></li>
                 </ul>
               </li>
-              <li><a href="#mixmatch">Mix &amp; Match</a></li>
-              <li><a href="#socmed">Social Media</a></li>
+              <li><a href="mixmatch-cover.html">Mix &amp; Match</a></li>
+              <li><a href="video.html">Video</a></li>
             </ul>
             <ul class="nav pull-right">
               <li id="fat-menu" class="dropdown">
@@ -71,7 +70,7 @@
                   <!-- /qcart-item -->
                   <div class="qcart-action">
                       <p class="msg success">Successfully Added to cart</p>
-                      <button class="btnflat-fluid dark">View Shopping Cart!</button>
+                      <button class="btnflat-fluid dark">View Shopping Cart</button>
                       <p>or</p>
                       <button class="btnflat-fluid action">Checkout</button>
                   </div>
@@ -81,11 +80,10 @@
           </div><!--/.nav-collapse -->
         </div><!-- ./container -->
       </div><!-- ./navbar-inner -->
-    </div><!-- ./navbar navbar-inverse -->  
+    </div><!-- ./navbar navbar-inverse -->
 
-<%= yield %>
+   <%= yield %>
 
-  
     <!-- Footer -->
     <div id="footer">
       <div class="navbar navbar-inverse navbar-fixed-bottom">
@@ -106,6 +104,5 @@
         </div>
       </div>
     </div>
-
-</body>
+  </body>
 </html>

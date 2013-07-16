@@ -1,16 +1,15 @@
-  <div class="container" id="product-detail">
+  <div class="container">
       <!-- Item Details -->
       <div class="row-fluid prod-details-container">
         <div class="span5">
-          <%= image_tag @master_product.primary_product_color.primary_image.image.url %>
-          <!-- <img src="img/dummy-data/Jooliett-0994-b.jpg" alt="Item Details"> -->
+          <%= image_tag @master_product.primary_product_color.primary_image.image.url,  :id => "full-img" %>
         </div><!-- ./span6 -->
         <div class="span1">
-          <ul class="unstyled prod-minithumb" id="mini-thumb">
+          <ul class="unstyled prod-minithumb">
+           <% @master_product.primary_product_color.product_images.each do |product_image| %>
             <li>
-            <% @master_product.primary_product_color.product_images.each do |product_image| %>
-              <a href="#action">
-                <%= image_tag(product_image.image.thumb.url, :class => "prod-minithumb") %>
+              <a href="#action" class="thumb-img">
+                <%= image_tag(product_image.image.thumb.url, :class => "prod-minithumb", :data => {:fullimg => product_image.image.url}) %>
               </a>
             </li>
             <% end %>
@@ -19,7 +18,7 @@
 
         <div class="span6 pull-right">
           <div class="prod-details">
-            <h2><%= @master_product.name %></h2>
+            <h2 id="prod-detail"><%= @master_product.name %></h2>
             <!-- Tabs -->
             <div class="prod-tab">
               <ul id="myTab" class="nav nav-tabs">
@@ -30,7 +29,7 @@
               
               <div class="tab-content">
                 <div class="tab-pane active" id="desc">
-                   <%= @master_product.description.html_safe%>
+                  <%= @master_product.description.html_safe%>
                 </div>
                 <div class="tab-pane" id="sizeguide">
                   <table class="table table-striped">
@@ -99,9 +98,9 @@ will vary between brands, please use the charts as a general guide to compare th
                 </div>
               <% end %>              
             </div>
-                        
+            
             <!-- IF Out of Stock -->
-          <!--   <div class="row-fluid prod-price-details">
+           <!--  <div class="row-fluid prod-price-details">
               <div class="span4"><span class="outstock">OUT OF STOCK<span></div>
               <div class="span7">
                   <span class="price">IDR 2.6999.999</span>
@@ -111,10 +110,10 @@ will vary between brands, please use the charts as a general guide to compare th
             <div class="row-fluid">
               <div class="span6">
                 <h4>Color Options</h4>
-                <div class="wrapper color-tag" id="colors">
+                <div class="wrapper color-tag">
                   <% @master_product.product_colors.each do |product_color| %>
-                    <span class="color-tag salmon">
-                      <a href=""><%= product_color.color.name %></a></span>
+                    <span class="color-tag salmon" data-color-id="<%= product_color.id %>">
+                      <a href="#action"><%= product_color.color.name %></a></span>
                   <% end %>                  
                 </div>
               </div>
@@ -145,20 +144,21 @@ will vary between brands, please use the charts as a general guide to compare th
       <!-- Products You May Like -->
       <h4 class="section-title"><span>You may also like</span></h4>
       <div class="row-fluid prod-related">
-        <% MasterProduct.suggestions.each do |master_product| %>
+          <% MasterProduct.suggestions.each do |master_product| %>
           <div class="span3">
               
               <div class="prod2">
                   <%= image_tag(master_product.primary_product_color.primary_image.image.thumb.url) %>                
                   <div class="prod2-meta">
-                      <span class="prod-title"><a href="#link2" title="Link 1">Red Skirt</a></span>
+                      <span class="prod-title">
+                        <%= link_to master_product.name, product_path(:id => master_product.id) %>
+                      </span>
                       <span class="prod-desc">Handmade product by raniya dress</span>
-                      <span class="prod-price">IDR 234.567</span>
+                      <span class="prod-price"><%= master_product.price %></span>
                   </div>
               </div>
           </div>
         <% end %>
-
       </div><!-- ./row-fluid -->
 
     </div><!-- ./container -->

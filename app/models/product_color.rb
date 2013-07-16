@@ -5,6 +5,7 @@ class ProductColor < ActiveRecord::Base
 
 	has_many :product_images
 	accepts_nested_attributes_for :product_images
+	# validates :color, :master_product, :presence => true
 
 	def primary_image
 		if product_images.primaries.blank?
