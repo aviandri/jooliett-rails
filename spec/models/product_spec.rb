@@ -18,28 +18,7 @@ describe Product do
   		@product.master_product.should eq(@master_product)
   	end
   end
-
-  describe "primary product" do
-  	it "have attribute primary" do
-    	@product.primary?.should_not be_nil
-    end
-    it "should be a primary item" do
-    	primary_product = Product.new(:primary => true)
-    	primary_product.primary?.should eq(true)
-    end
-    it "should not be primary item" do
-    	primary_product = Product.new(:primary => false)
-    	primary_product.primary?.should eq(false)
-
-    	primary_product = Product.new(:primary => nil)
-    	primary_product.primary?.should eq(false)
-    end
-
-    it "should be a primary item from scope" do
-    	primary_product = FactoryGirl.create(:product, :primary => true)
-    	Product.primaries.should eq([primary_product])
-    end
-  end
+ 
 
   describe "product color" do
     it "should have product color" do
@@ -90,6 +69,19 @@ describe Product do
       @product.quantity = 2
       FactoryGirl.create(:order_item, :quantity => 1, :product_id => @product.id)
       @product.available?.should eq(false)
+    end
+  end
+
+  describe "find by product color and product size" do
+    before do      
+      @product_color = FactoryGirl.create(:product_color)
+      @product_size = FactoryGirl.create(:product_size)
+      @product = FactoryGirl.create(:product, :product_color => @product_color, :product_size => @product_size)     
+    end
+    
+    it "should return a product" do
+      product = Product.find_by_product_color_product_size(@product_size.id, @product_color.id)  
+      product.should eq(@product)
     end
   end
   

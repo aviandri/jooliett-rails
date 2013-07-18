@@ -22,6 +22,8 @@ $ ->
 	$("span.color-tag").click ->
 		colorId = $(this).data('color-id')
 		$("ul.prod-minithumb").empty()
+		$("div.color-tag").attr("data-color-id", colorId)
+		console.log($("div.color-tag").data("color-id"))
 		callback = (response) ->
 			productImages = new ProductImages(response.product_images)			
 			$('#full-img').attr("src", productImages.getPrimaryImage().full_img)
@@ -29,8 +31,24 @@ $ ->
 		$.get '/api/product_colors/'+colorId, callback, 'json'
 
 
+$ ->
+	$("span.size-tag").click ->
+		productColorId = $(this).data('size-id')
+		$("div.size-tag").attr("data-size-id", productColorId)
 
 
+$ ->
+	$("button.addcart").click ->
+		colorId = $("div.color-tag").data("color-id")
+		productSizeId = $("div.size-tag").data('size-id')
+		console.log("colorId = " + colorId)
+		console.log("productSizeId = " + productSizeId)
+		json = {'product_color_id' : colorId, 'product_size_id' : productSizeId}
+		callback = (response) ->
+			console.log(response)
+		$.ajax '/api/carts/add', type: 'POST', data: JSON.stringify(json), success: callback, contentType: "application/json", dataType: "json"		
+		
+		
 class ProductImages
 	constructor: (@productImages) ->
 		@thumbImages = []

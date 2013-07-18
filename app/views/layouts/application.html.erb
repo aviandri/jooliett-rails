@@ -44,29 +44,21 @@
             </ul>
             <ul class="nav pull-right">
               <li id="fat-menu" class="dropdown">
-                <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="qcart-count">3</span> Cart<b class="caret"></b></a>
+                <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="qcart-count"><%= current_cart.products.empty? ? 0 : current_cart.products.count %> </span> Cart<b class="caret"></b></a>
                 <div class="dropdown-menu quickcart" role="menu" aria-labelledby="drop3">
                   <!-- QuickCart -->
+                  <% current_cart.products.each do |product| %>
                   <div class="qcart-item row">
                       <div class="span1">
-                          <img src="img/dummy-data/jooliett-0993-small.jpg">
+                          <%= image_tag(product.product_color.primary_image.image.thumb.url) %>                          
                       </div>
                       <div class="span2 qcart-details">
-                          <span class="qcart-item-name">Yellow Mickey Mouse</span>
-                          <span class="qcart-item-price">IDR 249.000</span>
+                          <span class="qcart-item-name"><%= product.name %></span>
+                          <span class="qcart-item-price">IDR <%= product.price %> </span>
                       </div>
                   </div>
-
-                  <!-- QuickCart -->
-                  <div class="qcart-item row">
-                      <div class="span1">
-                          <img src="img/dummy-data/jooliett-0996-small.jpg">
-                      </div>
-                      <div class="span2 qcart-details">
-                          <span class="qcart-item-name">Yellow Mickey Mouse</span>
-                          <span class="qcart-item-price">IDR 249.000</span>
-                      </div>
-                  </div>
+                  <% end %>
+                  
                   <!-- /qcart-item -->
                   <div class="qcart-action">
                       <p class="msg success">Successfully Added to cart</p>

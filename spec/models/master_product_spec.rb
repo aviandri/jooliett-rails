@@ -32,20 +32,7 @@ describe MasterProduct do
   		it "should return empty product" do
   			@master_product.products.should eq([])
   		end
-  	end
-  	describe "primary product" do
-  		it "should return product of this master item primary flag true" do
-  			master_product = FactoryGirl.create(:master_product)
-			product = FactoryGirl.create(:product, :master_product => master_product, :primary => true)
-  			master_product.primary_product.should eq(product)
-  		end
-
-  		it "should return first product if don't have any primary flag products" do
-  			master_product = FactoryGirl.create(:master_product)
-			product = FactoryGirl.create(:product, :master_product => master_product)
-  			master_product.primary_product.should eq(product)
-  		end
-  	end 
+  	end  	
 
   	describe "product colors" do
   	 	 it "should have product colors" do

@@ -3,8 +3,13 @@ class Product < ActiveRecord::Base
 	belongs_to :product_color
 	belongs_to :product_size
 	delegate :name, :to => :master_product
+	delegate :price, :to => :master_product
+	delegate :discount_price, :to => :discount_price	
+	has_many :cart_items
+	has_many :carts, through: :cart_items
 
 	validates :product_color, :product_size, :presence => true
+
 
 	scope :primaries, -> {where("primary" => true)}
 
@@ -23,6 +28,15 @@ class Product < ActiveRecord::Base
 	 		true
 	 	else
 	 		false
+	 	end
+	 end
+
+	 def self.find_by_product_color_product_size(product_size_id, product_color_id)
+	 	products = Product.where(product_color_id: product_color_id, product_size_id: product_size_id)
+	 	if products.empty?
+	 		nil
+	 	else
+	 		products.first
 	 	end
 	 end
 

@@ -9,6 +9,11 @@ JooliettRails::Application.routes.draw do
 
   namespace :api do
   	resources :product_colors, :only => [:show]
+  	resources :carts, :only => [] do
+  		collection do 
+  			post :add
+  		end
+  	end
   end
 
 end

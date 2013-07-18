@@ -14,9 +14,11 @@ describe Api::ProductColorsController do
 		    expected_response = {:name => @color.name,
 		    						:product_images => [:full_img => @product_image.image.url,
 		    											:medium_img =>@product_image.image.medium.url,
-		    											:thumb_img => @product_image.image.thumb.url]}.to_json
+		    											:thumb_img => @product_image.image.thumb.url,
+		    											:primary => false]}.to_json
 			response.body.should == expected_response		    											
 		  end
 		end	
 
 end
+	
