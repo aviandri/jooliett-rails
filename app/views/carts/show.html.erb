@@ -25,8 +25,10 @@
                       	<li>Discount: <%= cart_item.product.discount_percentage%>%</li>
                       <% end %>
                       <li>IDR <%= product_price(cart_item.product) %></li>
-                      <li><i class="icon-remove"></i>&nbsp;<a href="#" title="Remove this item from cart">Remove Item</a></li>
-                      <li><i class="icon-heart"></i>&nbsp;<a href="#" title="Buy later">Save for later</a></li>
+                      <li><i class="icon-remove"></i>&nbsp;
+                      	<%= link_to "Remove Item", cart_item_path(:id => cart_item.id, :cart_id => @cart.id), :title => "Remove this item from cart", :method => :delete %>                      	
+                      </li>
+                     <!--  <li><i class="icon-heart"></i>&nbsp;<a href="#" title="Buy later">Save for later</a></li> -->
                     </ul>
                   </div>
                 </td>

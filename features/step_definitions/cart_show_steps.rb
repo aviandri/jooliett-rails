@@ -18,7 +18,7 @@ end
 Then(/^I should see product details in my cart$/) do
   page.should have_content "Your Shopping Cart"
   within "table" do
-  	page.all('td.row').count(2)
+  	page.all('td.row').count.should eq(2)
   	page.should have_content @master_product.name
   	page.should have_content @master_product.discount_price
   	page.should have_content @master_product.discount_percentage
@@ -30,4 +30,14 @@ Then(/^I should see product details in my cart$/) do
 
   end
 
+end
+
+When(/^I click on "(.*?)"$/) do |arg1|
+  find(:xpath, "(//a[text()='Remove Item'])[1]").click
+end
+
+Then(/^I should see that a product is removed from my Cart$/) do
+  within "table" do
+  	page.all('td.row').count.should eq(1)
+  end
 end
