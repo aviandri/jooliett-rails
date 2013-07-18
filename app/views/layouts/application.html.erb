@@ -45,16 +45,16 @@
             <ul class="nav pull-right">
               <li id="fat-menu" class="dropdown">
                 <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="qcart-count"><%= current_cart.products.empty? ? 0 : current_cart.products.count %> </span> Cart<b class="caret"></b></a>
-                <div class="dropdown-menu quickcart" role="menu" aria-labelledby="drop3">
+                <div class="dropdown-menu quickcart" role="menu" aria-labelledby="drop3" data-cart-id="<%= cookies[:cart_id]%>" >
                   <!-- QuickCart -->
-                  <% current_cart.products.each do |product| %>
+                  <% current_cart.cart_items.each do |cart_item| %>
                   <div class="qcart-item row">
                       <div class="span1">
-                          <%= image_tag(product.product_color.primary_image.image.thumb.url) %>                          
+                          <%= image_tag(cart_item.product.product_color.primary_image.image.thumb.url) %>                          
                       </div>
                       <div class="span2 qcart-details">
-                          <span class="qcart-item-name"><%= product.name %></span>
-                          <span class="qcart-item-price">IDR <%= product.price %> </span>
+                          <span class="qcart-item-name"><%= cart_item.product.name %> <%= cart_product_quantity(cart_item) %></span>
+                          <span class="qcart-item-price">IDR <%= cart_product_price(cart_item) %> </span>
                       </div>
                   </div>
                   <% end %>
@@ -62,7 +62,7 @@
                   <!-- /qcart-item -->
                   <div class="qcart-action">
                       <p class="msg success">Successfully Added to cart</p>
-                      <button class="btnflat-fluid dark">View Shopping Cart</button>
+                      <button id="view-cart" class="btnflat-fluid dark">View Shopping Cart</button>
                       <p>or</p>
                       <button class="btnflat-fluid action">Checkout</button>
                   </div>

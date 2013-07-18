@@ -8,8 +8,7 @@ class Api::CartsController < ApplicationController
 			@cart = Cart.create
 			cookies.permanent[:cart_id] = @cart.id		
 		end
-		product = Product.find_by_product_color_product_size(params[:product_size_id], params[:product_size_id])
-		@cart.products << product
-		@cart.save		
+		product = Product.find_by_product_color_product_size(params[:product_size_id], params[:product_size_id])		
+		@cart.add_product(product)		
 	end
 end

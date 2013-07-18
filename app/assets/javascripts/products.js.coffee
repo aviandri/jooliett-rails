@@ -39,14 +39,16 @@ $ ->
 
 $ ->
 	$("button.addcart").click ->
-		colorId = $("div.color-tag").data("color-id")
-		productSizeId = $("div.size-tag").data('size-id')
-		console.log("colorId = " + colorId)
-		console.log("productSizeId = " + productSizeId)
-		json = {'product_color_id' : colorId, 'product_size_id' : productSizeId}
 		callback = (response) ->
 			console.log(response)
-		$.ajax '/api/carts/add', type: 'POST', data: JSON.stringify(json), success: callback, contentType: "application/json", dataType: "json"		
+		colorId = $("div.color-tag").data("color-id")
+		productSizeId = $("div.size-tag").attr('data-size-id')
+		console.log(productSizeId)
+		if productSizeId == ''
+			alert("Please Choose Product Size")
+		else
+			json = {'product_color_id' : colorId, 'product_size_id' : productSizeId}		
+			$.ajax '/api/carts/add', type: 'POST', data: JSON.stringify(json), success: callback, contentType: "application/json", dataType: "json"		
 		
 		
 class ProductImages

@@ -17,5 +17,24 @@ describe Api::CartsController do
 		response.body.should include(@master_product.price.to_s)
 		response.body.should include(@product_image.image.thumb.url)	  	
 	  end
+
+	  it "should contain unique product in cart" do
+	  	@cart = FactoryGirl.create(:cart)
+	  	@cart_item = FactoryGirl.create(:cart_item, :cart_id => @cart.id, :product_id => @product.id)
+	  	cookies[:cart_id] = @cart
+
+	  	post "add", :product_color_id => @product_color.id, :product_size_id => @product_color.id, :format => :json
+		cart = Cart.find(@cart.id)
+		cart.cart_items.count.should eq(1)
+		cart.products.count.should eq(1)
+		cart.cart_items.first.quantity.should eq(2)
+		response.body.should include(@master_product.name)	  	
+		response.body.should include(@master_product.price.to_s)
+		response.body.should include(@product_image.image.thumb.url)	  	
+
+	  end
 	end
+ 	
+	  
+
 end

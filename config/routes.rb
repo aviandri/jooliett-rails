@@ -6,6 +6,7 @@ JooliettRails::Application.routes.draw do
   root :to => 'covers#index'
   resources :covers
   resources :products, :only => [:show]
+  resources :carts, :only => [:show]  
 
   namespace :api do
   	resources :product_colors, :only => [:show]
