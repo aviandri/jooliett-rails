@@ -1,18 +1,25 @@
 JooliettRails::Application.routes.draw do
-  
-  devise_for :users
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-  # get "products/index/:category_name", :controller => :products, :action => :index
   root :to => 'covers#index'
+  devise_for :users, :controllers => { :registrations => "users" }  
+  
+  resources :users
+  
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  
+  ActiveAdmin.routes(self)
+  
   resources :covers
+  
   resources :products, :only => [:show] do
     collection do
        get '/category/:category_name' => 'products#index'
     end
   end
   resources :carts, :only => [:show]  
+  
   resources :cart_items, :only => [:destroy]
+
+  resources :shipping_details, :only => [:new]
 
   namespace :api do
   	resources :product_colors, :only => [:show]
@@ -22,5 +29,4 @@ JooliettRails::Application.routes.draw do
   		end
   	end
   end
-
 end

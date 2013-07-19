@@ -14,7 +14,7 @@ Given(/^I am in Product list page of category Dress$/) do
   @product_color_1 = FactoryGirl.create(:product_color, :product_images => [@product_image_1], :color => @color)
   @master_product_discounted = FactoryGirl.create(:master_product, :discount_price => 100000, :discount_percentage => 15, :categories => [@category], :product_colors => [@product_color_1])       
 
-  visit "/products/index/#{@category.name}"
+  visit "/products/category/#{@category.name}"
 end
 
 When(/^I click on a product with name "(.*?)"$/) do |arg1|

@@ -514,6 +514,29 @@ td.shopcart-total {
 	color: #fff;
 }
 /* Checkout Form */
+.checkout-steps {
+	margin-bottom: 20px;
+}
+.checkout-steps li {
+	float: left;
+	padding: 5px 20px 5px 0;
+}
+.checkout-steps span {	
+	color: #ccc;
+	padding-bottom: 5px;
+}
+.checkout-steps .current {
+	color: #f2108a;
+	font-weight: bold;
+	border-bottom: 2px solid #f2108a;
+}
+.checkout-steps a {
+	color: #333;
+}
+.checkout-steps a:hover {
+	color: #f2108a;
+	text-decoration: none;
+}
 .checkout .form-horizontal label {
 	text-align: left;
 }
@@ -523,12 +546,27 @@ td.shopcart-total {
 .checkout .form-horizontal select {
 	width: auto;
 }
+.helpbox {
+	background-color: #efefef;
+	border: 1px solid #dfdfdf;
+	padding: 5px;
+	font-size: smaller;
+}
+.helpbox ul {
+	margin: 0 0 0 0;
+}
 .select-payment li {
 	float: left;
 	margin-right: 10px;
 }
 .select-payment img {
 	display: block;
+}
+.select-payment2 li {
+	padding-bottom: 10px;
+}
+.select-payment2 p {
+	padding-left: 20px;
 }
 .checkout.summary th {
 	background-color: #efefef;
