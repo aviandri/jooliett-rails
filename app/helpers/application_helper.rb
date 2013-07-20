@@ -13,4 +13,12 @@ module ApplicationHelper
 		price = product.discount_price.nil? ? product.price : product.discount_price
 	end
 
+	def error_flag(resource, field)
+		"error" unless resource.errors[field.to_sym].empty? 
+	end
+
+	def error_message(resource, field)
+		resource.errors.messages[field.to_sym].first unless resource.errors[field.to_sym].empty?
+	end
+
 end

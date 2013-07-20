@@ -28,4 +28,11 @@ describe ShippingDetail do
     	shipping_detail.errors.should include(:postal_code)
 	end
   end
+
+  describe "user" do
+    it "should belong_to user" do
+      	shipping_detail = ShippingDetail.new
+      	shipping_detail.user.should be_nil
+    end
+  end
 end

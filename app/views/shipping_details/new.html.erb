@@ -1,0 +1,87 @@
+  <div class="container checkout">
+      <div class="row-fluid">
+        <div class="span12">     
+
+          <h3>Shipping Information</h3>
+          <div class="row-fluid">
+            <div class="span10">
+              <div class="checkout-steps">
+                <ul class="unstyled clearfix">
+                  <li><span class="current"><a href="" title="Back to Previous">About You</a></span></li>
+                  <li><span class="current"><a href="" title="Back to Previous">Billing</a></span></li>
+                  <li><span class="current">Shipping</span></li>
+                  <li><span>Payment</span></li>
+                  <li><span>Summary &amp; Pay</span></li>
+                </ul>
+              </div>
+              <%= form_for @shipping_detail do |f| %>
+                  <div class="control-group <%= error_flag(@shipping_detail, 'name') %>">
+                  <label class="control-label" for="inputFirstName">First Name</label>
+                  <div class="controls">
+                    <%= f.text_field :name, :class => "input-xlarge", :placeholder => "Name" %>  
+                    <span class="help-inline"><%= error_message(@shipping_detail, "name") %></span>                  
+                  </div>
+                </div>
+
+                <div class="control-group <%= error_flag(@shipping_detail, 'mobile') %> ">
+                  <label class="control-label" for="inputMobile">Mobile</label>
+                  <div class="controls">
+                    <%= f.text_field :mobile, :class => "input-xlarge", :placeholder => "+821111111111" %>
+                      <span class="help-inline"><%= error_message(@shipping_detail, "mobile") %></span>                  
+                  </div>
+                </div>
+                <div class="control-group <%= error_flag(@shipping_detail, 'address1') %>">
+                  <label class="control-label" for="inputAddress1">Address 1</label>
+                  <div class="controls">
+                    <%= f.text_field :address1, :class => "input-xlarge", :placeholder => "Jl. Casablanca Raya E1-18" %>
+                  <span class="help-inline"><%= error_message(@shipping_detail, "address1") %></span>                  
+                    
+                  </div>
+                </div>
+                <div class="control-group <%= error_flag(@shipping_detail, 'address2') %>">
+                  <label class="control-label" for="inputAddress2">Address 2</label>
+                  <div class="controls">
+                    <div class="controls">
+                    <%= f.text_field :address2, :class => "input-xlarge", :placeholder => "Belakang Kota Kasablanka" %>
+                    <span class="help-inline"><%= error_message(@shipping_detail, "address2") %></span>                                      
+                    <span>(Optional)</span>
+                  </div>
+                </div>
+                <div class="control-group <%= error_flag(@shipping_detail, 'city') %>">
+                  <label class="control-label" for="inputForCity">City</label>
+                  <div class="controls">
+                    <%= f.text_field :city, :placeholder => "Jakarta Selatan" %>
+                    <span class="help-inline"><%= error_message(@shipping_detail, "city") %>
+                    </span>                                                          
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="inputForZipCode">ZIP Code</label>
+                  <div class="controls">
+                    <%= f.text_field :postal_code, :class => "input-mini", :placeholder => "40559" %>
+                    <span class="help-inline"><%= error_message(@shipping_detail, "postal_code") %>
+                    </span>                                                                              
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                  <button class="btnflat action">Next Step</button>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="span2">
+              <h5>Need Help?</h5>
+              <div class="helpbox">
+                <ul class="unstyled">
+                  <li><i class="icon-info-sign"></i> +62-21-89788990</li>
+                  <li><i class="icon-envelope"></i> cs@jooliett.com</li>
+                  <li><i class="icon-comment"></i> jooliett (skype)</li>
+                  <li><i class="icon-time"></i> 09.00 - 18.00</li>
+                </ul>
+              </div>
+            </div>
+
+        </div><!-- ./span12 -->
+      </div><!-- ./ row-fluid -->
+    </div><!-- ./container -->

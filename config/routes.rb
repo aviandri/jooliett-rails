@@ -19,7 +19,7 @@ JooliettRails::Application.routes.draw do
   
   resources :cart_items, :only => [:destroy]
 
-  resources :shipping_details, :only => [:new]
+  resources :shipping_details
 
   namespace :api do
   	resources :product_colors, :only => [:show]
