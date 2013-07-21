@@ -6,9 +6,8 @@ class CartsController < ApplicationController
   def update  	
   	@cart = Cart.find(params[:id])
   	@cart.update_attributes(cart_params)
-  	binding.pry
   	if @cart.save
-  		redirect_to :controller => :shipping_details, :new, :order_id => 
+  		redirect_to controller: :orders, action: :new 
   	else
   		render :show
   	end

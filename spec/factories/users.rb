@@ -1,9 +1,10 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :user do
   	name "aviandri"
   	password "password01"
-  	email "aviandri@gmail.com"
+  	sequence :email do |n|
+    	"email#{n}@factory.com"
+  	end
   end
 end

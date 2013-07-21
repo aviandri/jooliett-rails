@@ -1,12 +1,15 @@
 class ShippingDetailsController < ApplicationController
 	before_filter :authenticate_user!
 	def new	
+		@order = Order.find(params[:order_id])
 		@shipping_detail =  ShippingDetail.new
 	end
 
 	def create
-		@shipping_detail = ShippingDetail.new(shipping_detail_params)
-		if @shipping_detail.save
+		@order = Order.find(params[:order_id])
+		shipping_detail = ShippingDetail.new(shipping_detail_params)
+		@order.shipping_detail = shipping_detail
+		if @order.save			
 			redirect_to :controller => "payment_details", :action => "new"
 		else
 			render :new

@@ -19,11 +19,10 @@ JooliettRails::Application.routes.draw do
   
   resources :cart_items, :only => [:destroy]
 
-  resources :shipping_details
-
-  resources :payment_details
-
-  resources :orders
+  resources :orders do
+    resources :shipping_details
+    resources :payment_details
+  end
 
   namespace :api do
   	resources :product_colors, :only => [:show]

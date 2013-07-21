@@ -2,13 +2,16 @@ class PaymentDetailsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def new
+		@order = Order.find(params[:order_id])
 		@payment_detail =  PaymentDetail.new	
 		@payment_types = PaymentType.all
 	end
 
 	def create
+		@order = Order.find(params[:order_id])
 		payment_detail = PaymentDetail.new(payment_detail_params)
-		if payment_detail.save
+		@order.payment_detail = payment_detail
+		if @order.save
 			redirect_to :controler => :orders, :action => :new
 		else
 			render :new

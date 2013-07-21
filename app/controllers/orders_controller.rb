@@ -1,13 +1,19 @@
 class OrdersController < ApplicationController
-
-	def create
+	def new 
 		@order = Order.new
-		cart = Cart.find(params[:cart_id])
-		# cart.cart_items.each do |cart_item|
-			
-		# end
+		cart = Cart.find(cookies[:cart_id])
+		cart.cart_items.each do |cart_item|
+			order_item = OrderItem.create(product_id: cart_item.product_id, 
+									quantity: cart_item.quantity)			
+			@order.order_items << order_item
+		end
+		@order.save
+		redirect_to new_order_shipping_detail_path(:order_id =>  @order.id)
+	end
 
-		redirect_to controller: :shipping_details, action: :new
+
+	def create		
+		
 	end
 
 

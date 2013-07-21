@@ -29,7 +29,8 @@ end
 Given(/^I am on payment method selection list$/) do	
   initialize_payment_methods	
   sign_in
-  visit '/payment_details/new'
+  @order = FactoryGirl.create(:order)
+  visit "/orders/#{@order.id}/payment_details/new"
 end
 
 When(/^I choose payment method and click next step$/) do

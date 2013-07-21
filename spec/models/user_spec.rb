@@ -13,12 +13,5 @@ describe User do
  	  	user.valid?
  	  	user.errors.messages.should include(:name, :password, :email)    
  	  end
- 	end
-
- 	describe "shipping_address" do
- 	  it "should have shipping_address field" do
-		user = User.new
-		user.shipping_detail.should	be_nil
- 	  end
- 	end
+ 	end 	
 end

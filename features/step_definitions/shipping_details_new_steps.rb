@@ -10,13 +10,14 @@ def sign_in
 	create_user
 	visit '/users/sign_in'
 	fill_in "user_email", :with => @visitor[:email]
-  	fill_in "user_password", :with => @visitor[:password]
-  	click_button "Sign in"
+  fill_in "user_password", :with => @visitor[:password]
+  click_button "Sign in"
 end
 
 Given(/^I am on new shipping details page$/) do
+  @order = FactoryGirl.create(:order)
   sign_in
-  visit '/shipping_details/new'
+  visit "/orders/#{@order.id}/shipping_details/new"
 end
 
 When(/^I fill in the form and click action$/) do
