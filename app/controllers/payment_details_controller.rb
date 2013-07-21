@@ -11,8 +11,9 @@ class PaymentDetailsController < ApplicationController
 		@order = Order.find(params[:order_id])
 		payment_detail = PaymentDetail.new(payment_detail_params)
 		@order.payment_detail = payment_detail
+		@order.prepare_order_summary
 		if @order.save
-			redirect_to :controler => :orders, :action => :new
+			redirect_to summary_order_path(:id => @order.id)
 		else
 			render :new
 		end

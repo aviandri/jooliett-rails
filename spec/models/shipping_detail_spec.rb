@@ -35,4 +35,11 @@ describe ShippingDetail do
       	shipping_detail.user.should be_nil
     end
   end
+
+  describe "price" do
+    it "should have price" do
+        shipping_detail = FactoryGirl.create(:shipping_detail)
+        shipping_detail.price.should eq(0)      
+    end
+  end
 end

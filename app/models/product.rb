@@ -2,10 +2,13 @@ class Product < ActiveRecord::Base
 	belongs_to :master_product
 	belongs_to :product_color
 	belongs_to :product_size
+
 	delegate :name, :to => :master_product
 	delegate :price, :to => :master_product
 	delegate :discount_price, :to => :master_product	
 	delegate :discount_percentage, :to => :master_product
+	delegate :sales_price, :to => :master_product
+
 	has_many :cart_items
 	has_many :carts, through: :cart_items
 

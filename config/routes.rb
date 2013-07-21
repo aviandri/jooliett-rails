@@ -22,6 +22,10 @@ JooliettRails::Application.routes.draw do
   resources :orders do
     resources :shipping_details
     resources :payment_details
+    member do
+      get :summary
+      patch :complete
+    end
   end
 
   namespace :api do

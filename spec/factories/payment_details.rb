@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :payment_detail do
-    payment_type_id 1
-    user_id 1
+    payment_type
+    payment_code
   end
 end

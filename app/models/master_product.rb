@@ -42,9 +42,16 @@ class MasterProduct < ActiveRecord::Base
 		end
 	end
 
-
 	def self.suggestions
 		MasterProduct.all.sample(4)
+	end
+
+	def sales_price
+		if self.discount_price.nil?
+			self.price
+		else
+			self.discount_price
+		end
 	end
 
 

@@ -5,5 +5,6 @@ FactoryGirl.define do
     name "MyString"
     type ""
     description "MyString"
+    image "western-union-straight-32px.png"
   end
 end

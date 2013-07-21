@@ -11,11 +11,14 @@ class OrdersController < ApplicationController
 		redirect_to new_order_shipping_detail_path(:order_id =>  @order.id)
 	end
 
-
-	def create		
-		
+	def summary
+		@order = Order.find params[:id]
 	end
 
-
+	def complete
+		@order = Order.find params[:id]
+		@order.status = "pending"
+		@order.save
+	end
 
 end

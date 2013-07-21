@@ -19,4 +19,16 @@ describe Order do
  	    @order.order_items.should_not be_nil
  	  end
  	end
+
+ 	describe "should have order total price" do
+ 	  it "should have total price" do
+ 	    @order.total_price.should be_nil
+ 	  end
+ 	end
+
+ 	describe "status" do
+ 	  it "should have status" do
+ 	    @order.status.should be_nil
+ 	  end
+ 	end
 end

@@ -90,5 +90,16 @@ describe MasterProduct do
           MasterProduct.suggestions.should_not be_nil
        end
      end
+
+     describe "sales_price" do
+      before(:each) do
+        @master_product = FactoryGirl.create(:master_product, :price => 100000, :discount_price => 50000)  
+        @master_product2 = FactoryGirl.create(:master_product, :price => 100000)  
+      end
+       it "should have correct sales price" do
+        @master_product.sales_price.should eq(50000)  
+        @master_product2.sales_price.should eq(100000)  
+       end
+     end
   	 
 end	

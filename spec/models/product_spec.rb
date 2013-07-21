@@ -82,6 +82,17 @@ describe Product do
     it "should return a product" do
       product = Product.find_by_product_color_product_size(@product_size.id, @product_color.id)  
       product.should eq(@product)
+    end    
+  end
+
+  describe "sales price" do
+    before(:each) do
+      @master_product = FactoryGirl.create(:master_product, :price => 100000, :discount_price => 50000)      
+      @product = FactoryGirl.create(:product, :master_product => @master_product)
+    end
+    it "should have sales price" do
+      @product.sales_price.should eq(50000)
+      
     end
   end
   

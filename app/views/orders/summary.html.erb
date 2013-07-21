@@ -1,0 +1,87 @@
+  <div class="container checkout summary">
+      <div class="row-fluid">
+        <div class="span12">     
+
+          <h3>Confirm &amp; Pay</h3> 
+          <div class="checkout-steps">
+            <ul class="unstyled clearfix">
+              <li><span class="current"><a href="" title="Back to Previous">About You</a></span></li>
+              <li><span class="current"><a href="" title="Back to Previous">Billing</a></span></li>
+              <li><span class="current"><a href="" title="Back to Previous">Shipping</a></span></li>
+              <li><span class="current"><a href="" title="Back to Previous">Payment</a></span></li>
+              <li><span class="current">Summary &amp; Pay</span></li>
+            </ul>
+          </div> 
+          <h4>Order Summary</h4>     
+          <table class="table table-bordered table-condensed">
+            <tr>
+              <th>Product Name</th>
+              <th class="span2">Quantity</th>
+              <th class="span2">Total</th>
+            </tr>
+            <%= @order.order_items.each do |order_item| %>
+            <tr>
+              <td><%= order_item.product.name %></td>
+              <td><%= order_item.quantity %></td>
+              <td>IDR <%= order_item.subtotal_price %> </td>
+            </tr>
+            <% end %>
+            <tr>
+              <td colspan="2" style="text-align: right">Sub Total :</td>
+              <td>IDR <%= @order.total_price %> </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: right">Shipping :</td>
+              <td>IDR <%= @order.shipping_detail.price %></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: right">Payment Code :</td>
+              <td>IDR <%= @order.payment_detail.pay_code %></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: right">Total : </td>
+              <td>IDR <%= @order.total_price %></td>
+            </tr>
+          </table>
+          <p class="text-right" ><a href="#" title="Edit / Add">Edit/Add</a></p>
+
+          <h4>Select Shipping &amp; Billing Address</h4>
+          <table class="table table-bordered table-condensed">
+            <tr>
+              <th>Address</th>
+              <th class="span2">Shipping</th>
+            </th>
+            <tr>
+              <td><%= @order.shipping_detail.address1 %></td>
+              <td><input type="radio" checked></td>
+            </tr>            
+          </table>
+          <p class="text-right" ><a href="#" title="Edit / Add">Edit/Add</a></p>
+         
+          <h4>Selected Payment Method</h4>
+          <table class="table table-bordered table-condensed">
+            <tr>
+              <th class="span3">Type</th>
+              <th class="span2">Number</th>
+              <th class="span5">Name</th>
+              <th class="span2">Select</th>
+            </tr>
+            <tr>
+              <td><%= image_tag @order.payment_detail.payment_type.image %><span><%= @order.payment_detail.payment_type.name %></span></td>
+              <td>N/A</td>
+              <td>Bank BCA KCP Wolter Mongisidi a/n Jooliett No. Rek. 564 231 8777</td>
+              <td>N/A</td>
+            </tr>
+          </table>
+          <p class="text-right" ><a href="#" title="Edit / Add">Edit/Add</a></p>
+
+          <%= form_for @order, :url => complete_order_path(:id => @order.id) do |f| %>
+          <div class="place-order text-center">
+            <button class="btnflat action">Place Order</button>
+            <p>By clicking PLACE ORDER you confirm that you have read, understood and accept our <a href="#" title="">Terms and Conditions</a>, <a href="#" title="">Returns Privacy</a> and <a href="#" title="">Privacy Policy</a>
+          </div>
+          <% end %>
+
+        </div><!-- ./span12 -->
+      </div><!-- ./ row-fluid -->
+    </div><!-- ./container -->
