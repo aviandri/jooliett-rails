@@ -33,7 +33,8 @@
                     <p>
                       <%= payment_type.description.html_safe  %>
                     </p>
-                  </li>                 
+                  </li>  
+                  <%= f.hidden_field :id, :value => @payment_detail.id %>               
                   <% end %>
                 </ul>
                 

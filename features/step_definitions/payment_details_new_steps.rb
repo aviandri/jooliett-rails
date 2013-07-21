@@ -29,7 +29,12 @@ end
 Given(/^I am on payment method selection list$/) do	
   initialize_payment_methods	
   sign_in
-  @order = FactoryGirl.create(:order)
+  @order_item = FactoryGirl.create(:order_item) 
+  @order = FactoryGirl.create(:order, order_items: [@order_item])
+  @order.shipping_detail = FactoryGirl.create(:shipping_detail)
+  @order.payment_detail = FactoryGirl.create(:payment_detail)
+  @order.save
+
   visit "/orders/#{@order.id}/payment_details/new"
 end
 
