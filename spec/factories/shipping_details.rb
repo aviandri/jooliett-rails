@@ -3,11 +3,11 @@
 FactoryGirl.define do
   factory :shipping_detail do
     name "MyString"
-    mobile "MyString"
+    mobile "+82111111"
     country "MyString"
     address1 "MyString"
     address2 "MyString"
     city "MyString"
-    postal_code "MyString"
+    postal_code "45555"
   end
 end

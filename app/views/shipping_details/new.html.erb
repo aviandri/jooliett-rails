@@ -14,7 +14,7 @@
                   <li><span>Summary &amp; Pay</span></li>
                 </ul>
               </div>
-              <%= form_for @shipping_detail do |f| %>
+              <%= form_for @order.shipping_detail do |f| %>
                   <div class="control-group <%= error_flag(@shipping_detail, 'name') %>">
                   <label class="control-label" for="inputFirstName">First Name</label>
                   <div class="controls">

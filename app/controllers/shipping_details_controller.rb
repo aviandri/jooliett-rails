@@ -1,20 +1,17 @@
 class ShippingDetailsController < ApplicationController
-	def new
-		if current_user.shipping_detail.nil?
-			@shipping_detail =  ShippingDetail.new
-		else
-			@shipping_detail = current_user.shipping_detail
-		end			
+	before_filter :authenticate_user!
+	def new	
+		@shipping_detail =  ShippingDetail.new
 	end
 
 	def create
-		shipping_detail = ShippingDetail.new(shipping_detail_params)
-		shipping_detail.user = current_user
-		shipping_detail.save
-		redirect_to :controller => "payment_details", :action => "new"
+		@shipping_detail = ShippingDetail.new(shipping_detail_params)
+		if @shipping_detail.save
+			redirect_to :controller => "payment_details", :action => "new"
+		else
+			render :new
+		end
 	end
-
-
 	private
 
 	def shipping_detail_params

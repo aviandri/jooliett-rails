@@ -6,7 +6,7 @@ describe ShippingDetail do
     it "should be valid" do
     	shipping_detail = ShippingDetail.new
 		shipping_detail.valid?
-		shipping_detail.errors.should include(:name, :mobile, :country, :address1, :city, :postal_code)
+		shipping_detail.errors.should include(:name, :mobile, :address1, :city, :postal_code)
     end
 
     it "should have valid phone" do

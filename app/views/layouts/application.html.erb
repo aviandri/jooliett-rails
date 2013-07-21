@@ -41,6 +41,11 @@
               </li>
               <li><a href="mixmatch-cover.html">Mix &amp; Match</a></li>
               <li><a href="video.html">Video</a></li>
+              <li>
+                <%= link_to "logout", destroy_user_session_path, :method => :delete%>
+              </li>                       
+                      
+                  
             </ul>
             <ul class="nav pull-right">
               <li id="fat-menu" class="dropdown">
@@ -66,6 +71,7 @@
                       <p>or</p>
                       <button class="btnflat-fluid action">Checkout</button>
                   </div>
+
                 </div><!-- ./quickcart -->
               </li>
             </ul>

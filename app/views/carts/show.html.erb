@@ -3,7 +3,7 @@
       <div class="row-fluid">
         <div class="span12 shopcart">
           <h3>Your Shopping Cart</h3>
-          <form class="form-inline">
+          <%= form_for @cart, :html => {:class => "form-inline" } do |f| %>
 
             <table class="table table-bordered table-hover">
               <tr> 
@@ -12,6 +12,7 @@
                 <th class="span2 shopcart-price">Sub Total</th>
               </tr>
               <!-- Item 1 -->
+
               <% @cart.cart_items.each do |cart_item| %>
               <tr>
                 <td class="row">
@@ -33,18 +34,20 @@
                   </div>
                 </td>
                 <td>
-                  <input class="span3" type="text" placeholder="1">
-                  <!-- <button type="submit" class="btn">Update</button> -->
+                  <%= f.fields_for "cart_items", cart_item do |b|  %>                                        
+                    <%= b.text_field :quantity, :class=> "span3", :value => cart_item.quantity %>
+                  <% end %>
                 </td>
                 <td>IDR <%= total_price(@cart)%></td>
               </tr>
-			  <% end %>            
+			       <% end %>            
+             
             </table>
-          </form>
           <div class="row-fluid">
             <div class="span9"><a href="">Continue Shopping</a></div>
             <div class="span3"><button class="pull-right btnflat-fluid action">Proceed to Checkout &raquo;</button></div>
           </div>
-        </div><!-- ./shoppingcart -->
+        </div>
+        <% end %><!-- ./shoppingcart -->
       </div><!-- ./ row-fluid -->
     </div><!-- ./container -->

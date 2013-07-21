@@ -9,5 +9,9 @@ describe CartItem do
       	cart_item.product.should be_nil
       	cart_item.quantity.should be_nil
     end
+    it "should have default quantity value of 1" do
+      	cart_item = CartItem.create
+      	cart_item.quantity.should eq(1)	
+    end
   end
 end

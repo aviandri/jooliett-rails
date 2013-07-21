@@ -1,5 +1,4 @@
 require 'pry'
-
 def create_user
 	 @visitor ||= { :name => "Testy McUserton", :email => "example@example.com",
     :password => "changeme", :password_confirmation => "changeme" }
@@ -7,6 +6,7 @@ def create_user
 end
 
 def sign_in
+	page.driver.submit :delete, "/users/sign_out", {}
 	create_user
 	visit '/users/sign_in'
 	fill_in "user_email", :with => @visitor[:email]
@@ -30,5 +30,5 @@ When(/^I fill in the form and click action$/) do
 end
 
 Then(/^I should be redirected to payment page$/) do
-  page.should have_content "Payment Details"
+  page.should have_content "Payment Methods"
 end

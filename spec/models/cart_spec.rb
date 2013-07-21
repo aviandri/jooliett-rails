@@ -13,4 +13,5 @@ describe Cart do
     	@cart.products.should include(@product)
     end
   end
+
 end

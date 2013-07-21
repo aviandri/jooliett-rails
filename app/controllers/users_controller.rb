@@ -13,9 +13,4 @@ class UsersController < Devise::RegistrationsController
       params.require(:user).permit(:name, :email, :password)
     end
 
-    def after_sign_up_path_for(resource)
-    	if resource.class.name == "User"
-    		new_shipping_detail_path
-    	end
-    end
 end

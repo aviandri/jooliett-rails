@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe OrderItem do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  describe "description" do
+    it "should be valid" do
+      	@order_item = FactoryGirl.create(:order_item)
+      	@order_item.order.should be_nil
+    end
+  end
 end

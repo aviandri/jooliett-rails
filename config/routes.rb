@@ -15,11 +15,15 @@ JooliettRails::Application.routes.draw do
        get '/category/:category_name' => 'products#index'
     end
   end
-  resources :carts, :only => [:show]  
+  resources :carts, :only => [:show, :update]
   
   resources :cart_items, :only => [:destroy]
 
   resources :shipping_details
+
+  resources :payment_details
+
+  resources :orders
 
   namespace :api do
   	resources :product_colors, :only => [:show]
