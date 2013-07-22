@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
 				if self.total_price.nil?
 					self.total_price = 0
 				end
-				self.total_price = self.total_price + order_item.product.sales_price
+				self.total_price = self.total_price + (order_item.product.sales_price * order_item.quantity)
 			end	
 			self.total_price = self.total_price + self.payment_detail.pay_code
 			self.total_price = self.total_price + self.shipping_detail.price	

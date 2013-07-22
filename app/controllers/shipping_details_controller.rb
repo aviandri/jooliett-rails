@@ -7,8 +7,8 @@ class ShippingDetailsController < ApplicationController
 
 	def create
 		@order = Order.find(params[:order_id])
-		shipping_detail = ShippingDetail.new(shipping_detail_params)
-		@order.shipping_detail = shipping_detail
+		@shipping_detail = ShippingDetail.new(shipping_detail_params)
+		@order.shipping_detail = @shipping_detail
 		if @order.save			
 			redirect_to :controller => "payment_details", :action => "new"
 		else

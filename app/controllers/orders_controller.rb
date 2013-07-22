@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
 	end
 
 	def complete
+		cookies[:cart_id] = nil
 		@order = Order.find params[:id]
 		@order.status = "pending"
 		@order.save

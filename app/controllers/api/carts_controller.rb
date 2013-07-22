@@ -2,7 +2,7 @@ class Api::CartsController < ApplicationController
 	respond_to :json
 
 	def add
-		if cookies[:cart_id]
+		unless cookies[:cart_id].empty?
 			@cart = Cart.find(cookies[:cart_id])		
 		else
 			@cart = Cart.create

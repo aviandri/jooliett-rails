@@ -7,11 +7,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_cart
 
   def current_cart
-  	if cookies[:cart_id]
-  		cart = Cart.find cookies[:cart_id]
-  	else
-  		cart = Cart.new
-  	end
+    	unless cookies[:cart_id].blank?
+    		cart = Cart.find cookies[:cart_id]
+    	else
+    		cart = Cart.new
+    	end
   end
 
   def configure_permitted_parameters
