@@ -31,11 +31,5 @@ controller do
 		 params.permit!
 	end
 end
-# controller do
-#     def permitted_params
-#       params.permit(:master_product => [:name, :description, :price, :discount_price, :discount_percentage, :product_sizes, :categories,
-#       									product_colors_attributes => [:color, :primaries, product_images_attributes => [:primary, :image]]])
-#     end
-#  end
 
 end

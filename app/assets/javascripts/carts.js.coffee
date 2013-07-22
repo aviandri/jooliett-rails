@@ -4,6 +4,12 @@ $ ->
 		if cartId == ""
 			alert("return")
 			return
-		alert("cartId")
 		window.location.href = "/carts/"+cartId;
 
+class Cart
+	constructor: (@cartObject) ->
+		@cart = @cartObject.cart
+	getProductQuantity: ->
+		@cart.count
+	getCartItems: ->
+		@cart.cart_items

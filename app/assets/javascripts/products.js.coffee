@@ -12,6 +12,63 @@ Product =
 			$("ul.prod-minithumb")
 				.append($("<li></li>")	
 				.append(link_tag))
+
+	rePopulateCart : (cartItems) ->
+			for cart_item in cartItems
+				cart_item_tag = $("<div></div>")
+							.attr("class", "qcart-item row")
+				cart_item_image_div = $("<div></div>")
+										.attr("class", "span1")
+				cart_item_image_tag = $("<img></img>")
+										.attr("src", cart_item.thumb_img)
+				cart_item_image_div.append(cart_item_image_tag)									
+
+				cart_item_detail_div = $("<div></div>")
+										.attr("class", "span2 qcart-details")
+
+				cart_item_name_tag = $("<span></span>")										
+										.attr("class", "qcart-item-name")
+										.text(cart_item.name + "(" + cart_item.quantity + ")")
+
+				cart_item_price_tag = $("<span></span>")									
+										.attr("class", "qcart-item-price")
+										.text("IDR" + cart_item.price)
+
+				cart_item_detail_div.append(cart_item_name_tag)							
+				cart_item_detail_div.append(cart_item_price_tag)
+
+				cart_item_tag.append(cart_item_image_div)
+				cart_item_tag.append(cart_item_detail_div)
+				
+				$("div.quickcart").prepend(cart_item_tag)	
+
+			p_msg = $("<p></p>").attr("class", "msg success").text("Successfully Added to cart")
+			$("div.qcart-action").prepend(p_msg)
+
+
+
+			
+
+
+class Cart
+	constructor: (@cartObject) ->
+		@cart = @cartObject.cart
+	getProductQuantity: ->
+		@cart.count
+	getCartItems: ->
+		@cart.cart_items
+
+class ProductImages
+	constructor: (@productImages) ->
+		@thumbImages = []
+		for productImage in @productImages
+			if productImage.primary == true
+				@primaryProductImage = productImage			
+	getPrimaryImage: ->
+		@primaryProductImage
+	getThumbImages: ->
+		@productImages		
+
 		
 $ -> 
 	$(document).on "click", "img.prod-minithumb", ->
@@ -41,9 +98,15 @@ $ ->
 	$("button.addcart").click ->
 		callback = (response) ->
 			console.log(response)
+			cart = new Cart(response)
+			$("span.qcart-count").text(""+cart.getProductQuantity())
+			$('div').remove('.qcart-item');
+			Product.rePopulateCart(cart.getCartItems())			
+			$("#fat-menu").addClass("open")
+
+
 		colorId = $("div.color-tag").data("color-id")
 		productSizeId = $("div.size-tag").attr('data-size-id')
-		console.log(productSizeId)
 		if productSizeId == ''
 			alert("Please Choose Product Size")
 		else
@@ -51,14 +114,5 @@ $ ->
 			$.ajax '/api/carts/add', type: 'POST', data: JSON.stringify(json), success: callback, contentType: "application/json", dataType: "json"		
 		
 		
-class ProductImages
-	constructor: (@productImages) ->
-		@thumbImages = []
-		for productImage in @productImages
-			if productImage.primary == true
-				@primaryProductImage = productImage			
-	getPrimaryImage: ->
-		@primaryProductImage
-	getThumbImages: ->
-		@productImages
+
 
