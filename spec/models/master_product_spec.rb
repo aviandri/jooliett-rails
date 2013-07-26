@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 describe MasterProduct do
 	let(:valid_master_product){MasterProduct.new(:name => "Dress", :description => "Dress Description", :price => 10000)}
@@ -100,6 +99,37 @@ describe MasterProduct do
         @master_product.sales_price.should eq(50000)  
         @master_product2.sales_price.should eq(100000)  
        end
+     end
+
+     describe "available" do
+       before(:each) do
+        @master_product = FactoryGirl.create(:master_product, :price => 100000, :discount_price => 50000)          
+        @product_color1 = double(ProductColor)
+        @product_color2 = double(ProductColor)
+        
+       end
+
+       it "should show master product is not available" do
+          @product_color1.stub(:available?){false}
+          @product_color2.stub(:available?){false}
+          @master_product.stub(:product_colors){[@product_color1, @product_color2]}
+          @master_product.available?.should eq(false)
+       end
+
+       it "should show master product is not available" do
+          @product_color1.stub(:available?){true}
+          @product_color2.stub(:available?){false}
+          @master_product.stub(:product_colors){[@product_color1, @product_color2]}
+          @master_product.available?.should eq(false)
+       end
+
+         it "should show master product is not available" do
+          @product_color1.stub(:available?){true}
+          @product_color2.stub(:available?){true}
+          @master_product.stub(:product_colors){[@product_color1, @product_color2]}
+          @master_product.available?.should eq(true)
+       end
+
      end
   	 
 end	

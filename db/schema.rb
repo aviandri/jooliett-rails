@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130722171354) do
+ActiveRecord::Schema.define(version: 20130726180017) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -90,6 +90,26 @@ ActiveRecord::Schema.define(version: 20130722171354) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "look_book_images", force: true do |t|
+    t.string   "image"
+    t.integer  "look_book_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "look_books", force: true do |t|
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "description"
+  end
+
+  create_table "look_books_master_products", force: true do |t|
+    t.integer "look_book_id"
+    t.integer "master_product_id"
   end
 
   create_table "master_products", force: true do |t|

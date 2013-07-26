@@ -84,6 +84,7 @@ will vary between brands, please use the charts as a general guide to compare th
               </div>
             </div>
 
+            <% if @master_product.available? %>
             <!-- IF Normal -->
             <div class="row-fluid prod-price-details">
               <% if @master_product.discount_price.blank? %>
@@ -99,21 +100,26 @@ will vary between brands, please use the charts as a general guide to compare th
               <% end %>              
             </div>
             
+            <% else %>
             <!-- IF Out of Stock -->
-           <!--  <div class="row-fluid prod-price-details">
+            <div class="row-fluid prod-price-details">
               <div class="span4"><span class="outstock">OUT OF STOCK<span></div>
               <div class="span7">
                   <span class="price">IDR 2.6999.999</span>
               </div>
-            </div> -->
+            </div>
+
+            <% end %>
 
             <div class="row-fluid">
               <div class="span6">
                 <h4>Color Options</h4>
                 <div class="wrapper color-tag" data-color-id="<%= @master_product.primary_product_color.id %>">
                   <% @master_product.product_colors.each do |product_color| %>
-                    <span class="color-tag salmon" data-color-id="<%= product_color.id %>">
-                      <a href="#action"><%= product_color.color.name %></a></span>
+                    <% if product_color.available? %>
+                      <span class="color-tag salmon" data-color-id="<%= product_color.id %>">
+                        <a href="#action"><%= product_color.color.name %></a></span>
+                    <% end %>
                   <% end %>                  
                 </div>
               </div>

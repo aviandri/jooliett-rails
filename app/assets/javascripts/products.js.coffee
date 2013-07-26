@@ -1,3 +1,7 @@
+$ ->
+	$(document).ready ->
+      $('.image').hide().fadeIn(100);
+ 
 Product = 
 	populateThumb : (thumbImages) ->
 		for thumbImage in thumbImages
@@ -45,11 +49,7 @@ Product =
 			p_msg = $("<p></p>").attr("class", "msg success").text("Successfully Added to cart")
 			$("div.qcart-action").prepend(p_msg)
 
-
-
-			
-
-
+		
 class Cart
 	constructor: (@cartObject) ->
 		@cart = @cartObject.cart
@@ -76,7 +76,7 @@ $ ->
 
 
 $ ->
-	$("span.color-tag").click ->
+	$(document).on "click", "span.color-tag", ->
 		colorId = $(this).data('color-id')
 		$("ul.prod-minithumb").empty()
 		$("div.color-tag").attr("data-color-id", colorId)

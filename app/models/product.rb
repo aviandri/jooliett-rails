@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
 	has_many :cart_items
 	has_many :carts, through: :cart_items
 
-	validates :product_color, :product_size, :presence => true
+	validates :product_color, :product_size, :quantity, :presence => true
 
 
 	scope :primaries, -> {where("primary" => true)}

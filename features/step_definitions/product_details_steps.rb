@@ -1,5 +1,4 @@
-
-
+require 'pry'
 Given(/^I am in Product list page of category Dress$/) do  
   @category = FactoryGirl.create(:category, :name => "dress")  
   @product_image = FactoryGirl.create(:product_image, :primary => true)
@@ -7,8 +6,8 @@ Given(/^I am in Product list page of category Dress$/) do
   @color = FactoryGirl.create(:color)
   @product_color = FactoryGirl.create(:product_color, :product_images => [@product_image, @product_image_2], :color => @color)
   @master_product = FactoryGirl.create(:master_product, :categories => [@category], :product_colors => [@product_color])
-  @product = FactoryGirl.create(:product, :product_color_id => @product_color.id, :master_product_id => @master_product.id)
-  @product_2 = FactoryGirl.create(:product, :product_color_id => @product_color.id, :master_product_id => @master_product.id)
+  @product = FactoryGirl.create(:product, :product_color_id => @product_color.id, :master_product_id => @master_product.id, :quantity => 2)
+  @product_2 = FactoryGirl.create(:product, :product_color_id => @product_color.id, :master_product_id => @master_product.id, :quantity => 2)
 
   @product_image_1 = FactoryGirl.create(:product_image)
   @product_color_1 = FactoryGirl.create(:product_color, :product_images => [@product_image_1], :color => @color)
@@ -78,4 +77,21 @@ Then(/^I should see the detail of the discounted product$/) do
   end  
   page.should have_xpath("//img[@src=\"#{@product_image_1.image.url}\"]")
 end
+
+
+When(/^I click on a product with name "(.*?)" that is out of stock$/) do |arg1|
+  @product.quantity = 0
+  @product_2.quantity = 0
+  @product.save
+  @product_2.save
+  find(:xpath, "//a[@href='/products/#{@master_product.id}']").click
+end
+
+Then(/^I should see the detail of out of stocked product$/) do
+  within "span.outstock" do
+    page.should have_content "OUT OF STOCK"
+  end
+end
+
+
 

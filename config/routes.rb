@@ -28,6 +28,8 @@ JooliettRails::Application.routes.draw do
     end
   end
 
+  resources :look_books
+
   namespace :api do
   	resources :product_colors, :only => [:show]
   	resources :carts, :only => [] do

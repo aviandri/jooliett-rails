@@ -73,7 +73,7 @@ Spork.prefork do
       tmp = FactoryGirl.create(:product_image)
       tmp_cover = FactoryGirl.create(:cover)
       store_path = File.dirname(File.dirname(tmp.image.url))
-      sotre_path_cover = File.dirname(File.dirname(tmp_cover.image.url))
+      store_path_cover = File.dirname(File.dirname(tmp_cover.image.url))
       FileUtils.rm_rf(Dir["#{Rails.root}/public/#{store_path}/[^.]*"])
       FileUtils.rm_rf(Dir["#{Rails.root}/public/#{store_path_cover}/[^.]*"])
     end

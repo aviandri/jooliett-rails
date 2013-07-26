@@ -1,4 +1,7 @@
  <!-- Sub Navigation Bar: Tools, Filter, Search etc. Only displayed in products page -->
+
+ <% content_for :body_custom_style, "class=subnavbar" %>
+
   <div class="sub-navbar hidden-phone">
     <div class="container">
     Home / Products / <%= @category.nil? ? "" : @category.name %>
@@ -14,7 +17,7 @@
         <div class="span3">
           <div class="prod" id="<%= master_product.id %>" data-id="<%= master_product.id %>">
             <%= link_to product_path(:id => master_product.id) do %>
-               <%= image_tag(master_product.primary_product_color.primary_image.image.medium.url) %>                
+               <%= image_tag(master_product.primary_product_color.primary_image.image.medium.url, :class => "image") %>                
             <% end %>
             <div class="prod-meta">
               <span class="prod-title"><%= master_product.name%></span>

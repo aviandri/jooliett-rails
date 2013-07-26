@@ -11,5 +11,5 @@ When(/^I fill in form and click next step$/) do
 end
 
 Then(/^I should be redirected to cover page$/) do
-  	page.should	have_content "cover"
+  	page.should	have_css "#myCarousel"
 end
