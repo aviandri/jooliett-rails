@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe Product do
 
@@ -64,6 +65,13 @@ describe Product do
       @product.quantity = 1
       @product.available?.should eq(false)
     end
+
+    it "should return false if product not available" do
+      @product.quantity = 1
+      @cart_item = FactoryGirl.create(:cart_item, :product => @product, :quantity => 1)
+      @product.available?.should eq(false)
+    end
+
 
     it "should return false if product not available multiple order item" do
       @product.quantity = 2

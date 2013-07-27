@@ -37,5 +37,6 @@ JooliettRails::Application.routes.draw do
   			post :add
   		end
   	end
+    resources :products, :only => [:index]
   end
 end

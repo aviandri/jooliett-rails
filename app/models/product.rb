@@ -28,7 +28,9 @@ class Product < ActiveRecord::Base
 	 def available?
 	 	order_items = OrderItem.where(product_id: self.id)
 	 	order_item_quantity = order_items.sum(:quantity)
-	 	if order_item_quantity < quantity
+	 	cart_product_quantity = Cart.reserved_product_quantity(self.id)
+	 	reserved_product_quantity = order_item_quantity + cart_product_quantity
+	 	if reserved_product_quantity < quantity
 	 		true
 	 	else
 	 		false

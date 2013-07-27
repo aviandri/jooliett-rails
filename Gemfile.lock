@@ -294,6 +294,7 @@ DEPENDENCIES
   inherited_resources!
   jbuilder (~> 1.2)
   jquery-rails
+  kaminari
   nokogiri (~> 1.5.0)
   pry-rails
   rails (= 4.0.0)

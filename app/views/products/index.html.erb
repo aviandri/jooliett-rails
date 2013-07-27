@@ -11,7 +11,7 @@
   
   <div class="container">
     <!-- Products -->
-    <div class="row-fluid">
+    <div class="row-fluid" id="product-container">
       
        <% @master_products.each_slice(4) do |master_products_slice| %>
           <!-- Nested in span12 -->
@@ -34,5 +34,10 @@
 
           <% end %>
     </div><!-- closing row-fluid  -->
+
+    <div class="more">
+      <button data-page="<%= @page %>" data-category="<%= @category.name %>" class="btnflat default" id="more-button">See More</button>
+    </div>
+
 
   </div> <!-- /container -->

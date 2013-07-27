@@ -53,7 +53,7 @@ describe ProductColor do
 
 	  	it "should return nil if product images is empty" do
 	  		product_color = FactoryGirl.create(:product_color)
-	  		product_color.primary_image.should be_nil
+	  		product_color.primary_image.should_not be_nil
 	  	end
 	end	
 

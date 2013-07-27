@@ -116,10 +116,8 @@ will vary between brands, please use the charts as a general guide to compare th
                 <h4>Color Options</h4>
                 <div class="wrapper color-tag" data-color-id="<%= @master_product.primary_product_color.id %>">
                   <% @master_product.product_colors.each do |product_color| %>
-                    <% if product_color.available? %>
                       <span class="color-tag salmon" data-color-id="<%= product_color.id %>">
                         <a href="#action"><%= product_color.color.name %></a></span>
-                    <% end %>
                   <% end %>                  
                 </div>
               </div>
@@ -127,7 +125,9 @@ will vary between brands, please use the charts as a general guide to compare th
                 <h4>Size</h4>
                 <div class="wrapper size-tag" data-size-id="">
                   <% @master_product.primary_product_color.products.each do |product| %>
-                    <span class="size-tag" data-size-id="<%= product.product_size.id %>"><a href="#action"><%= product.product_size.name%></a></span>
+                    <% if product.available? %>
+                      <span class="size-tag" data-size-id="<%= product.product_size.id %>"><a href="#action"><%= product.product_size.name%></a></span>
+                      <% end %>
                   <% end %>
                 </div>
               </div>

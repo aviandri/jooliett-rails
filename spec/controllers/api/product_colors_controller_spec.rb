@@ -16,6 +16,7 @@ describe Api::ProductColorsController do
 		    											:medium_img =>@product_image.image.medium.url,
 		    											:thumb_img => @product_image.image.thumb.url,
 		    											:primary => false]}.to_json
+			p response.body
 			response.body.should == expected_response		    											
 		  end
 		end	

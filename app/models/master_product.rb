@@ -55,10 +55,10 @@ class MasterProduct < ActiveRecord::Base
 	end
 
 	def available?
-		flag = true
+		flag = false
 		product_colors.each do |product_color|
-			unless product_color.available?
-				flag = false
+			if product_color.available?
+				flag = true
 			end
 		end
 		flag

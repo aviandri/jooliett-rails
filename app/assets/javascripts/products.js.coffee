@@ -49,6 +49,30 @@ Product =
 			p_msg = $("<p></p>").attr("class", "msg success").text("Successfully Added to cart")
 			$("div.qcart-action").prepend(p_msg)
 
+	loadMoreProducts : (products) ->
+		product_container = $("<div></div>").attr("class", "row-fluid")
+		for product in products.master_products
+			product_item_container = $("<div></div>").attr("class", "span3")
+			product_div = $("<div></div>").attr("class", "prod")
+			
+			prod_link = $("<a></a>").attr("href","/product/#{product.id}")
+			prod_image = $("<img></img>").attr("src", product.images.medium)
+			prod_link.append(prod_image)
+
+			prod_meta_div = $("<div></div>").attr("class", "prod-meta")
+			prod_meta_div.append($("<span></span>")
+							.attr("class", "prod-title").text(product.name))
+			prod_meta_div.append($("<span></span>")
+							.attr("class", "prod-price").text(product.price))
+
+			product_div.append(prod_link)	
+			product_div.append(prod_meta_div)
+
+			product_item_container.append(product_div)	
+			product_container.append(product_item_container)
+
+
+		$("#product-container").append(product_container)
 		
 class Cart
 	constructor: (@cartObject) ->
@@ -80,7 +104,6 @@ $ ->
 		colorId = $(this).data('color-id')
 		$("ul.prod-minithumb").empty()
 		$("div.color-tag").attr("data-color-id", colorId)
-		console.log($("div.color-tag").data("color-id"))
 		callback = (response) ->
 			productImages = new ProductImages(response.product_images)			
 			$('#full-img').attr("src", productImages.getPrimaryImage().full_img)
@@ -97,13 +120,11 @@ $ ->
 $ ->
 	$("button.addcart").click ->
 		callback = (response) ->
-			console.log(response)
 			cart = new Cart(response)
 			$("span.qcart-count").text(""+cart.getProductQuantity())
 			$('div').remove('.qcart-item');
 			Product.rePopulateCart(cart.getCartItems())			
 			$("#fat-menu").addClass("open")
-
 
 		colorId = $("div.color-tag").data("color-id")
 		productSizeId = $("div.size-tag").attr('data-size-id')
@@ -113,6 +134,18 @@ $ ->
 			json = {'product_color_id' : colorId, 'product_size_id' : productSizeId}		
 			$.ajax '/api/carts/add', type: 'POST', data: JSON.stringify(json), success: callback, contentType: "application/json", dataType: "json"		
 		
-		
+
+$ -> 
+	$(document).on "click", "#more-button", ->
+		page = parseInt($(this).attr("data-page")) + 1	
+		category = $(this).attr("data-category")
+		callback = (response) ->			
+			Product.loadMoreProducts(response)
+			$(".more").find("button").attr("data-page", response.page)						
+			$("#more-button").prop("disabled", false);	
+		$(this).prop("disabled", true);	
+		$.get "/api/products?page=#{page}&category_name=#{category}", callback, 'json'
+
+
 
 

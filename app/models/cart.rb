@@ -13,4 +13,13 @@ class Cart < ActiveRecord::Base
 		end
 		self.save		
 	end
+
+	def self.reserved_product_quantity(product_id)
+		cart_items = CartItem.joins(:cart).where(:carts => {:status => nil}, :product_id => product_id)
+		unless cart_items.blank?
+			cart_items.sum(:quantity)
+		else
+			0
+		end
+	end
 end

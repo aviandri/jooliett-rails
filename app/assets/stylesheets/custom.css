@@ -119,11 +119,20 @@ a:hover>img {
 	border: 2px solid #dedede;
 	color: #666;
 }
+
 .default:active {
 	background-color: #ccc;
 	border: 2px solid #333;
 	color: #fff;
 }
+
+.default:disabled {
+	background-color: #f9f9f9;
+	border: 2px solid #dedede;
+	color: #666;
+}
+
+
 /* Reversed color */
 .dark {
 	background-color: #212121;
@@ -634,6 +643,14 @@ td.shopcart-total {
 #footer a {
 	color: #777;
 }
+
+.more{
+	text-align: center;	
+	padding: 30px 0 100px 0;
+	
+}
+
+
 
 /* Large Desktop */
 @media (min-width: 1200px) {}

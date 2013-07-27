@@ -67,7 +67,7 @@ describe MasterProduct do
 
   		it "should return nil product color" do
   	   		master_product = FactoryGirl.create(:master_product)
-  	   		master_product.primary_product_color.should be_nil
+  	   		master_product.primary_product_color.should_not be_nil
   		end
   	 end
 
