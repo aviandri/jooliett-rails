@@ -5,4 +5,14 @@ module LookBooksHelper
 			"active"
 		end
 	end
+
+	def more_look_book_positioning(index)
+		if index.odd?
+			"pull-left"
+		else
+			"pull-right"
+		end
+
+	end
+
 end

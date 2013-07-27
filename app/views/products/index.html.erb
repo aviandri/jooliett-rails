@@ -13,19 +13,26 @@
     <!-- Products -->
     <div class="row-fluid">
       
-      <% @master_products.each do |master_product| %>
-        <div class="span3">
-          <div class="prod" id="<%= master_product.id %>" data-id="<%= master_product.id %>">
-            <%= link_to product_path(:id => master_product.id) do %>
-               <%= image_tag(master_product.primary_product_color.primary_image.image.medium.url, :class => "image") %>                
-            <% end %>
-            <div class="prod-meta">
-              <span class="prod-title"><%= master_product.name%></span>
-              <span class="prod-price">IDR <%= master_product.price %></span>
-            </div>
+       <% @master_products.each_slice(4) do |master_products_slice| %>
+          <!-- Nested in span12 -->
+          <div class="row-fluid">
+            <% master_products_slice.each do |master_product| %>
+            <div class="span3">
+              <div class="prod">
+                <%= link_to product_path(:id => master_product.id) do %>
+                  <%= image_tag(master_product.primary_product_color.primary_image.image.medium.url, :class => "image") %>
+                <% end %>
+
+                <div class="prod-meta">
+                  <span class="prod-title"><%= master_product.name%></span>
+                  <span class="prod-price">IDR <%= master_product.sales_price %></span>
+                </div>
+              </div>
+            </div>    
+            <% end %>        
           </div>
-        </div>       
-    <% end %>
+
+          <% end %>
     </div><!-- closing row-fluid  -->
 
   </div> <!-- /container -->

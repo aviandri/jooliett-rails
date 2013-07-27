@@ -11,7 +11,7 @@
               <!-- Carousel items -->
               <div class="carousel-inner">
                 <% @look_book.look_book_images.each_with_index do |look_book_image, index| %>
-                <div class="active item">
+                <div class="<%= active_item(index) %> item">
                   <%= image_tag look_book_image.image.url%>                  
                 </div>               
                 <% end %>
@@ -61,9 +61,9 @@
               <div class="carousel-inner">
                 <% @look_books.each_slice(2).with_index do |look_book_slice, index| %>
                 <div class="<%= active_item(index) %> item">
-                  <% look_book_slice.each do |look_book| %>
+                  <% look_book_slice.each_with_index do |look_book, index| %>
                   <%= link_to look_book_path(:id => look_book.id) do %>
-                    <%= image_tag(look_book.look_book_images.first.image.medium.url) %>
+                    <%= image_tag(look_book.look_book_images.first.image.medium.url, :class => more_look_book_positioning(index) )%>
 
                   <% end %>                  
                   <% end %>
