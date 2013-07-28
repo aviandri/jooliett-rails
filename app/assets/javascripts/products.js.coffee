@@ -86,6 +86,18 @@ Product =
 				span_tag.append(link_tag)
 				container_div.append(span_tag)
 
+	inverseColorSpan:(span) ->
+		$("span.color-tag").each ->
+			realColor = $(this).attr("data-color-hex")
+			console.log(realColor)
+			$(this).find("a").css("background-color", realColor)
+			$(this).find("a").css("color", "#FFFFFF")
+		currentColor = span.find("a").css("background-color")
+		console.log(span.find("a").css("color"))
+		span.find("a").css("color", currentColor)
+		span.find("a").css("background-color", "#333")
+
+
 
 		
 class Cart
@@ -117,24 +129,28 @@ $ ->
 	$(document).on "click", "span.color-tag", ->
 		colorId = $(this).data('color-id')
 		$("ul.prod-minithumb").empty()
-		$("div.color-tag").attr("data-color-id", colorId)
+		$("div.color-tag").attr("data-color-id", colorId)		
 		callback = (response) ->
 			productImages = new ProductImages(response.product_images)			
 			$('#full-img').attr("src", productImages.getPrimaryImage().full_img)
 			Product.populateThumb(productImages.getThumbImages())
 			$("div.size-tag").empty()
 			Product.repopulateSizes(response.product_sizes)
-		$.get '/api/product_colors/'+colorId, callback, 'json'
+		$.get '/api/product_colors/'+colorId, callback, 'json'		
+		Product.inverseColorSpan($(this))
+
+		
 
 
 $ ->
-	$("span.size-tag").click ->
+	$(document).on "click", "span.size-tag", ->
 		productColorId = $(this).data('size-id')
+		$("span.size-tag.selected").removeClass("selected")
+		$(this).addClass("selected")
 		$("div.size-tag").attr("data-size-id", productColorId)
 
-
 $ ->
-	$("button.addcart").click ->
+	$(document).on "click", "button.addcart", ->
 		callback = (response) ->
 			cart = new Cart(response)
 			console.log("cart")

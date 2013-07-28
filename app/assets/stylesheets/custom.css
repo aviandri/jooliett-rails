@@ -389,7 +389,8 @@ td.shopcart-total {
 	text-decoration: none;
 }
 .color-tag.selected a {
-	border: 2px solid #666;
+	border: 2px solid #333;
+	background-color: #333;
 }
 .color-tag.selected a:hover {
 	border: 2px solid #999;
@@ -397,6 +398,10 @@ td.shopcart-total {
 .salmon>a { 
 	background-color: #FA8072;
 }
+.salmon.selected>a {
+	color: #FA8072
+} 
+
 .teal>a {
 	background-color: #008080;
 }
@@ -477,6 +482,13 @@ td.shopcart-total {
 	color: #fff;
 	border: 1px solid #f2108a;
 }
+
+.size-tag.selected a {
+	background-color: #333;	
+	color: #fff;
+	border-color: #333
+}
+
 /* Component: Quick Cart */
 .quickcart {
 	background-color: #fff;
@@ -649,6 +661,11 @@ td.shopcart-total {
 	padding: 30px 0 100px 0;
 	
 }
+
+#bg { position: fixed; top: 0; left: 0; }
+	.bgwidth { width: 100%; }
+	.bgheight { height: 100%; }
+
 
 
 

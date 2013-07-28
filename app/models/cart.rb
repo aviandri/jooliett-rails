@@ -5,12 +5,12 @@ class Cart < ActiveRecord::Base
 
 	def add_product(product)
 		avail_cart_items = self.cart_items.where(product_id: product.id)
-		if cart_items.empty?			
+		if avail_cart_items.blank?
 			self.products << product
 		else
 			avail_cart_items.first.quantity = cart_items.first.quantity.nil? ? 2 : cart_items.first.quantity + 1
 			avail_cart_items.first.save
-		end
+		end			
 		self.save		
 	end
 

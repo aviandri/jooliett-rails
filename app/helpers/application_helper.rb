@@ -5,8 +5,7 @@ module ApplicationHelper
 	end
 
 	def cart_product_price(cart_item)
-		price = product_price(cart_item.product)
-		cart_item.quantity.nil? ? price : price * cart_item.product.quantity 
+		cart_item.quantity.nil? ? cart_item.product.sales_price : cart_item.product.sales_price * cart_item.quantity 
 	end
 
 	def product_price(product)

@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
     	else
     		cart = Cart.new
     	end
+      cart
   end
 
   def configure_permitted_parameters

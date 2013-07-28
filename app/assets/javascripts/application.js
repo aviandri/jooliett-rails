@@ -13,4 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require bootstrap.min
+//= require html5shiv
+//= require active_admin
+//= require cart_items
+//= require carts
+//= require covers
+//= require look_books
+//= require orders
+//= require payment_confirmations
+//= require payment_details
+//= require products
+//= require shipping_details
+//= require products
+//= require shipping_details
+//= require users
+//= require videos
+
