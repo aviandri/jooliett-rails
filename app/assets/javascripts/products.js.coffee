@@ -121,6 +121,8 @@ $ ->
 	$("button.addcart").click ->
 		callback = (response) ->
 			cart = new Cart(response)
+			console.log("cart")
+			console.log(response)
 			$("span.qcart-count").text(""+cart.getProductQuantity())
 			$('div').remove('.qcart-item');
 			Product.rePopulateCart(cart.getCartItems())			

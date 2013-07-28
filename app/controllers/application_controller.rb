@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
   def current_cart
     	unless cookies[:cart_id].blank?
     		cart = Cart.find cookies[:cart_id]
+        if cart.nil?
+          cart = Cart.new
+        end
     	else
     		cart = Cart.new
     	end

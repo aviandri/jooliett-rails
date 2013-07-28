@@ -46,4 +46,8 @@ class Product < ActiveRecord::Base
 	 	end
 	 end
 
+	 def full_description
+	 	"#{name} - #{product_color.name}/#{product_size.description} "
+	 end
+
 end

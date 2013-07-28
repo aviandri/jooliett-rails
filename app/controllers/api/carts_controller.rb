@@ -9,7 +9,6 @@ class Api::CartsController < ApplicationController
 			cookies.permanent[:cart_id] = @cart.id		
 		end
 		@product = Product.find_by_product_color_product_size(params[:product_size_id], params[:product_color_id])		
-		binding.pry
 		if @product.available?
 			@cart.add_product(@product)		
 		else

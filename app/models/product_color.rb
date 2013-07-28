@@ -25,10 +25,10 @@ class ProductColor < ActiveRecord::Base
 
 	def available?
 		products = self.products
-		flag = true
+		flag = false
 		products.each do |product|
-			unless product.available?
-				flag = false
+			if product.available?
+				flag = true
 			end
 		end
 		flag

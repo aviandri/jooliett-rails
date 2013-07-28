@@ -31,4 +31,10 @@ describe Order do
  	    @order.status.should be_nil
  	  end
  	end
+
+ 	describe "invoce code" do
+ 	  it "should have invoce code" do
+ 	    @order.invoice_code.should_not be_nil
+ 	  end
+ 	end
 end

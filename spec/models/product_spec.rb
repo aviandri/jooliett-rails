@@ -103,5 +103,12 @@ describe Product do
       
     end
   end
+
+  describe "full description" do
+    it "should description" do
+        @master = FactoryGirl.create
+        @product = FactoryGirl.create(:product)
+    end
+  end
   
 end

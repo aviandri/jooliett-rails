@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
 	def complete
 		cookies[:cart_id] = nil
 		@order = Order.find params[:id]
+		@order.invoice_code = SecureRandom.hex(10)
 		@order.status = "pending"
 		@order.save
 	end

@@ -39,4 +39,7 @@ JooliettRails::Application.routes.draw do
   	end
     resources :products, :only => [:index]
   end
+
+  get "payment_confirmations/:invoice_code" => "payment_confirmations#show"
+  resources :payment_confirmations, :only => [:create]
 end
