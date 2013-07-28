@@ -278,7 +278,7 @@ td.shopcart-total {
 	border-right: 1px solid #ddd;
 }
 .tab-pane {
-	max-height: 120px;
+	min-height: 180px;
 	font-size: 0.9rem;
 	line-height: 125%;
 }

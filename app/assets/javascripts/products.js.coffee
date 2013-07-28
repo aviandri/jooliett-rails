@@ -17,7 +17,7 @@ Product =
 				.append($("<li></li>")	
 				.append(link_tag))
 
-	rePopulateCart : (cartItems) ->
+	rePopulateCart : (cartItems) ->			
 			for cart_item in cartItems
 				cart_item_tag = $("<div></div>")
 							.attr("class", "qcart-item row")
@@ -73,6 +73,20 @@ Product =
 
 
 		$("#product-container").append(product_container)
+
+	repopulateSizes: (sizes) ->
+		console.log(sizes)
+		container_div = $("div.size-tag")
+		for product_size in sizes
+			if product_size.available == true
+				span_tag = $("<span></span>")
+							.attr("class","size-tag")
+							.attr("data-size-id", product_size.id)							
+				link_tag = $("<a></a>").attr("href","#action").text(product_size.name)
+				span_tag.append(link_tag)
+				container_div.append(span_tag)
+
+
 		
 class Cart
 	constructor: (@cartObject) ->
@@ -108,6 +122,8 @@ $ ->
 			productImages = new ProductImages(response.product_images)			
 			$('#full-img').attr("src", productImages.getPrimaryImage().full_img)
 			Product.populateThumb(productImages.getThumbImages())
+			$("div.size-tag").empty()
+			Product.repopulateSizes(response.product_sizes)
 		$.get '/api/product_colors/'+colorId, callback, 'json'
 
 

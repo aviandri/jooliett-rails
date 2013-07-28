@@ -49,6 +49,8 @@ gem 'formtastic',          github: 'justinfrench/formtastic'
 
 gem 'kaminari'
 
+gem 'active_admin_editor'
+
 
 
 group :doc do

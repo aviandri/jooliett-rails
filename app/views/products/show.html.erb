@@ -115,8 +115,8 @@ will vary between brands, please use the charts as a general guide to compare th
                 <h4>Color Options</h4>
                 <div class="wrapper color-tag" data-color-id="<%= @master_product.primary_product_color.id %>">
                   <% @master_product.product_colors.each do |product_color| %>
-                      <span class="color-tag salmon" data-color-id="<%= product_color.id %>">
-                        <a href="#action"><%= product_color.color.name %></a></span>
+                      <span class="color-tag" data-color-id="<%= product_color.id %>">
+                        <a href="#action" style="background-color:<%=product_color.color.hex %>"><%= product_color.color.name %></a></span>
                   <% end %>                  
                 </div>
               </div>
@@ -132,13 +132,7 @@ will vary between brands, please use the charts as a general guide to compare th
               </div>
             </div>
             <div class="row-fluid cta">
-              <div class="span5">
-                <ul class="unstyled">
-                  <li><button class="btnflat-fluid default">Add To Cart</button></li>
-                  <li><button class="btnflat-fluid default">Save as Favorite</button></li>
-                </ul>
-              </div>
-              <div class="span7">
+              <div class="span7 pull-right">
                 <button class="btnflat-fluid action addcart">Buy</button>
               </div>
             </div>

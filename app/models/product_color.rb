@@ -3,6 +3,7 @@ class ProductColor < ActiveRecord::Base
 	belongs_to :master_product
 	scope :primaries, -> {where("primary" => true)}
 	delegate :name, :to => :color
+	delegate :hex, :to => :color
 
 	has_many :product_images
 	accepts_nested_attributes_for :product_images
