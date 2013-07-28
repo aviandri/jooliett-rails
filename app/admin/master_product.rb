@@ -26,6 +26,20 @@ form(:html => {:multipart => true}) do |f|
     f.actions
 end
 
+index do
+	column :id
+	column :name
+	column :price
+	column :discount_price
+	column("Discount %"){|master_product| master_product.discount_percentage }
+	column("Action") do |master_product|
+	      link_to("New Product", new_admin_product_path(:master_product_id => master_product.id))	      	
+    end    
+    default_actions    
+end
+
+
+
 controller do
 	def permitted_params
 		 params.permit!
