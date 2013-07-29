@@ -1,4 +1,4 @@
-root = "/home/username/apps/jooliett/current"
+root = "/home/aviandri/apps/jooliett/current"
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"
