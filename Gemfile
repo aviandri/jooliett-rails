@@ -55,6 +55,11 @@ gem 'unicorn'
 
 gem 'pg'
 
+gem 'capistrano'
+
+gem 'rvm-capistrano'
+
+
 
 
 group :doc do
