@@ -1,0 +1,93 @@
+ <% content_for :title, "Payment Confirmation" %>
+ <div class="container checkout summary">
+      <div class="row-fluid">
+        <div class="span12">
+          <h2>Payment Confirmation</h2>
+          <table class="table table-condensed">
+            <tr>
+              <td width="120">Invoce Code</td>
+              <td>: <%= @order.invoice_code %></td>
+            </tr>
+            <tr>
+              <td>Purchase Date</td>
+              <td>: <%= @order.payment_detail.payment_type.created_at %> </td>
+            </tr>
+            <tr>
+              <td>Bank Account</td>
+              <td>: <%= @order.payment_detail.payment_type.full_description %></td>
+            </tr>
+          </table>
+          <table class="table table-bordered table-condensed">
+            <tr>
+              <th colspan="2">Product</th>
+              <th class="span2">Quantity</th>
+              <th class="span2">Total</th>
+            </tr>
+            <tr>
+              <% @order.order_items.each do |order_item| %>
+              <td width="80">
+                <%= image_tag order_item.product.master_product.primary_product_color.primary_image.image.thumb.url %>
+              </td>
+              <td><%= order_item.product.full_description %></td>
+              <td><%= order_item.quantity %></td>
+              <td>IDR <%= order_item.subtotal_price %></td>
+              <% end %>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: right">Sub Total :</td>
+              <td>IDR <%= @order.total_price %></td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: right">Shipping :</td>
+              <td>IDR <%= @order.shipping_detail.price %></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: right">Payment Code :</td>
+              <td>IDR <%= @order.payment_detail.pay_code %></td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: right">Total : </td>
+              <td>IDR <%= @order.total_price %></td>
+            </tr>
+          </table>
+          <h4>Shipping Address</h4>
+          <table class="table table-bordered table-condensed">
+            <tr>
+              <th>Address</th>
+            </th>
+            <tr>
+              <td><%= @order.shipping_detail.address1 %></td>
+            </tr>
+          </table>
+          <h4>Payment Details</h4>
+          <%= form_for(@payment_confirmation, :html => {:class => "form-inline"}) do |f| %>
+            <div class="control-group">
+              <label class="control-label" for="inputEmail">Nama Pemegang Rekening</label>
+
+              <div class="controls">
+                    <%= f.text_field :account_holder, :autofocus => true, :placeholder => "Nama Pemegang Rekening", :class => "input-xlarge" %>                    
+              </div>
+              
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="inputPassword">Nama Bank</label>
+              <div class="controls">
+                <%= f.text_field :bank_name, :autofocus => true, :placeholder => "Nama Bank", :class => "input-xlarge" %>                                    
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="inputPassword">Jumlah Yang Bayar</label>
+              <div class="controls">
+                <%= f.text_field :amount, :autofocus => true, :placeholder => "Nama Bank", :class => "input-xlarge" %>
+                <%= f.hidden_field :invoice_code, :value => @order.invoice_code %>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <button class="btnflat action">Confirm Your Payment</button>
+              </div>
+            </div>
+          <% end %>
+        </div><!-- ./span12 -->
+      </div><!-- ./ row-fluid -->
+    </div><!-- ./container -->

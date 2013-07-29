@@ -1,0 +1,16 @@
+<%= semantic_form_for [:admin, @product] do |f| %>
+    <%= f.inputs "User Information" do %>
+     <% if params[:action] == "new" %>       
+      	<% @master_product = MasterProduct.find(params[:master_product_id])  %>
+      	<%= f.input :master_product, :collection => {@master_product.name => @master_product.id }%>
+	  	<%= f.input :product_color, :as => :select, :collection => @master_product.product_colors %>
+	  	<%= f.input :product_size, :as => :select, :collection => @master_product.product_sizes %>
+	 <% else %>
+	 	<%= f.input :master_product, :input_html => {:disabled => true}%>	 	
+	  	<%= f.input :product_color, :collection => f.object.master_product.product_colors %>
+	  	<%= f.input :product_size, :collection => f.object.master_product.product_sizes %>      
+     <% end %>    
+ 	  <%= f.input :quantity %>
+ 	  <%= f.actions %>
+ 	<% end %>
+<% end %>

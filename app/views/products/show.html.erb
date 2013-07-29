@@ -1,0 +1,163 @@
+  <div class="container">
+      <!-- Item Details -->
+      <div class="row-fluid prod-details-container">
+        <div class="span5">
+          <%= image_tag @master_product.primary_product_color.primary_image.image.url,  :id => "full-img" %>
+        </div><!-- ./span6 -->
+        <div class="span1">
+          <ul class="unstyled prod-minithumb">
+           <% @master_product.primary_product_color.product_images.each do |product_image| %>
+            <li>
+              <a href="#action" class="thumb-img">
+                <%= image_tag(product_image.image.thumb.url, :class => "prod-minithumb", :data => {:fullimg => product_image.image.url}) %>
+              </a>
+            </li>
+            <% end %>
+          </ul>
+        </div><!-- ./span1 -->
+
+        <div class="span6 pull-right">
+          <div class="prod-details">
+            <h2 id="prod-detail"><%= @master_product.name %></h2>
+            <!-- Tabs -->
+            <div class="prod-tab">
+              <ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#desc" data-toggle="tab">Description</a></li>
+                <li><a href="#sizeguide" data-toggle="tab"  >Size Guide</a></li>
+                <li><a href="#shipping" data-toggle="tab">Shipping</a></li>
+              </ul>
+              
+              <div class="tab-content">
+                <div class="tab-pane active" id="desc">
+                  <%= @master_product.description.html_safe%>
+                </div>
+                <div class="tab-pane" id="sizeguide">
+                  <table class="table table-striped">
+                    <tr>
+                      <th width="10%">Size</th>
+                      <th width="30%">Pant Size<br>(Inches)</th>
+                      <th>US</th>
+                      <th>UK</th>
+                    </tr>
+                    <tr>
+                      <td>XXS</td>
+                      <td>24</td>
+                      <td>0</td>
+                      <td>4</td>
+                    </tr>
+                    <tr>
+                      <td>P/XS</td>
+                      <td>25,26</td>
+                      <td>2</td>
+                      <td>6</td>
+                    </tr>
+                    <tr>
+                      <td>S</td>
+                      <td>27,28</td>
+                      <td>4</td>
+                      <td>8</td>
+                    </tr>
+                    <tr>
+                      <td>M</td>
+                      <td>29,30</td>
+                      <td>6</td>
+                      <td>10</td>
+                    </tr>
+                  </table>
+                  <p>Please use these size charts to help determine your size. Because sizing and cut 
+will vary between brands, please use the charts as a general guide to compare the various size scales. If you have a specific sizing question or would like more information, please contact Customer Care.</p>
+                </div>
+                <div class="tab-pane" id="shipping">
+                    <ul>
+                      <li>You can return your purchase for up to 365 days from the purchase date. If you purchase on 2/29 of a Leap Year, then you have until 2/29 the following Leap Year to return those orders. That's four whole years! Woot!</li>
+
+                      <li>Products must be in the condition you received them and in the original box and/or packaging.
+                      Return shipping is absolutely FREE.</li>
+
+                      <li>You will be provided with a pre-paid UPS domestic or USPS domestic label to return the purchase to us.*</li>
+
+                      <li>Please do not send your purchase back to the manufacturer.</li>
+
+                      <li>Once your return is received and inspected by the fulfillment centers (usually within 72 hours of receipt),your refund will be processed and a credit will be automatically applied to your credit card or original method of payment within 7 days. Please note that depending on your credit card company, it may take an additional 2-10 business days after your credit is applied for it to post to your account. As part of our 365-day return policy, all returns will need to be received and processed by our warehouse within 365 days of purchase.</li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+            <% if @master_product.available? %>
+            <!-- IF Normal -->
+            <div class="row-fluid prod-price-details">
+              <% if @master_product.discount_price.blank? %>
+                <div class="span12">
+                  <span class="price">IDR <%= @master_product.price %></span>
+                </div>
+              <% else %>
+                  <div class="span4"><span class="discount">OFF <%= @master_product.discount_percentage %>%<span></div>
+                  <div class="span7">
+                  <span class="discounted"><%= @master_product.discount_price %></span>
+                  <span class="price"><%= @master_product.price %></span>
+                </div>
+              <% end %>              
+            </div>
+            
+            <% else %>
+            <!-- IF Out of Stock -->
+            <div class="row-fluid prod-price-details">
+              <div class="span4"><span class="outstock">OUT OF STOCK<span></div>
+              <div class="span7">
+                  <span class="price">IDR 2.6999.999</span>
+              </div>
+            </div>
+
+            <% end %>
+
+            <div class="row-fluid">
+              <div class="span6">
+                <h4>Color Options</h4>
+                <div class="wrapper color-tag" data-color-id="<%= @master_product.primary_product_color.id %>">
+                  <% @master_product.product_colors.each do |product_color| %>
+                      <span class="color-tag" data-color-id="<%= product_color.id %>" data-color-hex="<%= product_color.hex%>">
+                        <a href="#action" style="background-color:<%=product_color.color.hex %>"><%= product_color.color.name %></a></span>
+                  <% end %>                  
+                </div>
+              </div>
+              <div class="span6">
+                <h4>Size</h4>
+                <div class="wrapper size-tag" data-size-id="">
+                  <% @master_product.primary_product_color.products.each do |product| %>
+                    <% if product.available? %>
+                      <span class="size-tag" data-size-id="<%= product.product_size.id %>"><a href="#action"><%= product.product_size.name%></a></span>
+                      <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="row-fluid cta">
+              <div class="span7 pull-right">
+                <button class="btnflat-fluid action addcart">Buy</button>
+              </div>
+            </div>
+          </div>
+        </div><!-- ./span4 -->
+      </div><!-- ./prod-details-container -->
+
+      <!-- Products You May Like -->
+      <h4 class="section-title"><span>You may also like</span></h4>
+      <div class="row-fluid prod-related">
+          <% MasterProduct.suggestions.each do |master_product| %>
+          <div class="span3">
+              
+              <div class="prod2">
+                  <%= image_tag(master_product.primary_product_color.primary_image.image.thumb.url) %>                
+                  <div class="prod2-meta">
+                      <span class="prod-title">
+                        <%= link_to master_product.name, product_path(:id => master_product.id) %>
+                      </span>
+                      <span class="prod-desc">Handmade product by raniya dress</span>
+                      <span class="prod-price"><%= master_product.price %></span>
+                  </div>
+              </div>
+          </div>
+        <% end %>
+      </div><!-- ./row-fluid -->
+
+    </div><!-- ./container -->

@@ -1,0 +1,19 @@
+ <% content_for :title, "LookBook" %>
+ <div class="container">
+      <div class="row-fluid">
+        <div class="span12 mm">
+          <!-- Cover 01 -->
+          <% @look_books.each do |look_book| %>
+          <div class="mm-cover">          	
+            <%= link_to look_book_path(look_book.id) do %>
+               <%= image_tag(look_book.look_book_images.first.image.url, :class => "image") %>
+            <% end %>
+          </div>
+          <% end %>
+          <!-- Look Up -->
+          <div class="mm-footer">
+            <h4><a href="#">View More</a></h4>
+          </div>
+        </div>
+      </div>
+    </div>

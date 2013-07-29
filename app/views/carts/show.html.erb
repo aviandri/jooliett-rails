@@ -1,0 +1,52 @@
+
+    <div class="container">
+      <div class="row-fluid">
+        <div class="span12 shopcart">
+          <h3>Your Shopping Cart</h3>
+          <%= form_for @cart, :html => {:class => "form-inline" } do |f| %>
+
+            <table class="table table-bordered table-hover">
+              <tr> 
+                <th class="span6 shopcart-item">Product(s)</th>
+                <th class="span2 shopcart-qty">Quantity</th>
+                <th class="span2 shopcart-price">Sub Total</th>
+              </tr>
+              <!-- Item 1 -->
+
+              <% @cart.cart_items.each do |cart_item| %>
+              <tr>
+                <td class="row">
+                  <div class="span2">
+                    <%= image_tag(cart_item.product.product_color.primary_image.image.thumb.url) %>
+                  </div>
+                  <div class="span6">
+                    <ul class="unstyled">
+                      <li><%= cart_item.product.name%></li>
+                      <li><%= "#{cart_item.product.product_color.name}/#{cart_item.product.product_size.description}" %></li>
+
+                      <li>IDR <%= product_price(cart_item.product) %></li>
+                      <li><i class="icon-remove"></i>&nbsp;
+                      	<%= link_to "Remove Item", cart_item_path(:id => cart_item.id, :cart_id => @cart.id), :title => "Remove this item from cart", :method => :delete %>                      	
+                      </li>
+                     <!--  <li><i class="icon-heart"></i>&nbsp;<a href="#" title="Buy later">Save for later</a></li> -->
+                    </ul>
+                  </div>
+                </td>
+                <td>
+                  <%= f.fields_for "cart_items", cart_item do |b|  %>                                        
+                    <%= b.text_field :quantity, :class=> "span3", :value => cart_item.quantity %>
+                  <% end %>
+                </td>
+                <td>IDR <%= cart_product_price(cart_item)%></td>
+              </tr>
+			       <% end %>            
+             
+            </table>
+          <div class="row-fluid">
+            <div class="span9"><a href="">Continue Shopping</a></div>
+            <div class="span3"><button class="pull-right btnflat-fluid action">Proceed to Checkout &raquo;</button></div>
+          </div>
+        </div>
+        <% end %><!-- ./shoppingcart -->
+      </div><!-- ./ row-fluid -->
+    </div><!-- ./container -->
