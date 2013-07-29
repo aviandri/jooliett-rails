@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -53,7 +54,7 @@ gem 'active_admin_editor'
 
 gem 'unicorn'
 
-gem 'pg'
+
 
 gem 'capistrano'
 
@@ -68,13 +69,13 @@ group :doc do
 end
 
 group :development, :test do
+   gem 'sqlite3'
    gem 'rspec-rails'
    gem 'cucumber-rails'
    gem 'spork-rails', :github => 'sporkrb/spork-rails'
    gem 'database_cleaner'
    gem "factory_girl_rails", "~> 4.0"
    gem 'pry-rails'
-   gem "capybara-webkit"
    gem "selenium-webdriver"
 end
 
