@@ -1,2 +1,0 @@
-module PaymentConfirmationsHelper
-end
