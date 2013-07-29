@@ -51,6 +51,10 @@ gem 'kaminari'
 
 gem 'active_admin_editor'
 
+gem 'unicorn'
+
+gem 'pg'
+
 
 
 group :doc do
