@@ -1,4 +1,5 @@
-class OrdersController < ApplicationController
+class OrdersController < ApplicationController	
+	before_filter :authenticate_user!, :only => ["summary", "complete"]
 	def new 
 		@order = Order.new
 		cart = Cart.find(cookies[:cart_id])
@@ -8,19 +9,30 @@ class OrdersController < ApplicationController
 			@order.order_items << order_item
 		end
 		@order.save
+		session[:order_id] = @order.id
 		redirect_to new_order_shipping_detail_path(:order_id =>  @order.id)
 	end
 
-	def summary
+	def summary		
 		@order = Order.find params[:id]
+		check_ownership(@order)
 	end
 
 	def complete
 		cookies[:cart_id] = nil
 		@order = Order.find params[:id]
+		check_ownership(@order)
 		@order.invoice_code = SecureRandom.hex(10)
 		@order.status = "pending"
 		@order.save
 	end
 
+
+	private 
+
+	def check_ownership(order)
+		unless order.user == current_user
+			redirect_to :controller => "covers", :action => "index"
+		end
+	end
 end

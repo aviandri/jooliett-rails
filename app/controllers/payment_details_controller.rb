@@ -3,6 +3,9 @@ class PaymentDetailsController < ApplicationController
 
 	def new
 		@order = Order.find(params[:order_id])
+		unless @order.user == current_user
+			redirect_to :controller => "covers", :action => "index"
+		end
 		@payment_detail =  PaymentDetail.new	
 		@payment_types = PaymentType.all
 	end

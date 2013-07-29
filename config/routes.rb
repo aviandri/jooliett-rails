@@ -1,6 +1,6 @@
 JooliettRails::Application.routes.draw do
   root :to => 'covers#index'
-  devise_for :users, :controllers => { :registrations => "users" }  
+  devise_for :users, :controllers => { :registrations => "users", :sessions => "sessions" }  
   
   resources :users
   

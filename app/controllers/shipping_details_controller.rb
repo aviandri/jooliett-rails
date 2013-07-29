@@ -2,6 +2,9 @@ class ShippingDetailsController < ApplicationController
 	before_filter :authenticate_user!
 	def new	
 		@order = Order.find(params[:order_id])
+		unless @order.user == current_user
+			redirect_to :controller => "covers", :action => "index"
+		end
 		@shipping_detail =  ShippingDetail.new
 	end
 
