@@ -2,11 +2,9 @@ class Api::CartsController < ApplicationController
 	respond_to :json
 
 	def add
-		binding.pry
 		unless cookies[:cart_id].blank?
 			@cart = Cart.find(cookies[:cart_id])		
 		else
-			binding.pry
 			@cart = Cart.create
 			cookies.permanent[:cart_id] = @cart.id		
 			InvalidateCartWorker.perform_in(1.hour, @cart.id)

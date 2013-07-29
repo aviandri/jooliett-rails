@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
 	def summary		
 		@order = Order.find params[:id]
 		check_ownership(@order)
+		
 	end
 
 	def complete

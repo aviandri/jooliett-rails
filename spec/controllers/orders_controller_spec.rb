@@ -20,7 +20,9 @@ describe OrdersController do
 
 	describe "summary" do
 		before(:each) do
-		  @order = FactoryGirl.create(:order)
+		  @user = FactoryGirl.create(:user)
+		  @order = FactoryGirl.create(:order, :user => @user)
+		  sign_in @user
 		end
 	  it "should give http response success" do
 	    get :summary, id: @order.id
@@ -30,7 +32,9 @@ describe OrdersController do
 
 	describe "complete" do
 		before(:each) do
-		  @order = FactoryGirl.create(:order)
+		  @user = FactoryGirl.create(:user)
+		  @order = FactoryGirl.create(:order, :user => @user)
+		  sign_in @user
 		end
 		it "should give http response success" do
 			patch :complete, id: @order.id

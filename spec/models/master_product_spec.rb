@@ -116,11 +116,11 @@ describe MasterProduct do
           @master_product.available?.should eq(false)
        end
 
-       it "should show master product is not available" do
+       it "should show master product is available" do
           @product_color1.stub(:available?){true}
           @product_color2.stub(:available?){false}
           @master_product.stub(:product_colors){[@product_color1, @product_color2]}
-          @master_product.available?.should eq(false)
+          @master_product.available?.should eq(true)
        end
 
          it "should show master product is not available" do

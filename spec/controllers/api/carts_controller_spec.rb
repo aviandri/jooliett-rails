@@ -20,7 +20,7 @@ describe Api::CartsController do
 	  end
 
 	  it "should contain unique product in cart" do
-	  	@cart = FactoryGirl.crexeate(:cart)
+	  	@cart = FactoryGirl.create(:cart)
 	  	@cart_item = FactoryGirl.create(:cart_item, :cart_id => @cart.id, :product_id => @product.id)
 	  	cookies[:cart_id] = @cart
 

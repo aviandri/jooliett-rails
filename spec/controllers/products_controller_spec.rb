@@ -4,7 +4,10 @@ describe ProductsController do
 
   before(:each) do
     @category = FactoryGirl.create(:category, :name => "dress")
-  	@master_product = FactoryGirl.create(:master_product, :categories => [@category])
+    @product = FactoryGirl.create(:product)
+  	@master_product = FactoryGirl.create(:master_product, 
+      :categories => [@category], :products => [@product])
+
   end
 
   describe "GET 'index' for new arrival" do

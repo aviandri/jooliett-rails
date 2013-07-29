@@ -2,13 +2,7 @@ class ProductsController < ApplicationController
 
   def index
   	@category = Category.find_by_name(params[:category_name])
-  	master_products = MasterProduct.find_by_category_name(params[:category_name])
-  	if master_products.empty?
-  		@master_products = []
-  	else
-  		@master_products = master_products.page(params[:page]).per(4)
-  	end
-
+  	@master_products = MasterProduct.find_by_category_name(params[:category_name]).order("created_at DESC").page(params[:page]).per(12)  	
     if params[:page]
       @page = params[:page]
     else
