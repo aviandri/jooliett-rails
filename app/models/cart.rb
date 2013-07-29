@@ -22,4 +22,9 @@ class Cart < ActiveRecord::Base
 			0
 		end
 	end
+
+	def invalidate_cart
+		self.status = "canceled"
+		self.save
+	end
 end

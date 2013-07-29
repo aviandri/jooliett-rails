@@ -28,8 +28,15 @@ describe Cart do
       @cart = FactoryGirl.create(:cart, :cart_items => [@cart_item])      
     end
     it "should return reserver product quantity" do
-      @cart.reserved_product_quantity(@product).should eq(1)     
+      Cart.reserved_product_quantity(@product).should eq(1)     
     end
   end
 
+  describe "description" do
+    it "should description" do
+        @cart.invalidate_cart
+        cart = Cart.find(@cart.id)
+        cart.status.should eq("canceled")
+    end
+  end
 end
