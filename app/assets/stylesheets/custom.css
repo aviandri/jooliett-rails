@@ -699,6 +699,9 @@ td.shopcart-total {
 	margin: 9px;
 }
 
+#carousel-text:hover{
+	cursor:pointer;
+}
 
 
 
@@ -786,6 +789,10 @@ td.shopcart-total {
 	.navbar-fixed-bottom {
 		margin-top: 0
 	}
+
+	img#carousel-text{
+		max-width: 400px;
+	}
 }
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
@@ -846,6 +853,9 @@ td.shopcart-total {
 	}
 	.navbar-fixed-bottom .container {
 		padding: 0 20px;
+	}
+	img#carousel-text{
+		max-width: 200px;
 	}
 }
 /* Landscape phones and down */
@@ -924,5 +934,8 @@ td.shopcart-total {
 	}
 	 .carousel-caption > ul > li {
 	 	font-size: 0.6rem;
+	}
+	img#carousel-text{
+		max-width: 200px;
 	}
 }
