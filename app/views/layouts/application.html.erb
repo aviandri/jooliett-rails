@@ -77,8 +77,8 @@
                           <%= image_tag(cart_item.product.product_color.primary_image.image.thumb.url) %>                          
                       </div>
                       <div class="span2 qcart-details">
-                          <span class="qcart-item-name"><%= cart_item.product.name %> <%= cart_product_quantity(cart_item) %></span>
-                          <span class="qcart-item-price">IDR <%= cart_product_price(cart_item) %> </span>
+                          <span class="qcart-item-name"><%= cart_item.quantity %></span>
+                          <span class="qcart-item-price">IDR <%= cart_item.sub_total_string %> </span>
                       </div>
                   </div>
                   <% end %>

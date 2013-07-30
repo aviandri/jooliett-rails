@@ -9,6 +9,10 @@ class Product < ActiveRecord::Base
 	delegate :discount_percentage, :to => :master_product
 	delegate :sales_price, :to => :master_product
 
+	delegate :price_string, :to => :master_product
+	delegate :discount_price_string, :to => :master_product
+	delegate :sales_price_string, :to => :master_product
+
 	has_many :cart_items
 	has_many :carts, through: :cart_items
 

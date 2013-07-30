@@ -19,9 +19,22 @@ class Order < ActiveRecord::Base
 		end				
 	end
 
+	def total_price_string
+		stringify_price(total_price)
+	end
+
+	def total_price_clean
+		
+	end
+
 	def prepare_order_summary
 		payment_detail.generate_payment_code
 		generate_total_price
+	end
+
+	private
+	def stringify_price(number)
+		number.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1.').reverse
 	end
 
 end

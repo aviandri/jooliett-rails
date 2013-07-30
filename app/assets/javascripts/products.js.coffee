@@ -36,7 +36,7 @@ Product =
 
 				cart_item_price_tag = $("<span></span>")									
 										.attr("class", "qcart-item-price")
-										.text("IDR" + cart_item.price)
+										.text("IDR" + cart_item.price_string)
 
 				cart_item_detail_div.append(cart_item_name_tag)							
 				cart_item_detail_div.append(cart_item_price_tag)

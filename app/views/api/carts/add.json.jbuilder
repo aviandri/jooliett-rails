@@ -9,6 +9,7 @@ else
 				json.name cart_item.product.name
 				json.thumb_img cart_item.product.product_color.primary_image.image.thumb.url
 				json.price cart_item.product.sales_price
+				json.price_string cart_item.product.sales_price_string
 				json.quantity cart_item.quantity
 			end
 		end

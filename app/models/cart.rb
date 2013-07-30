@@ -27,4 +27,6 @@ class Cart < ActiveRecord::Base
 		self.status = "canceled"
 		self.save
 	end
+
+
 end

@@ -26,13 +26,9 @@
             <tr>
               <td><%= order_item.product.name %></td>
               <td><%= order_item.quantity %></td>
-              <td>IDR <%= order_item.subtotal_price %> </td>
+              <td>IDR <%= order_item.subtotal_price_string %> </td>
             </tr>
-            <% end %>
-            <tr>
-              <td colspan="2" style="text-align: right">Sub Total :</td>
-              <td>IDR <%= @order.total_price %> </td>
-            </tr>
+            <% end %>          
             <tr>
               <td colspan="2" style="text-align: right">Shipping :</td>
               <td>IDR <%= @order.shipping_detail.price %></td>
@@ -43,7 +39,7 @@
             </tr>
             <tr>
               <td colspan="2" style="text-align: right">Total : </td>
-              <td>IDR <%= @order.total_price %></td>
+              <td>IDR <%= @order.total_price_string %></td>
             </tr>
           </table>          
 
@@ -78,7 +74,7 @@
           <%= form_for @order, :url => complete_order_path(:id => @order.id) do |f| %>
           <div class="place-order text-center">
             <button class="btnflat action">Place Order</button>
-            <p>By clicking PLACE ORDER you confirm that you have read, understood and accept our <a href="#" title="">Terms and Conditions</a>, <a href="#" title="">Returns Privacy</a> and <a href="#" title="">Privacy Policy</a>
+            <!-- <p>By clicking PLACE ORDER you confirm that you have read, understood and accept our <a href="#" title="">Terms and Conditions</a>, <a href="#" title="">Returns Privacy</a> and <a href="#" title="">Privacy Policy</a> -->
           </div>
           <% end %>
 

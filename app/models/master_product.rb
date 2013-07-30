@@ -9,6 +9,19 @@ class MasterProduct < ActiveRecord::Base
 	validates :name, :description, :price, :presence => true
 	has_many :products
 
+
+	def price_string
+		stringify_price(price)
+	end
+
+	def discount_price_string
+		stringify_price(discount_price)
+	end
+
+	def sales_price_string
+		stringify_price(sales_price)
+	end
+
 	def self.find_by_category_name(category_name) 
 		category = Category.find_by_name(category_name)	
 		if category
@@ -62,5 +75,11 @@ class MasterProduct < ActiveRecord::Base
 			end
 		end
 		flag
+	end
+
+	private
+
+	def stringify_price(number)
+		number.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1.').reverse
 	end
 end
