@@ -121,6 +121,10 @@ class ProductImages
 $ -> 
 	$(document).on "click", "img.prod-minithumb", ->
 		$('#full-img').attr("src", $(this).data("fullimg"))
+		$('#full-img').attr("data-zoom-zoom", $(this).data("fullimg"))
+		fullImage = $(this).data("fullimg")
+		$('.zoomLens img').attr('src', fullImage)				
+		$('div.zoomWindow').css("background-image", "url(#{fullImage})")
 
 
 $ ->
@@ -131,6 +135,8 @@ $ ->
 		callback = (response) ->
 			productImages = new ProductImages(response.product_images)			
 			$('#full-img').attr("src", productImages.getPrimaryImage().full_img)
+			$('.zoomLens img').attr('src', productImages.getPrimaryImage().full_img)		
+			$('div.zoomWindow').css("background-image", "url(#{productImages.getPrimaryImage().full_img})")
 			Product.populateThumb(productImages.getThumbImages())
 			$("div.size-tag").empty()
 			Product.repopulateSizes(response.product_sizes)

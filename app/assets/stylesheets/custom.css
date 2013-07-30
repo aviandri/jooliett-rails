@@ -55,7 +55,7 @@ a:hover>img {
 .dropdown-menu > li > a:focus,
 .dropdown-submenu:hover > a,
 .dropdown-submenu:focus > a {
-	background: #ed8aa9;
+	background: grey;
 }
 .navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
@@ -198,15 +198,17 @@ td.shopcart-total {
 .carousel-inner > .item {
 	margin: 0;
 }
+
 .carousel-inner > .item > img {
-	border: none;
+	border: none;;
 }
 .carousel-caption {
 	padding-top: 100px;
-	bottom: 170px;
+	bottom: 400px;
 	width: 250px;	
 	background: transparent
 }
+
 .carousel-caption > h1, .carousel-caption > ul > li {
 	font-family: proxima_light, sans-serif;
 	font-weight: normal;
