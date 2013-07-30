@@ -20,19 +20,20 @@ class OrdersController < ApplicationController
 	end
 
 	def complete
+		cart = Cart.find(cookies[:cart_id])
+		cart.destroy 
 		cookies[:cart_id] = nil
 		@order = Order.find params[:id]
 		check_ownership(@order)
 		@order.invoice_code = SecureRandom.hex(10)
 		@order.status = "pending"
 		if @order.save
-			PaymentMailerWorker.perform_async(@order)
+			binding.pry
+			PaymentMailerWorker.perform_async(@order.id)
 		end
 	end
 
-
 	private 
-
 	def check_ownership(order)
 		unless order.user == current_user
 			redirect_to :controller => "covers", :action => "index"

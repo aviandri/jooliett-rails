@@ -20,7 +20,25 @@ class PaymentDetailsController < ApplicationController
 		else
 			render :new
 		end
+	end
 
+	def edit
+		@order = Order.find(params[:order_id])
+		@payment_detail = @order.payment_detail
+		@payment_types = PaymentType.all
+		render 'new'
+	end
+
+	def update
+		@order = Order.find(params[:order_id])
+		@payment_detail = PaymentDetail.find(params[:id])
+		@payment_detail.update_attributes(payment_detail_params)
+		@order.payment_detail = @payment_detail
+		if @order.save			
+			redirect_to summary_order_path(:id => @order.id)
+		else
+			render :new
+		end
 	end
 
 	private 

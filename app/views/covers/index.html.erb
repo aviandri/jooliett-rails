@@ -12,8 +12,8 @@
       	<% @covers.each_with_index do |cover, index | %>
         <div class="<%= active_cover(index) %> item">
           <%= image_tag cover.image.url %>
-          <div class="carousel-caption pos2">
-            <%= cover.caption.html_safe %>
+          <div class="carousel-caption pos2" style="height:30%;">
+            <h1><a href="" title="View Product" style="color: rgb(249, 94, 89); cursor: pointer;">Colorized</a></h1>
           </div>
         </div>
         <% end %>        

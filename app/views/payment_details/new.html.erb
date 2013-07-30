@@ -7,9 +7,10 @@
             <div class="span10">
               <div class="checkout-steps">
                 <ul class="unstyled clearfix">
-                  <li><span class="current"><a href="" title="Back to Previous">About You</a></span></li>
-                  <li><span class="current"><a href="" title="Back to Previous">Billing</a></span></li>
-                  <li><span class="current"><a href="" title="Back to Previous">Shipping</a></span></li>
+                  <li><span><a href="" title="Back to Previous">About You</a></span></li>                  
+                  <li><span class="completed">
+                    <%= link_to "Shipping", edit_order_shipping_detail_path(@order, :id => @order.shipping_detail.id) %>                    
+                  </li>
                   <li><span class="current">Payment</a></span></li>
                   <li><span>Summary &amp; Pay</span></li>
                 </ul>
@@ -23,7 +24,7 @@
                       <% if index == 0 %>
                         <%= f.radio_button :payment_type_id, payment_type.id, { :checked => true } %>
                       <% else %>
-                        <%= f.radio_button :payment_type, payment_type.id %>                      
+                        <%= f.radio_button :payment_type_id, payment_type.id %>                      
                       <% end %>
 
                       <%= image_tag payment_type.image %>
@@ -31,7 +32,10 @@
                       <span><%= payment_type.name %></span>
                     </label>
                     <p>
-                      <%= payment_type.description.html_safe  %>
+                      <%= payment_type.description  %>
+                    </p>
+                    <p>
+                      <%= payment_type.description2  %>
                     </p>
                   </li>  
                   <%= f.hidden_field :id, :value => @payment_detail.id %>               

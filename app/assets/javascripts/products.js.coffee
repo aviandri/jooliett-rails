@@ -97,8 +97,6 @@ Product =
 		span.find("a").css("color", currentColor)
 		span.find("a").css("background-color", "#333")
 
-
-
 		
 class Cart
 	constructor: (@cartObject) ->
@@ -180,6 +178,7 @@ $ ->
 		$(this).prop("disabled", true);	
 		$.get "/api/products?page=#{page}&category_name=#{category}", callback, 'json'
 
-
+$ ->
+	$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0.5});
 
 

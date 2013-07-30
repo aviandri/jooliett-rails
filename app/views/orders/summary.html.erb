@@ -5,10 +5,13 @@
           <h3>Confirm &amp; Pay</h3> 
           <div class="checkout-steps">
             <ul class="unstyled clearfix">
-              <li><span class="current"><a href="" title="Back to Previous">About You</a></span></li>
-              <li><span class="current"><a href="" title="Back to Previous">Billing</a></span></li>
-              <li><span class="current"><a href="" title="Back to Previous">Shipping</a></span></li>
-              <li><span class="current"><a href="" title="Back to Previous">Payment</a></span></li>
+              <li><span class="completed"><a href="" title="Back to Previous">About You</a></span></li>
+              <li><span class="completed">
+                <%= link_to "Shipping", edit_order_shipping_detail_path(@order, :id => @order.shipping_detail.id) %>
+              </span></li>
+              <li><span class="completed">
+                <%= link_to "Payment", edit_order_payment_detail_path(@order, :id => @order.payment_detail.id) %>
+              </span></li>
               <li><span class="current">Summary &amp; Pay</span></li>
             </ul>
           </div> 
@@ -42,8 +45,7 @@
               <td colspan="2" style="text-align: right">Total : </td>
               <td>IDR <%= @order.total_price %></td>
             </tr>
-          </table>
-          <p class="text-right" ><a href="#" title="Edit / Add">Edit/Add</a></p>
+          </table>          
 
           <h4>Select Shipping &amp; Billing Address</h4>
           <table class="table table-bordered table-condensed">
@@ -55,8 +57,7 @@
               <td><%= @order.shipping_detail.address1 %></td>
               <td><input type="radio" checked></td>
             </tr>            
-          </table>
-          <p class="text-right" ><a href="#" title="Edit / Add">Edit/Add</a></p>
+          </table>          
          
           <h4>Selected Payment Method</h4>
           <table class="table table-bordered table-condensed">
@@ -69,12 +70,11 @@
             <tr>
               <td><%= image_tag @order.payment_detail.payment_type.image %><span><%= @order.payment_detail.payment_type.name %></span></td>
               <td>N/A</td>
-              <td>Bank BCA KCP Wolter Mongisidi a/n Jooliett No. Rek. 564 231 8777</td>
+              <td><%= "#{@order.payment_detail.payment_type.full_description}" %></td>
               <td>N/A</td>
             </tr>
           </table>
-          <p class="text-right" ><a href="#" title="Edit / Add">Edit/Add</a></p>
-
+        
           <%= form_for @order, :url => complete_order_path(:id => @order.id) do |f| %>
           <div class="place-order text-center">
             <button class="btnflat action">Place Order</button>

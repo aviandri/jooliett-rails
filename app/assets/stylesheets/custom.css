@@ -205,7 +205,7 @@ td.shopcart-total {
 	padding-top: 100px;
 	bottom: 170px;
 	width: 250px;	
-	border-bottom: 5px solid #fcff00;
+	background: transparent
 }
 .carousel-caption > h1, .carousel-caption > ul > li {
 	font-family: proxima_light, sans-serif;
@@ -221,7 +221,6 @@ td.shopcart-total {
  }
   .carousel-caption > h1 > a:hover {
  	color: #f2108a;
- 	text-decoration: none;
  }
 /* Carousel Box Position */
 .pos1 {
@@ -547,6 +546,16 @@ td.shopcart-total {
 	color: #ccc;
 	padding-bottom: 5px;
 }
+.checkout-steps .completed {
+	border-bottom: 2px solid #ccc;
+}
+.checkout-steps .completed:hover {
+	border-color: #f2108a
+}
+.checkout-steps .completed a {
+	color: #ccc
+}
+
 .checkout-steps .current {
 	color: #f2108a;
 	font-weight: bold;
@@ -771,7 +780,6 @@ td.shopcart-total {
 		padding: 10px;
 		bottom: 0;
 		width: auto;	
-		border-bottom: 5px solid #fcff00;
 	}
 	.navbar-fixed-bottom {
 		margin-top: 0
@@ -833,7 +841,6 @@ td.shopcart-total {
 		padding: 10px;
 		bottom: 0;
 		width: auto;	
-		border-bottom: 5px solid #fcff00;
 	}
 	.navbar-fixed-bottom .container {
 		padding: 0 20px;
@@ -907,7 +914,6 @@ td.shopcart-total {
 		padding: 10px;
 		bottom: 0;
 		width: auto;	
-		border-bottom: 5px solid #fcff00;
 	}
 	.carousel-caption>h1 {
 		margin: 0;
