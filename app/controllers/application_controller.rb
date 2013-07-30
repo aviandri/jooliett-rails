@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  helper_method :current_cart
+  helper_method :current_cart, :category_items
 
   def current_cart
     	unless cookies[:cart_id].blank?
@@ -22,7 +22,12 @@ class ApplicationController < ActionController::Base
       cart
   end
 
+  def category_items
+      Category.categories_except_new_arrival
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password) }
   end
+
 end

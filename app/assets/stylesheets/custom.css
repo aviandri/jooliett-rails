@@ -55,7 +55,7 @@ a:hover>img {
 .dropdown-menu > li > a:focus,
 .dropdown-submenu:hover > a,
 .dropdown-submenu:focus > a {
-	background: #f2108a;
+	background: #ed8aa9;
 }
 .navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
@@ -662,9 +662,32 @@ td.shopcart-total {
 	
 }
 
-#bg { position: fixed; top: 0; left: 0; }
-	.bgwidth { width: 100%; }
-	.bgheight { height: 100%; }
+.video-play{
+	width: 70px;
+	height: 70px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -35px;
+	margin-left: -35px;
+	cursor: pointer;
+	background:url("../assets/play.png") no-repeat;
+}
+
+.video-play:hover {
+	background:url("../assets/play_over.png") no-repeat;
+}
+
+.navbar-inverse .divider-vertical {
+	border-left-color: #4a4a4a;
+	border-right-color: #4a4a4a;
+}
+
+.navbar .divider-vertical {
+	height: 20px;
+	margin: 9px;
+}
+
 
 
 

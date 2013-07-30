@@ -25,7 +25,9 @@ class OrdersController < ApplicationController
 		check_ownership(@order)
 		@order.invoice_code = SecureRandom.hex(10)
 		@order.status = "pending"
-		@order.save
+		if @order.save
+			PaymentMailerWorker.perform_async(@order)
+		end
 	end
 
 
