@@ -5,6 +5,8 @@ class ProductColor < ActiveRecord::Base
 	delegate :name, :to => :color
 	delegate :hex, :to => :color
 
+	validates :color, :master_product, :presence => true
+
 	has_many :product_images
 	accepts_nested_attributes_for :product_images
 

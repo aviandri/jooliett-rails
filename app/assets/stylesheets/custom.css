@@ -187,6 +187,7 @@ td.shopcart-total {
 	margin: 0 0 20px 0;
 }
 
+
 /* Carousel (home slider) */
 .carousel {
 	margin: -18px 0 0 0;
@@ -198,16 +199,15 @@ td.shopcart-total {
 .carousel-inner > .item {
 	margin: 0;
 }
-
 .carousel-inner > .item > img {
-	border: none;;
+	border: none;
 }
+
 .carousel-caption {
-	padding-top: 100px;
-	bottom: 400px;
-	width: 250px;	
-	background: transparent
+	width: 400px;	
+	background: #fff;
 }
+
 
 .carousel-caption > h1, .carousel-caption > ul > li {
 	font-family: proxima_light, sans-serif;
@@ -215,25 +215,89 @@ td.shopcart-total {
 	color: #999;
 	text-transform: uppercase;
 }
- .carousel-caption > ul > li {
- 	font-size: 0.8rem
- }
- .carousel-caption > h1 > a {
- 	color: #ccc;
- }
-  .carousel-caption > h1 > a:hover {
- 	color: #f2108a;
- }
-/* Carousel Box Position */
+.carousel-caption > ul > li {
+	font-size: 0.8rem;
+}
+
+
+
+.carousel-caption  h1 {
+	font-size: 8rem;
+	line-height: 80%;
+	font-weight: normal;	
+}
+
+.carousel-caption  h2 {
+	font-size: 2.4rem;
+	line-height: 80%;
+	font-weight: normal;	
+}
+
+.carousel-caption  span {
+	font-size: 0.7rem;	
+	font-weight: normal;	
+}
+
+@media (max-width: 480px) {
+	.carousel-caption  h1 {
+		font-size: 3rem;
+		line-height: 80%;
+		font-weight: normal;	
+	}
+	.carousel-caption  h2 {
+		font-size: 1rem;
+		line-height: 80%;
+		font-weight: normal;	
+	}
+	.carousel-caption  span {
+		font-size: 0.5rem;	
+		font-weight: normal;	
+	}
+
+}
+
+
+
+.carousel-caption > h1 > a {
+	color: #ccc;
+}
+.carousel-caption > h1 > a:hover {
+	color: #f2108a;
+	text-decoration: none;
+}
+.carousel-caption .content h1 {
+	color: #ccc;
+}
+.carousel-caption .content {
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+}
+.carousel-caption .content a {
+	color: #efefef;
+	text-decoration: none;
+
+}
+/* Carousel-caption Box Position */
 .pos1 {
- 	left: 0px;
+ 	left: 100px;
+ 	bottom: 300px;
  }
 .pos2 {
 	left: 500px;
+	bottom: 300px;
+}
+@media (width: 1024px) {
+	.pos2 {
+		left: 350px;
+		bottom: 100px;
+	}
 }
 .pos3 {
-	left: 800px;
+	left: 600px;
+	bottom: 300px;
 }
+
 
 /* Products */
 .prod {
@@ -705,6 +769,40 @@ td.shopcart-total {
 
 
 
+@media(min-width : 1100px) {
+	.carousel .item {
+	     /* Set rules to fill background */
+  		min-height: 900px;
+	
+  		/* Set up proportionate scaling */
+  		width: auto;
+  		height: auto;
+	
+		  /* Set up positioning */
+  		position: fixed;
+  		top: 0;
+  		left: 0;
+	}
+
+	}
+	.carousel-inner .item img {
+  		width: 100%; /*img width*/
+    }
+    
+    .carousel-control {
+    	top:300px;
+    }
+
+    .carousel-caption {
+    	position: fixed;
+    	top: 250px;
+    }
+    .pos2 {
+		left: 700px;
+		bottom: 300px;
+	}	
+
+}
 
 /* Large Desktop */
 @media (min-width: 1200px) {}

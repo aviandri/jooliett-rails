@@ -42,8 +42,8 @@
               <% else %>
                   <div class="span4"><span class="discount">OFF <%= @master_product.discount_percentage %>%<span></div>
                   <div class="span7">
-                  <span class="discounted"><%= @master_product.discount_price_string %></span>
-                  <span class="price">IDR <%= @master_product.price_string %></span>
+                  <span class="discounted">IDR <%= @master_product.price_string %> </span>
+                  <span class="price">IDR <%= @master_product.discount_price_string %></span>
                 </div>
               <% end %>              
             </div>
@@ -53,7 +53,7 @@
             <div class="row-fluid prod-price-details">
               <div class="span4"><span class="outstock">OUT OF STOCK<span></div>
               <div class="span7">
-                  <span class="price">IDR <%= @master_product.price_string %></span>
+                  <span class="price">IDR <%= @master_product.sales_price_string %></span>
               </div>
             </div>
 

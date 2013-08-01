@@ -177,7 +177,8 @@ $ ->
 	$(document).on "click", "#more-button", ->
 		page = parseInt($(this).attr("data-page")) + 1	
 		category = $(this).attr("data-category")
-		callback = (response) ->			
+		callback = (response) ->	
+			console.log(response)		
 			Product.loadMoreProducts(response)
 			$(".more").find("button").attr("data-page", response.page)						
 			$("#more-button").prop("disabled", false);	
