@@ -1,6 +1,6 @@
 $ ->
-	$(document).ready ->
-      $('.image').hide().fadeIn(100);
+	$(document).ready ->	   
+      $('.image').hide().fadeIn(300);
  
 Product = 
 	populateThumb : (thumbImages) ->

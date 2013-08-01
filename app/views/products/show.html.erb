@@ -9,7 +9,7 @@
            <% @master_product.primary_product_color.product_images.each do |product_image| %>
             <li>
               <a href="#action" class="thumb-img">
-                <%= image_tag(product_image.image.thumb.url, :class => "prod-minithumb", :data => {:fullimg => product_image.image.url}) %>
+                <%= image_tag(product_image.image.thumb.url, :class => "prod-minithumb", :data => {:fullimg => product_image.image.url}, :style => "background-image:url('#{product_image.image.url}')") %>
               </a>
             </li>
             <% end %>
