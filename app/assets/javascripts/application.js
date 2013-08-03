@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require jquery.elevatezoom
 //= require bootstrap.min
-//= require navbar_fix.js
 //= require html5shiv
 //= require active_admin
 //= require cart_items
