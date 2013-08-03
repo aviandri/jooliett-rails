@@ -10,6 +10,7 @@ ActiveAdmin.register LookBook do
 				end
 			end
 		end
+		f.inputs :master_products
 		f.actions
 	end
 

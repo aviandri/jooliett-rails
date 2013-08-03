@@ -28,6 +28,9 @@ end
 
 index do
 	column :id
+	column "image" do |master_product|
+      image_tag(master_product.primary_product_color.primary_image.image.thumb.url)
+  	end 
 	column :name
 	column :price
 	column :discount_price
