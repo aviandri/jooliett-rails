@@ -13,7 +13,7 @@ class CartItem < ActiveRecord::Base
 	# validates_with CartQuantityValidator
 
 	def sub_total
-		product.price * quantity
+		product.sales_price * quantity
 	end
 	def sub_total_string
 		stringify_price(sub_total)

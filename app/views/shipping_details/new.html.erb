@@ -42,10 +42,18 @@
                     <span>(Optional)</span>
                   </div>
                 </div>               
-                  <div class="control-group <%= error_flag(@shipping_detail, 'city') %>">
-                  <label class="control-label" for="inputForCity">City</label>
+                <div class="control-group %>">
+                  <label class="control-label" for="inputForCity">States</label>
                   <div class="controls">
-                    <%= f.text_field :city, :placeholder => "Jakarta Selatan" %>
+                    <%= select_tag :states, options_from_collection_for_select(State.all, "id", "name"), :id => "states" %>
+                    <span class="help-inline"><%= error_message(@shipping_detail, "city") %>
+                    </span>                                                          
+                  </div>
+                </div>
+                <div class="control-group <%= error_flag(@shipping_detail, 'city') %>">
+                  <label class="control-label" for="inputForCity">States</label>
+                  <div class="controls">
+                    <%= f.select :city_id, "" %>
                     <span class="help-inline"><%= error_message(@shipping_detail, "city") %>
                     </span>                                                          
                   </div>

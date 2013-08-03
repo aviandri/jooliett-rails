@@ -217,8 +217,11 @@ $ ->
 		$.get "/api/products?page=#{page}&category_name=#{category}", callback, 'json'
 		$("#more-button").text("Loading..")
 
-
 $ ->
 	$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0, tintColour:"black";});
+
+$ ->
+	$('body').on "touchstart.dropdown", ".dropdown-menu", (e) ->  
+		e.stopPropagation()
 
 

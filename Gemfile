@@ -66,6 +66,8 @@ gem 'slim'
 
 gem 'jquery-turbolinks'
 
+gem 'responsive_images'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -28,15 +28,21 @@
             <tr>
               <td colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= order_item.product.full_description %></td>
               <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= order_item.quantity %></td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.total_price_string %></td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= order_item.subtotal_price_string %></td>
             </tr>
             <% end %>
             <tr>
             </tr>
             <tr>
               <td colspan="3" style="text-align: right;padding: 4px 5px;line-height: 20px;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Shipping :</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.shipping_detail.price %></td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.shipping_detail.city.delivery_cost_string %></td>
             </tr>
+            <tr>
+              <td colspan="3" style="text-align: right;padding: 4px 5px;line-height: 20px;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Payment Code :</td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.payment_detail.pay_code %></td>
+            </tr>
+
+                          
             <tr>
               <td colspan="3" style="text-align: right;padding: 4px 5px;line-height: 20px;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Total : </td>
               <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.total_price_string %> </td>

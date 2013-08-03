@@ -36,7 +36,7 @@
             <% end %>
             <tr>
               <td colspan="3" style="text-align: right">Shipping :</td>
-              <td>IDR <%= @order.shipping_detail.price %></td>
+              <td>IDR <%= @order.shipping_detail.city.delivery_cost %></td>
             </tr>
             <tr>
               <td colspan="3" style="text-align: right">Payment Code :</td>

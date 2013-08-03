@@ -32,4 +32,8 @@ module ApplicationHelper
     	@devise_mapping ||= Devise.mappings[:user]
   	end
 
+  	def stringify_price(number)
+  		number.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1.').reverse
+  	end
+
 end

@@ -44,6 +44,6 @@ class ShippingDetailsController < ApplicationController
 	private
 
 	def shipping_detail_params
-		params.require(:shipping_detail).permit(:name, :mobile, :address1, :address2, :city, :postal_code)
+		params.require(:shipping_detail).permit(:name, :mobile, :address1, :address2, :city_id, :postal_code)
 	end
 end

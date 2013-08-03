@@ -4,6 +4,7 @@ class ShippingDetail < ActiveRecord::Base
 	validates_format_of :postal_code, with: /\A[\d]+\z/
 
 	belongs_to :user
+	belongs_to :city
 
 	def full_address
 		"#{address1}, #{address2}"

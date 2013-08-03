@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController	
 	before_filter :authenticate_user!, :only => ["summary", "complete"]
+	
 	def new 
 		@order = Order.new
 		cart = Cart.find(cookies[:cart_id])
