@@ -11,7 +11,7 @@
       <div class="carousel-inner">
       	<% @covers.each_with_index do |cover, index | %>
          <div class="<%= active_cover(index) %> item">        
-         <%= responsive_image_tag cover %>            
+         <%= image_tag cover.image.desktop.url %>            
          <%= cover.caption.html_safe %>
         </div>       
                      
