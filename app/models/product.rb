@@ -54,4 +54,17 @@ class Product < ActiveRecord::Base
 	 	"#{name} - #{product_color.name}/#{product_size.description} "
 	 end
 
+	 def available_quantity
+	 	order_items = OrderItem.where(product_id: self.id)
+	 	order_item_quantity = order_items.sum(:quantity)
+	 	cart_product_quantity = Cart.reserved_product_quantity(self.id)
+	 	reserved_product_quantity = order_item_quantity + cart_product_quantity
+	 	unless quantity.blank?
+	 		available_quantity = quantity - reserved_product_quantity
+	 	else
+	 		available_quantity = 0
+	 	end
+	 	available_quantity
+	 end
+
 end

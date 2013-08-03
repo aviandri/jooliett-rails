@@ -28,7 +28,6 @@ class OrdersController < ApplicationController
 		@order.invoice_code = SecureRandom.hex(10)
 		@order.status = "pending"
 		if @order.save
-			binding.pry
 			PaymentMailerWorker.perform_async(@order.id)
 		end
 	end

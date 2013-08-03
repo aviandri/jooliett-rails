@@ -55,16 +55,25 @@ Product =
 			product_item_container = $("<div></div>").attr("class", "span3")
 			product_div = $("<div></div>").attr("class", "prod")
 			
-			prod_link = $("<a></a>").attr("href","/product/#{product.id}")
+			prod_link = $("<a></a>").attr("href","/products/#{product.id}")
 			prod_image = $("<img></img>").attr("src", product.images.medium)
 			prod_link.append(prod_image)
 
 			prod_meta_div = $("<div></div>").attr("class", "prod-meta")
 			prod_meta_div.append($("<span></span>")
-							.attr("class", "prod-title").text(product.name))
-			prod_meta_div.append($("<span></span>")
-							.attr("class", "prod-price").text(product.price))
+							.attr("class", "prod-title").text(product.name)
+			
+			prod_price_meta = $("<p></p>").attr("class", "prod-price-meta"))			
 
+			prod_price_meta.append($("<span></span>")
+							.attr("class", "discount-prod-price").text("IDR #{product.price}"))
+
+			if product.discount_price != null
+				prod_price_meta.append($("<span></span>")
+							.attr("class", "prod-price").text(" IDR #{product.discount_price}"))			
+
+
+			prod_meta_div.append(prod_price_meta)
 			product_div.append(prod_link)	
 			product_div.append(prod_meta_div)
 
@@ -96,6 +105,17 @@ Product =
 		console.log(span.find("a").css("color"))
 		span.find("a").css("color", currentColor)
 		span.find("a").css("background-color", "#333")
+
+	showStatusBar:(sevirity, text) ->
+		container = $("<div></div>").attr("class", "container")
+		content = $("<div></div>").attr("class", "content")
+		span_text = $("<span></span>").text(text)
+		anchor = $("<a></a>").attr("href","#").attr("class", "close").attr("data-dismiss","alert").text("&times;")		
+		content.append(span_text)
+		content.append(anchor)
+		container.append(content)
+		$(".statusbar").append(container)
+		$(".statusbar").addClass(sevirity)
 
 		
 class Cart
@@ -154,13 +174,14 @@ $ ->
 		$("div.size-tag").attr("data-size-id", productColorId)
 
 $ ->
-	$(document).on "click", "button.addcart", ->
+	$(document).on "click", ".addcart", ->
 		callback = (response) ->
 			cart = new Cart(response)
 			console.log("cart")
 			console.log(response)
 			$("span.qcart-count").text(""+cart.getProductQuantity())
 			$('div').remove('.qcart-item');
+			$('.msg').remove();
 			Product.rePopulateCart(cart.getCartItems())			
 			$("#fat-menu").addClass("open")
 

@@ -1,8 +1,16 @@
+class CartQuantityValidator  < ActiveModel::Validator
+	def validate(record)
+		record.product.available_quantity < record.quantity
+		record.errors[:product] << 'Insufficient product quantity'
+	end
+end
+
 class CartItem < ActiveRecord::Base
+	include ActiveModel::Validations
 	belongs_to :product
 	belongs_to :cart
-	before_save :init_default_value
-
+	before_save :init_default_value	
+	# validates_with CartQuantityValidator
 
 	def sub_total
 		product.price * quantity
