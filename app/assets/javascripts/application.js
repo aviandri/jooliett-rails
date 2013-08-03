@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require jquery.elevatezoom
 //= require bootstrap.min
 //= require html5shiv

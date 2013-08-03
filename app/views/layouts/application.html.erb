@@ -75,7 +75,7 @@
               
               <li id="fat-menu" class="dropdown">
                 <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="qcart-count"><%= current_cart.products.empty? ? 0 : current_cart.products.count %></span>Cart<b class="caret"></b></a>
-                <div class="dropdown-menu quickcart" role="menu" aria-labelledby="drop3" data-cart-id="<%= cookies[:cart_id]%>" >
+                <div class="dropdown-menu quickcart" role="menu" aria-labelledby="drop3" data-cart-id="<%= current_cart.id %>" >
                   <!-- QuickCart -->
                   <% current_cart.cart_items.each do |cart_item| %>
                   <div class="qcart-item row">
@@ -91,7 +91,12 @@
                   
                   <!-- /qcart-item -->
                   <div class="qcart-action">
-                      <button id="view-cart" class="btnflat-fluid action">Checkout</button>
+                      <% unless current_cart.cart_items.blank? %>                        
+                        <button id="view-cart" class="btnflat-fluid action">Checkout</button>
+                      <% else %>
+                        <span id="not-available">Nothing yet! Let's Shop First </span>
+                      <% end %>
+
                   </div>
 
                 </div><!-- ./quickcart -->

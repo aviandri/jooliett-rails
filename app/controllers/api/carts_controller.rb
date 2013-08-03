@@ -2,8 +2,8 @@ class Api::CartsController < ApplicationController
 	respond_to :json
 
 	def add
-		unless cookies[:cart_id].blank?
-			@cart = Cart.find(cookies[:cart_id])		
+		unless current_cart.new_record?
+			@cart = current_cart
 		else
 			@cart = Cart.create
 			cookies.permanent[:cart_id] = @cart.id		

@@ -64,6 +64,8 @@ gem 'sinatra', require: false
 
 gem 'slim'
 
+gem 'jquery-turbolinks'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

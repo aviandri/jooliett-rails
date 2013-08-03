@@ -822,19 +822,24 @@ td.shopcart-total {
 	cursor:pointer;
 }
 
+.full-img {
+	background: url(<%= asset_path "ajax-loader.gif" %>) no-repeat;
+	text-align: center;
+}
+
 
 
 @media(min-width: 1100px) {
-	.carousel .item {
-  		min-height: 900px;
-  		width: auto;
-  		height: auto;
-  		position: fixed;
+	.carousel .item {  		
+  		position: relative;
   		top: 0;
   		left: 0;
 	}
-	.carousel-inner .item img {
-  		width: 100%; /*img width*/
+	.carousel-inner .item img {		  		
+  		width: auto;
+  		width: 100%;
+  		height: auto;
+  		
     }
 
     .carousel-control {
@@ -842,8 +847,8 @@ td.shopcart-total {
     }
 
     .carousel-caption {
-    	position: fixed;    	
-    	top: 250px;
+    	position: absolute;    	
+    	top: 200px;
     }
 
     .pos2 {

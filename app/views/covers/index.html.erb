@@ -12,9 +12,7 @@
       	<% @covers.each_with_index do |cover, index | %>
          <div class="<%= active_cover(index) %> item">        
          <%= image_tag cover.image.url %>            
-
-          <%= cover.caption.html_safe %>          
-          
+         <%= cover.caption.html_safe %>
         </div>       
                      
         <% end %>        

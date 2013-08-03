@@ -177,14 +177,19 @@ $ ->
 	$(document).on "click", ".addcart", ->
 		callback = (response) ->
 			cart = new Cart(response)
-			console.log("cart")
-			console.log(response)
 			$("span.qcart-count").text(""+cart.getProductQuantity())
 			$('div').remove('.qcart-item');
 			$('.msg').remove();
 			Product.rePopulateCart(cart.getCartItems())			
 			$("#fat-menu").addClass("open")
-
+			$("#not-available").hide()
+			console.log("button")
+			console.log($("#view-cart").length)
+			if $("#view-cart").length == 0
+				button = $("<button></button>").attr("id", "view-cart")
+					.attr("class", "btnflat-fluid action")
+					.text("Checkout")
+				$("div.qcart-action").append(button)	
 		colorId = $("div.color-tag").data("color-id")
 		productSizeId = $("div.size-tag").attr('data-size-id')
 		if productSizeId == ''
@@ -192,6 +197,7 @@ $ ->
 		else
 			json = {'product_color_id' : colorId, 'product_size_id' : productSizeId}		
 			$.ajax '/api/carts/add', type: 'POST', data: JSON.stringify(json), success: callback, contentType: "application/json", dataType: "json"		
+
 		
 
 $ -> 
@@ -201,10 +207,16 @@ $ ->
 		callback = (response) ->	
 			console.log(response)		
 			Product.loadMoreProducts(response)
-			$(".more").find("button").attr("data-page", response.page)						
-			$("#more-button").prop("disabled", false);	
+			if response.master_products.length == 0			
+				$("#more-button").remove()
+			else
+				$(".more").find("button").attr("data-page", response.page)						
+				$("#more-button").prop("disabled", false);	
+				$("#more-button").text("See More")
 		$(this).prop("disabled", true);	
 		$.get "/api/products?page=#{page}&category_name=#{category}", callback, 'json'
+		$("#more-button").text("Loading..")
+
 
 $ ->
 	$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0, tintColour:"black";});

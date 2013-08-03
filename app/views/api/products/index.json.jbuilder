@@ -2,7 +2,7 @@ json.master_products @master_products.each do |master_product|
   json.id master_product.id
   json.name	master_product.name
   json.description master_product.description
-  json.price master_product.sales_price_string
+  json.price master_product.price_string
   unless json.discount_price.blank?
     json.discount_price master_product.discount_price
   end

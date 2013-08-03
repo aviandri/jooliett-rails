@@ -15,9 +15,9 @@
           <h2 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 40px;color: inherit;text-rendering: optimizelegibility;font-size: 31.5px">Thanks For Your Purchase!</h2>
           <h3 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 40px;color: inherit;text-rendering: optimizelegibility;font-size: 24.5px">Here is your purchase details
           </h3><table class="table table-condensed" style="max-width: 100%;background-color: transparent;border-collapse: collapse;border-spacing: 0;width: 100%;margin-bottom: 20px"><tr><td width="120" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">Purchase Code</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">: @order.invoice_code</td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">: <%= @order.invoice_code %></td>
             </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">Purchase Date</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">: @order.created_at.strftime("%a %b %d")</td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">: <%= @order.created_at.strftime("%a %b %d") %></td>
             </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">Bank Account</td>
               <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">: <span><%= @order.payment_detail.payment_type.full_description %></span></td>
             </tr></table><table class="table table-bordered table-condensed" style="max-width: 100%;background-color: transparent;border-collapse: separate;border-spacing: 0;width: 100%;margin-bottom: 20px;border: 1px solid #ddd;border-left: 0;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px"><tr><th colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;background-color: #efefef;text-transform: uppercase">Product</th>
@@ -26,7 +26,7 @@
             </tr>
             <% @order.order_items.each do |order_item| %>
             <tr>
-              <td colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= order_item.full_description %></td>
+              <td colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= order_item.product.full_description %></td>
               <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= order_item.quantity %></td>
               <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.total_price_string %></td>
             </tr>
@@ -46,7 +46,7 @@
             </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @order.shipping_detail.full_address %></td>
             </tr></table><h4 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 20px;color: #f2108a;text-rendering: optimizelegibility;font-size: 17.5px;padding: 0 0 10px 0">Confirming your payment?</h4>
           <p style="margin: 0 0 10px">Please finish your payment and confirm it by visiting this link :</p>
-          <p style="margin: 0 0 10px"><%= link_to :controller => payment_confirmations :action => "show", :invoice_code => @order.invoice_code%> </p>
+          <p style="margin: 0 0 10px"><%= link_to "Confirm Payment", :controller => "payment_confirmations", :action => "show", :invoice_code => @order.invoice_code, :only_path => false%> </p>
         </div><!-- ./span12 -->
       </div><!-- ./ row-fluid -->      
     </div><!-- ./container -->
