@@ -44,6 +44,9 @@ a:hover>img {
 }
 /* Components */
 
+#logo{
+	cursor: pointer;
+}
 /*Dropdown Menu - Override */
 .dropdown-menu {
 	-webkit-border-radius:0;
@@ -305,11 +308,9 @@ td.shopcart-total {
 	display: block;
 	width: 100%;
 	background-color: #fff;
-	border: 1px solid #e5e5e5;
 	min-height: 317px;
 }
 .prod span {
-	display: block;
 	text-align: center;
 }
 .prod-meta {
@@ -317,14 +318,25 @@ td.shopcart-total {
 	color: #555
 }
 .prod-title {
+	display: block;
 	text-transform: uppercase;
 }
 .prod-title a {
 	color :#555;
 }
+.prod-price-meta {
+	text-align: center;
+	display: block;
+}
+.discount-prod-price{
+	line-height: 110%;
+	font-family: proxima_bold, sans-serif;
+	color: rgb(249, 94, 89);
+}
 .prod-price {
 	line-height: 110%;
 	font-family: proxima_bold, sans-serif;
+	text-decoration: line-through;
 }
 .prod-price.line-through {
 	font-family: proxima_light, sans-serif;
@@ -396,6 +408,10 @@ td.shopcart-total {
 .prod-price-details .outstock {
 	font-size: 1rem;
 	padding: 0 10px
+}
+
+.outstock{
+	text-align: center;	                
 }
 /* Product Status */
 .prod-status {
@@ -553,6 +569,11 @@ td.shopcart-total {
 	background-color: #333;	
 	color: #fff;
 	border-color: #333
+}
+
+.size-outofstock{
+	line-height: 110%;
+	font-family: proxima_bold, sans-serif;
 }
 
 /* Component: Quick Cart */

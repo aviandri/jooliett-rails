@@ -25,7 +25,15 @@
 
                 <div class="prod-meta">
                   <span class="prod-title"><%= master_product.name%></span>
-                  <span class="prod-price">IDR <%= master_product.sales_price_string %></span>
+                  <p class="prod-price-meta">
+                  <% if master_product.discount_price.nil? %>
+                    <span class="discount-prod-price">IDR <%= master_product.sales_price_string %></span>
+                  <% else %>
+                      <span class="discount-prod-price">IDR <%= master_product.sales_price_string %></span>   
+                      <span class="prod-price">IDR <%= master_product.sales_price_string %></span>                     
+                  <% end %>
+                  </p>
+
                 </div>
               </div>
             </div>    

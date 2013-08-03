@@ -186,6 +186,6 @@ $ ->
 		$.get "/api/products?page=#{page}&category_name=#{category}", callback, 'json'
 
 $ ->
-	$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0.5});
+	$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0, tintColour:"black";});
 
 

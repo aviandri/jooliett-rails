@@ -6,7 +6,7 @@ class MasterProduct < ActiveRecord::Base
 
 	accepts_nested_attributes_for :product_colors
 
-	validates :name, :description, :price, :presence => true
+	validates :name, :description, :price, :product_sizes, :product_colors, :presence => true
 	has_many :products
 
 

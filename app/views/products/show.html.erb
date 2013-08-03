@@ -52,7 +52,7 @@
             <!-- IF Out of Stock -->
             <div class="row-fluid prod-price-details">
               <div class="span4"><span class="outstock">OUT OF STOCK<span></div>
-              <div class="span7">
+              <div class="span7 pull-right">
                   <span class="price">IDR <%= @master_product.sales_price_string %></span>
               </div>
             </div>
@@ -60,7 +60,7 @@
             <% end %>
 
             <div class="row-fluid">
-              <div class="span6">
+              <div class="span12">
                 <h4>Color Options</h4>
                 <div class="wrapper color-tag" data-color-id="<%= @master_product.primary_product_color.id %>">
                   <% @master_product.product_colors.each do |product_color| %>
@@ -69,19 +69,25 @@
                   <% end %>                  
                 </div>
               </div>
-              <div class="span6">
+            </div>
+            <div class="row-fluid">
+              <div class="span12">                
                 <h4>Size</h4>
                 <div class="wrapper size-tag" data-size-id="">
+                  <% if @master_product.primary_product_color.available? %>
                   <% @master_product.primary_product_color.products.each do |product| %>
                     <% if product.available? %>
                       <span class="size-tag" data-size-id="<%= product.product_size.id %>"><a href="#action"><%= product.product_size.name%></a></span>
-                      <% end %>
+                    <% end %>
                   <% end %>
+                  <% else %>
+                  <span class="size-outofstock">Out of stock (Please choose different color)</span>
+                  <% end %> 
                 </div>
               </div>
             </div>
             <div class="row-fluid cta">
-              <div class="span7 pull-right">
+              <div class="span7">
                 <button class="btnflat-fluid action addcart">Buy</button>
               </div>
             </div>
