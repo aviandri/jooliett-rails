@@ -220,8 +220,4 @@ $ ->
 $ ->
 	$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0, tintColour:"black";});
 
-$ ->
-	$('body').on "touchstart.dropdown", ".dropdown-menu", (e) ->  
-		e.stopPropagation()
-
 
