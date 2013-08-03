@@ -12,4 +12,8 @@ class Cover < ActiveRecord::Base
 		image.mobile
 	end
 
+	def default
+		image.desktop
+	end
+
 end
