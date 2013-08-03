@@ -15,31 +15,38 @@
           <h2 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 40px;color: inherit;text-rendering: optimizelegibility;font-size: 31.5px">Thanks For Your Purchase!</h2>
           <h3 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 40px;color: inherit;text-rendering: optimizelegibility;font-size: 24.5px">Here is your purchase details
           </h3><table class="table table-condensed" style="max-width: 100%;background-color: transparent;border-collapse: collapse;border-spacing: 0;width: 100%;margin-bottom: 20px"><tr><td width="120" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">Purchase Code</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">: 5EAA5GT20071358739</td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">: @order.invoice_code</td>
             </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">Purchase Date</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">: 20 Jul 2013</td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">: @order.created_at.strftime("%a %b %d")</td>
             </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">Bank Account</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">: Bank BCA KCP Wolter Mongisidi a/n Jooliett
-                No. Rek.: 564 231 8777</td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd">: <span><%= @order.payment_detail.payment_type.full_description %></span></td>
             </tr></table><table class="table table-bordered table-condensed" style="max-width: 100%;background-color: transparent;border-collapse: separate;border-spacing: 0;width: 100%;margin-bottom: 20px;border: 1px solid #ddd;border-left: 0;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px"><tr><th colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;background-color: #efefef;text-transform: uppercase">Product</th>
               <th class="span2" style="float: none;min-height: 1px;margin-left: 0;width: 124px;padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;display: table-cell;background-color: #efefef;text-transform: uppercase">Quantity</th>
               <th class="span2" style="float: none;min-height: 1px;margin-left: 0;width: 124px;padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;display: table-cell;background-color: #efefef;text-transform: uppercase">Total</th>
-            </tr><tr><td colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">ASOS Scraf with Block Stripe - Multi / One Size</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">1</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR 675.000</td>
-            </tr><tr><td colspan="3" style="text-align: right;padding: 4px 5px;line-height: 20px;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Sub Total :</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR 675.000</td>
-            </tr><tr><td colspan="3" style="text-align: right;padding: 4px 5px;line-height: 20px;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Shipping :</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR 0</td>
-            </tr><tr><td colspan="3" style="text-align: right;padding: 4px 5px;line-height: 20px;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Total : </td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR 675.000</td>
+            </tr>
+            <% @order.order_items.each do |order_item| %>
+            <tr>
+              <td colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= order_item.full_description %></td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= order_item.quantity %></td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.total_price_string %></td>
+            </tr>
+            <% end %>
+            <tr>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: right;padding: 4px 5px;line-height: 20px;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Shipping :</td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.shipping_detail.price %></td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: right;padding: 4px 5px;line-height: 20px;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Total : </td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.total_price_string %> </td>
             </tr></table><h4 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 20px;color: #f2108a;text-rendering: optimizelegibility;font-size: 17.5px;padding: 0 0 10px 0">Shipping Address</h4>
           <table class="table table-bordered table-condensed" style="max-width: 100%;background-color: transparent;border-collapse: separate;border-spacing: 0;width: 100%;margin-bottom: 20px;border: 1px solid #ddd;border-left: 0;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px"><tr><th style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;background-color: #efefef;text-transform: uppercase">Address</th>
             
-            </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Jl. Candi Brahma VI Blok B</td>
+            </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @order.shipping_detail.full_address %></td>
             </tr></table><h4 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 20px;color: #f2108a;text-rendering: optimizelegibility;font-size: 17.5px;padding: 0 0 10px 0">Confirming your payment?</h4>
           <p style="margin: 0 0 10px">Please finish your payment and confirm it by visiting this link :</p>
-          <p style="margin: 0 0 10px"><a href="#" style="color: #08c;text-decoration: none">http://jooliett.com/payment_confirmation</a> </p>
+          <p style="margin: 0 0 10px"><%= link_to :controller => payment_confirmations :action => "show", :invoice_code => @order.invoice_code%> </p>
         </div><!-- ./span12 -->
       </div><!-- ./ row-fluid -->      
     </div><!-- ./container -->
