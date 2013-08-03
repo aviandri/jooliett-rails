@@ -1,8 +1,8 @@
   <div class="container">
       <!-- Item Details -->
       <div class="row-fluid prod-details-container">
-        <div class="span5 full-img">
-          <%= image_tag "",  :id => "full-img", :data => {"zoom-image" => @master_product.primary_product_color.primary_image.image.url}%>
+        <div class="span5" id="full-image">
+          <%= image_tag @master_product.primary_product_color.primary_image.image.url,  :id => "full-img", :data => {"zoom-image" => @master_product.primary_product_color.primary_image.image.url}%>
         </div><!-- ./span6 -->
         <div class="span1">
           <ul class="unstyled prod-minithumb">
