@@ -50,8 +50,10 @@ Product =
 			$("div.qcart-action").prepend(p_msg)
 
 	loadMoreProducts : (products) ->
-		product_container = $("<div></div>").attr("class", "row-fluid")
-		for product in products.master_products
+		product_container = undefined
+		for product, i in products.master_products
+			if i % 4 == 0
+				product_container = $("<div></div>").attr("class", "row-fluid")			
 			product_item_container = $("<div></div>").attr("class", "span3")
 			product_div = $("<div></div>").attr("class", "prod")
 			
@@ -71,17 +73,15 @@ Product =
 			if product.discount_price != null
 				prod_price_meta.append($("<span></span>")
 							.attr("class", "prod-price").text(" IDR #{product.discount_price}"))			
-
-
 			prod_meta_div.append(prod_price_meta)
 			product_div.append(prod_link)	
 			product_div.append(prod_meta_div)
 
 			product_item_container.append(product_div)	
 			product_container.append(product_item_container)
+			$("#product-container").append(product_container)
 
-
-		$("#product-container").append(product_container)
+		
 
 	repopulateSizes: (sizes) ->
 		console.log(sizes)
