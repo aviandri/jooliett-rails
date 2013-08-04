@@ -4,7 +4,7 @@ json.master_products @master_products.each do |master_product|
   json.description master_product.description
   json.price master_product.price_string
   unless json.discount_price.blank?
-    json.discount_price master_product.discount_price
+    json.discount_price master_product.discount_price_string
   end
   
   unless master_product.primary_product_color.nil?
