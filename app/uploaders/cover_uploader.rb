@@ -22,7 +22,7 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   version :desktop do
-    process :resize_to_fit => [1800, 900]
+    
   end
 
   # Override the directory where uploaded files will be stored.

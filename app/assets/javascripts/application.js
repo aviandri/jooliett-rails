@@ -16,6 +16,7 @@
 //= require bootstrap.min
 //= require html5shiv
 //= require active_admin
+//= require scrollpagination
 //= require cart_items
 //= require carts
 //= require covers

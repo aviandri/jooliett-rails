@@ -68,11 +68,11 @@ Product =
 			prod_price_meta = $("<p></p>").attr("class", "prod-price-meta"))			
 
 			prod_price_meta.append($("<span></span>")
-							.attr("class", "discount-prod-price").text("IDR #{product.price}"))
+							.attr("class", "discount-prod-price").text("IDR #{product.discount_price}"))
 
 			if product.discount_price != null
 				prod_price_meta.append($("<span></span>")
-							.attr("class", "prod-price").text(" IDR #{product.discount_price}"))			
+							.attr("class", "prod-price").text(" IDR #{product.price}"))			
 			prod_meta_div.append(prod_price_meta)
 			product_div.append(prod_link)	
 			product_div.append(prod_meta_div)
@@ -218,6 +218,12 @@ $ ->
 		$("#more-button").text("Loading..")
 
 $ ->
-	$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0, tintColour:"black";});
+	$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0, tintColour:"black";})
+
+
+$ ->
+	page = parseInt($(this).attr("data-page")) + 1	
+	category = $(this).attr("data-category")
+	console.log("page" + page)
 
 
