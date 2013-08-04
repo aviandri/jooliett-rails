@@ -31,8 +31,8 @@
                   <% if master_product.discount_price.nil? %>
                     <span class="discount-prod-price">IDR <%= master_product.sales_price_string %></span>
                   <% else %>
-                      <span class="discount-prod-price">IDR <%= master_product.price_string %></span>   
-                      <span class="prod-price">IDR <%= master_product.discount_price_string %></span>                     
+                      <span class="discount-prod-price">IDR <%= master_product.discount_price_string %></span>   
+                      <span class="prod-price">IDR <%= master_product.price_string %></span>                     
                   <% end %>
                   </p>
                 </div>
