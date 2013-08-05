@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
 		@order.status = "pending"
 		if @order.save
 			PaymentMailerWorker.perform_async(@order.id)
+			InvalidateOrderWorker.perform_in(1.minute, @order.id)
 		end
 	end
 

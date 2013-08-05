@@ -15,8 +15,19 @@
           </div>
           
           <h2>Thank You</h2>
-          <p>Thank you for shopping with Jooliett. Your order is being processed.</p>
-          <p><button class="btnflat action">Please Confirm Your Payment</button></p>
+          <p>Thank you for shopping with Jooliett. Please complete your payment in 1 x 24 hour.</p>
+          <p>
+            <span>
+              <%= form_tag("/products/category/new-arrival", method: "get", :style => "display:inline;") do %>
+                <button class="btnflat action">Continue Shopping</button>
+              <% end %>
+            </span>
+            <span>
+            <%= form_tag("/payment_confirmations/#{@order.invoice_code }", method: "get", :style => "display:inline;"  ) do %>            
+            <button class="btnflat action">Confirm Your Payment</button>
+            <% end %>
+          </span>
+          </p>
         </div><!-- ./span12 -->
       </div><!-- ./ row-fluid -->
     </div><!-- ./container -->

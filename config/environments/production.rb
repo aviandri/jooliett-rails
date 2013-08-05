@@ -71,6 +71,7 @@ JooliettRails::Application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
+  config.action_controller.asset_host = 'http://192.241.150.114'
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false

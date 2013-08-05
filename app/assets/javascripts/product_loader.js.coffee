@@ -17,12 +17,17 @@ ProductLoader =
 			
 			prod_price_meta = $("<p></p>").attr("class", "prod-price-meta"))			
 
-			prod_price_meta.append($("<span></span>")
-							.attr("class", "discount-prod-price").text("IDR #{product.discount_price}"))
+			
 
-			if product.discount_price != null
+			if product.discount_price != ""				
+				prod_price_meta.append($("<span></span>")
+							.attr("class", "discount-prod-price").text("IDR #{product.discount_price}"))
 				prod_price_meta.append($("<span></span>")
 							.attr("class", "prod-price").text(" IDR #{product.price}"))			
+			else 
+				prod_price_meta.append($("<span></span>")
+							.attr("class", "discount-prod-price").text("IDR #{product.price}"))			
+
 			prod_meta_div.append(prod_price_meta)
 			product_div.append(prod_link)	
 			product_div.append(prod_meta_div)

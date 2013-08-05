@@ -58,6 +58,7 @@ class Product < ActiveRecord::Base
 	 		available_quantity = quantity - reserved_product_quantity
 	 		if available_quantity < 0
 	 			available_quantity = 0
+	 		end
 	 	else
 	 		available_quantity = 0
 	 	end

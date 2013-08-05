@@ -98,11 +98,12 @@ Product =
 	inverseColorSpan:(span) ->
 		$("span.color-tag").each ->
 			realColor = $(this).attr("data-color-hex")
-			console.log(realColor)
 			$(this).find("a").css("background-color", realColor)
-			$(this).find("a").css("color", "#FFFFFF")
+			if $(this).attr("data-color-text") == undefined
+				$(this).find("a").css("color", "#FFFFFF")
+			else
+				$(this).find("a").css("color", $(this).attr("data-color-text"))
 		currentColor = span.find("a").css("background-color")
-		console.log(span.find("a").css("color"))
 		span.find("a").css("color", currentColor)
 		span.find("a").css("background-color", "#333")
 
@@ -140,11 +141,12 @@ class ProductImages
 		
 $ -> 
 	$(document).on "click", "img.prod-minithumb", ->
-		$('#full-img').attr("src", $(this).data("fullimg"))
-		$('#full-img').attr("data-zoom-zoom", $(this).data("fullimg"))
+		$('#full-img').attr("src", $(this).data("fullimg"))		
 		fullImage = $(this).data("fullimg")
-		$('.zoomLens img').attr('src', fullImage)				
-		$('div.zoomWindow').css("background-image", "url(#{fullImage})")
+		unless Modernizr.touch
+			$('#full-img').attr("data-zoom-zoom", $(this).data("fullimg"))
+			$('.zoomLens img').attr('src', fullImage)				
+			$('div.zoomWindow').css("background-image", "url(#{fullImage})")
 
 
 $ ->
@@ -155,8 +157,9 @@ $ ->
 		callback = (response) ->
 			productImages = new ProductImages(response.product_images)			
 			$('#full-img').attr("src", productImages.getPrimaryImage().full_img)
-			$('.zoomLens img').attr('src', productImages.getPrimaryImage().full_img)		
-			$('div.zoomWindow').css("background-image", "url(#{productImages.getPrimaryImage().full_img})")
+			unless Modernizr.touch
+				$('.zoomLens img').attr('src', productImages.getPrimaryImage().full_img)		
+				$('div.zoomWindow').css("background-image", "url(#{productImages.getPrimaryImage().full_img})")
 			Product.populateThumb(productImages.getThumbImages())
 			$("div.size-tag").empty()
 			Product.repopulateSizes(response.product_sizes)
@@ -164,8 +167,6 @@ $ ->
 		Product.inverseColorSpan($(this))
 
 		
-
-
 $ ->
 	$(document).on "click", "span.size-tag", ->
 		productColorId = $(this).data('size-id')
@@ -217,7 +218,8 @@ $ ->
 		$("#more-button").text("Loading..")
 
 $ ->
-	$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0, tintColour:"black";})
+	unless Modernizr.touch
+		$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0, tintColour:"black";})
 
 $ -> 
 	$(document).on "click", "#view-cart", ->

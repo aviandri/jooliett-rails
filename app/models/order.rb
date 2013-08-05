@@ -37,6 +37,11 @@ class Order < ActiveRecord::Base
 		self.save
 	end
 
+	def complete_order
+		self.status = "completed"
+		self.save
+	end
+
 	private
 	def stringify_price(number)
 		number.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1.').reverse

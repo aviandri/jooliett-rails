@@ -15,6 +15,7 @@
 //= require jquery.elevatezoom
 //= require bootstrap.min
 //= require html5shiv
+//= require moderenizr
 //= require active_admin
 //= require scrollpagination
 //= require cart_items
