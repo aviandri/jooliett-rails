@@ -3,7 +3,7 @@
       <div class="row-fluid">
         <div class="span12">
           <% Video.all.each do |video| %>
-            <%= image_tag video.photo_url, :html => {:style => "width:100%;"} %>
+            <%= image_tag video.image.url, :html => {:style => "width:100%;"} %>
           <% end %>
           <a target="_blank" href="http://www.youtube.com/watch_popup?v=bzix-zBgENI&vq=hd720">
           	<div class="video-play">

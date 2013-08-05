@@ -42,6 +42,12 @@ JooliettRails::Application.routes.draw do
     resources :products, :only => [:index]
   end
 
+  resources :pages, :only => [] do
+    collection do
+      get :how_to_order
+    end
+  end
+
   get "payment_confirmations/:invoice_code" => "payment_confirmations#show"
   resources :payment_confirmations, :only => [:create]
   resources :videos, :only => [:index]
