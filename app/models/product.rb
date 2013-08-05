@@ -30,7 +30,6 @@ class Product < ActiveRecord::Base
 	 end
 
 	 def available?
-	 	binding.pry
 	 	if available_quantity > 0
 	 		true
 	 	else
