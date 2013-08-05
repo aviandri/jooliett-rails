@@ -2,6 +2,7 @@ if @error
 	json.error "product not available"
 else
 	json.cart do
+		json.id @cart.id
 		json.count @cart.products.empty? ? 0 : @cart.products.count
 		json.cart_items do
 			json.count 	@cart.products.empty? ? 0 : @cart.products.count

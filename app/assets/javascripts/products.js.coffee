@@ -183,8 +183,7 @@ $ ->
 			Product.rePopulateCart(cart.getCartItems())			
 			$("#fat-menu").addClass("open")
 			$("#not-available").hide()
-			console.log("button")
-			console.log($("#view-cart").length)
+			$("div.quickcart").attr("data-cart-id", response.cart.id)
 			if $("#view-cart").length == 0
 				button = $("<button></button>").attr("id", "view-cart")
 					.attr("class", "btnflat-fluid action")
@@ -205,7 +204,7 @@ $ ->
 		page = parseInt($(this).attr("data-page")) + 1	
 		category = $(this).attr("data-category")
 		callback = (response) ->	
-			console.log(response)		
+			console.log(response)
 			Product.loadMoreProducts(response)
 			if response.master_products.length == 0			
 				$("#more-button").remove()
@@ -220,10 +219,15 @@ $ ->
 $ ->
 	$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0, tintColour:"black";})
 
+$ -> 
+	$(document).on "click", "#view-cart", ->
+		console.log("click add cart")
+		cartId = $("div.quickcart").attr("data-cart-id")
+		if cartId == ""
+			return
+		window.location.href = "/carts/"+cartId
 
-$ ->
-	page = parseInt($(this).attr("data-page")) + 1	
-	category = $(this).attr("data-category")
-	console.log("page" + page)
+		
+	
 
 

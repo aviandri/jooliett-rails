@@ -3,7 +3,6 @@ class InvalidateCartWorker
   
   def perform(cart_id)
   	cart = Cart.find(cart_id)
-  	cart.status = "canceled"
-  	cart.save    
+  	cart.invalidate_cart
   end
 end

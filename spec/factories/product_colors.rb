@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :product_color do |color|
     color.product_images{[FactoryGirl.create(:product_image)]}
+    color.color{FactoryGirl.create(:color)}
   end
 end

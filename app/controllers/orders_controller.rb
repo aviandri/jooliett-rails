@@ -22,8 +22,9 @@ class OrdersController < ApplicationController
 
 	def complete
 		cart = Cart.find(cookies[:cart_id])
-		cart.destroy 
-		cookies[:cart_id] = nil
+		unless cart.nil?
+			cart.invalidate_cart			
+		end
 		@order = Order.find params[:id]
 		check_ownership(@order)
 		@order.invoice_code = SecureRandom.hex(10)

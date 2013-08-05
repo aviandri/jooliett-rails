@@ -29,12 +29,8 @@ class Product < ActiveRecord::Base
 	  	end
 	 end
 
-	 def available?
-	 	order_items = OrderItem.where(product_id: self.id)
-	 	order_item_quantity = order_items.sum(:quantity)
-	 	cart_product_quantity = Cart.reserved_product_quantity(self.id)
-	 	reserved_product_quantity = order_item_quantity + cart_product_quantity
-	 	if reserved_product_quantity < quantity
+	 def available?	 	
+	 	if available_quantity < quantity
 	 		true
 	 	else
 	 		false
@@ -55,16 +51,32 @@ class Product < ActiveRecord::Base
 	 end
 
 	 def available_quantity
-	 	order_items = OrderItem.where(product_id: self.id)
-	 	order_item_quantity = order_items.sum(:quantity)
+	 	reserved_order_quantity = Product.reserved_by_order(self.id)
 	 	cart_product_quantity = Cart.reserved_product_quantity(self.id)
-	 	reserved_product_quantity = order_item_quantity + cart_product_quantity
+	 	reserved_product_quantity = reserved_order_quantity + cart_product_quantity
 	 	unless quantity.blank?
 	 		available_quantity = quantity - reserved_product_quantity
+	 		if available_quantity < 0
+	 			available_quantity = 0
 	 	else
 	 		available_quantity = 0
 	 	end
 	 	available_quantity
+	 end
+
+	 def self.reserved_by_order(product_id)
+	 	product = Product.find product_id
+	 	order_items  = OrderItem.joins(:order).where(:orders => {:status => ["pending", "completed"]}, :product_id => product.id)
+	 	if order_items.blank?
+	 		0
+	 	else
+	 		order_items.sum(:quantity)
+	 	end	 	
+	 end
+
+	 def self.reserved_by_cart(product_id)
+	 	product = Product.find product_id
+	 	Cart.reserved_product_quantity(product.id)
 	 end
 
 end

@@ -67,9 +67,9 @@ describe Product do
     end
 
     it "should return false if product not available" do
-      @product.quantity = 1
-      @cart_item = FactoryGirl.create(:cart_item, :product => @product, :quantity => 1)
-      @product.available?.should eq(false)
+      @product.quantity = 1      
+      # expect {FactoryGirl.create(:cart_item, :product => @product, :quantity => 1)}.to raise_error
+      # @cart_item.errors.should_not be_nil
     end
 
 
@@ -103,5 +103,62 @@ describe Product do
       
     end
   end  
-  
+
+  describe "reserved by order" do
+    before(:each) do
+      @product_color = FactoryGirl.create(:product_color)
+      @product_size = FactoryGirl.create(:product_size)
+      @product = FactoryGirl.create(:product, :product_color => @product_color, :product_size => @product_size, :quantity => 2)     
+    end
+    it "should define product reservered by order" do      
+      order_item = FactoryGirl.create(:order_item, :product => @product, :quantity => 1)
+      FactoryGirl.create(:order, :status => "pending", :order_items => [order_item])
+      Product.reserved_by_order(@product.id).should eq(1)      
+    end
+  end
+
+  describe "reserved by cart" do
+    before(:each) do
+      @product_color = FactoryGirl.create(:product_color)
+      @product_size = FactoryGirl.create(:product_size)
+      @product = FactoryGirl.create(:product, :product_color => @product_color, :product_size => @product_size, :quantity => 2)     
+    end
+
+    it "should define product reservered by order" do
+      cart_item = FactoryGirl.create(:cart_item, :product => @product, :quantity => 1)
+      cart = FactoryGirl.create(:cart, :cart_items => [cart_item])
+      Product.reserved_by_cart(@product.id).should eq(1)
+    end
+  end
+
+  describe "avaiable quantity" do
+    before(:each) do
+      @product_color = FactoryGirl.create(:product_color)
+      @product_size = FactoryGirl.create(:product_size)
+      @product = FactoryGirl.create(:product, :product_color => @product_color, :product_size => @product_size, :quantity => 4)     
+      
+    end
+    it "should description" do
+      order_item = FactoryGirl.create(:order_item, :product => @product, :quantity => 1)
+      FactoryGirl.create(:order, :status => "pending", :order_items => [order_item])
+      cart_item = FactoryGirl.create(:cart_item, :product => @product, :quantity => 1)
+      cart = FactoryGirl.create(:cart, :cart_items => [cart_item])
+      @product.available_quantity.should eq(2)    
+    end
+  end
+
+  describe "available" do
+    before(:each) do
+      @product_color = FactoryGirl.create(:product_color)
+      @product_size = FactoryGirl.create(:product_size)
+      @product = FactoryGirl.create(:product, :product_color => @product_color, :product_size => @product_size, :quantity => 4)           
+    end
+    it "should available" do
+      order_item = FactoryGirl.create(:order_item, :product => @product, :quantity => 1)
+      FactoryGirl.create(:order, :status => "pending", :order_items => [order_item])
+      cart_item = FactoryGirl.create(:cart_item, :product => @product, :quantity => 1)
+      cart = FactoryGirl.create(:cart, :cart_items => [cart_item])
+      @product.available?.should eq(true)
+    end
+  end
 end

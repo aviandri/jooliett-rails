@@ -9,7 +9,6 @@ class OrderItem < ActiveRecord::Base
 	def subtotal_price_string
 		stringify_price(subtotal_price)
 	end
- 
 
 	private
 	def stringify_price(number)

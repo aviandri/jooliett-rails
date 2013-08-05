@@ -32,6 +32,11 @@ class Order < ActiveRecord::Base
 		generate_total_price
 	end
 
+	def invalidate_order
+		self.status = "cancelled"
+		self.save
+	end
+
 	private
 	def stringify_price(number)
 		number.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1.').reverse

@@ -9,6 +9,10 @@ class CartsController < ApplicationController
   	if @cart.save
   		redirect_to controller: :orders, action: :new 
   	else
+      flash[:errors] = []
+      @cart.errors.each do |key, value|
+        flash[:errors] << value
+      end
   		render :show
   	end
   end

@@ -5,5 +5,6 @@ FactoryGirl.define do
 		master_product.price 150000
 		master_product.categories{[FactoryGirl.create(:category)]}		
 		master_product.product_colors{[FactoryGirl.create(:product_color)]}
+		master_product.product_sizes{[FactoryGirl.create(:product_size)]}
 	end	
 end
