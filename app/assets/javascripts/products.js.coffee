@@ -220,11 +220,9 @@ $ ->
 $ ->
 	unless Modernizr.mq("only screen and (max-width:479px)")
 		$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0, tintColour:"black";})
-		alert("non touch")
 
 $ -> 
 	$(document).on "click", "#view-cart", ->
-		console.log("click add cart")
 		cartId = $("div.quickcart").attr("data-cart-id")
 		if cartId == ""
 			return
