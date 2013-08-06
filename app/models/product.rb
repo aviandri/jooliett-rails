@@ -67,7 +67,7 @@ class Product < ActiveRecord::Base
 
 	 def self.reserved_by_order(product_id)
 	 	product = Product.find product_id
-	 	order_items  = OrderItem.joins(:order).where(:orders => {:status => ["pending", "completed"]}, :product_id => product.id)
+	 	order_items  = OrderItem.joins(:order).where(:orders => {:status => ["pending", "completed", "confirmed"]}, :product_id => product.id)
 	 	if order_items.blank?
 	 		0
 	 	else

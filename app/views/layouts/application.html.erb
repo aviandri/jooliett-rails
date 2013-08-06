@@ -31,7 +31,7 @@
       <div class="navbar-inner">
         <div class="container">
           <div class="hidden-desktop" id="mobile-logo">
-            <%= image_tag "logo-2.png", :class => "logo" %>
+            <%= image_tag "weblogo.png", :class => "logo" %>
           </div>
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
@@ -41,7 +41,7 @@
           <div class="nav-collapse collapse">                 
             <ul class="nav" role="navigation">
               <li class="hidden-phone hidden-tablet">                 
-                  <%= image_tag "logo-2.png", :class => "logo" %>
+                  <%= image_tag "weblogo.png", :class => "logo" %>
               </li>
               <li class="dropdown">
                 <a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Shop
@@ -88,7 +88,7 @@
               <% end %>
               
               <li id="fat-menu" class="dropdown">
-                <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="qcart-count"><%= current_cart.products.empty? ? 0 : current_cart.products.count %></span>Cart<b class="caret"></b></a>
+                <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="qcart-count"><%= current_cart.products.empty? ? 0 : current_cart.products.count %></span>  Bag<b class="caret"></b></a>
                 <div class="dropdown-menu quickcart" role="menu" aria-labelledby="drop3" data-cart-id="<%= current_cart.id %>" >
                   <!-- QuickCart -->
                   <% current_cart.cart_items.each do |cart_item| %>
@@ -174,8 +174,7 @@
                   <ul class="inline">
                     <li><a href="#company">Company</a></li>
                     <li>
-                      <%= link_to "How To Order", how_to_order_pages_path%>
-                      
+                      <%= link_to "How To Order", how_to_order_pages_path%>                      
                     </li>                    
                   </ul>
               </div>
@@ -185,7 +184,7 @@
       </div>
     </div>
 
-    <!-- begin olark code -->
+   <!-- begin olark code -->
 <script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
 f[z]=function(){
 (a.s=a.s||[]).push(arguments)};var a=f[z]._={
@@ -203,7 +202,8 @@ var t=b.contentWindow[g];t.write(p());t.close()}catch(x){
 b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({
 loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
 /* custom configuration goes here (www.olark.com/documentation) */
-olark.identify('6350-152-10-5656');/*]]>*/</script><noscript><a href="https://www.olark.com/site/6350-152-10-5656/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
+olark.identify('4956-457-10-9729');/*]]>*/</script><noscript><a href="https://www.olark.com/site/4956-457-10-9729/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
+<!-- end olark code -->
 <!-- end olark code -->
 
   </body>

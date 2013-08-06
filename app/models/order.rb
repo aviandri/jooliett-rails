@@ -42,6 +42,10 @@ class Order < ActiveRecord::Base
 		self.save
 	end
 
+	def find_by_invoice_code(invoice_code)
+		Order.where(invoice_code: invoice_code)
+	end
+
 	private
 	def stringify_price(number)
 		number.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1.').reverse

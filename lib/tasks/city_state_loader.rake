@@ -11,4 +11,14 @@ namespace :city_state_loader do
 			state.save
 		end		
 	end
+
+	task :load_jakarta => :environment do
+		state = State.new(name: "JAKARTA")	
+		state.cities << City.new(state: state, name: "JAKARTA SELATAN", delivery_cost: 0)
+		state.cities <<  City.new(state: state, name: "JAKARTA BARAT", delivery_cost: 0)
+		state.cities << City.new(state: state, name: "JAKARTA TIMUR", delivery_cost: 0)
+		state.cities << City.new(state: state, name: "JAKARTA UTARA", delivery_cost: 0)
+		state.cities << City.new(state: state, name: "JAKARTA PUSAT", delivery_cost: 0)
+		state.save
+	end
 end

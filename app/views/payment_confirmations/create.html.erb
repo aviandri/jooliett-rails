@@ -6,7 +6,11 @@
           <h3>Thank You</h3>
           <p>We are processing your order with invoice number <%= @payment_confirmation.invoice_code%>.</p>
           <p>Thank you for shopping with Jooliett. </p>
-          <p><button class="btnflat action">Let's Back Shopping ^_^</button></p>
+          <p>
+            <%= form_tag("/products/category/new-arrival", method: "get", :style => "display:inline;") do %>
+                <button class="btnflat action">Let's Back Shopping ^_^</button>
+              <% end %>            
+          </p>
         </div><!-- ./span12 -->
       </div><!-- ./ row-fluid -->
     </div><!-- ./container -->

@@ -4,8 +4,14 @@ class PaymentConfirmationsController < ApplicationController
 		@payment_confirmation = PaymentConfirmation.new
 	end
 
-	def create
+	def create		
 		@payment_confirmation = PaymentConfirmation.create(payment_confirmation_param)
+		order = Order.find_by_invoice_code(@payment_confirmation.invoice_code)
+		order.status = "confirmed"
+		order.save
+		@payment_confirmation.order = order
+		@payment_confirmation.save
+		binding.pry
 	end
 
 	private 
