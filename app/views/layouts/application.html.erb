@@ -88,7 +88,7 @@
               <% end %>
               
               <li id="fat-menu" class="dropdown">
-                <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="qcart-count"><%= current_cart.products.empty? ? 0 : current_cart.products.count %></span>  Bag<b class="caret"></b></a>
+                <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="qcart-count"><%= current_cart.products.empty? ? 0 : current_cart.products.count %></span>  My Bag<b class="caret"></b></a>
                 <div class="dropdown-menu quickcart" role="menu" aria-labelledby="drop3" data-cart-id="<%= current_cart.id %>" >
                   <!-- QuickCart -->
                   <% current_cart.cart_items.each do |cart_item| %>
