@@ -56,7 +56,7 @@
               <td><%= @order.shipping_detail.address1 %></td>
             </tr>
           </table>
-          
+
           <h4>Payment Details</h4>
           <%= form_for(@payment_confirmation, :html => {:class => "form-inline"}) do |f| %>
             <div class="control-group">
@@ -87,6 +87,7 @@
                 <%= f.text_field :account_number, :autofocus => true, :placeholder => "412343435553", :class => "input-xlarge" %>
               </div>
             </div>
+            
             <div class="control-group">
               <div class="controls">
                 <button class="btnflat action">Confirm Your Payment</button>

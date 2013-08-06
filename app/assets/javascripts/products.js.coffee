@@ -143,7 +143,7 @@ $ ->
 	$(document).on "click", "img.prod-minithumb", ->
 		$('#full-img').attr("src", $(this).data("fullimg"))		
 		fullImage = $(this).data("fullimg")
-		unless Modernizr.touch
+		unless Modernizr.mq("only screen and (max-width:479px)")
 			$('#full-img').attr("data-zoom-zoom", $(this).data("fullimg"))
 			$('.zoomLens img').attr('src', fullImage)				
 			$('div.zoomWindow').css("background-image", "url(#{fullImage})")
@@ -157,7 +157,7 @@ $ ->
 		callback = (response) ->
 			productImages = new ProductImages(response.product_images)			
 			$('#full-img').attr("src", productImages.getPrimaryImage().full_img)
-			unless Modernizr.touch
+			unless Modernizr.mq("only screen and (max-width:479px)")
 				$('.zoomLens img').attr('src', productImages.getPrimaryImage().full_img)		
 				$('div.zoomWindow').css("background-image", "url(#{productImages.getPrimaryImage().full_img})")
 			Product.populateThumb(productImages.getThumbImages())
@@ -218,8 +218,9 @@ $ ->
 		$("#more-button").text("Loading..")
 
 $ ->
-	unless Modernizr.touch
+	unless Modernizr.mq("only screen and (max-width:479px)")
 		$("#full-img").elevateZoom({borderSize:0,tint:true, tintColour:'#F90', tintOpacity:0, tintColour:"black";})
+		alert("non touch")
 
 $ -> 
 	$(document).on "click", "#view-cart", ->
