@@ -22,6 +22,10 @@ class MasterProduct < ActiveRecord::Base
 		stringify_price(sales_price)
 	end
 
+	def product_colors_sorted
+		product_colors.sort_by{|a| a.primary ? 0 : 1}
+	end
+
 	def self.find_by_category_name(category_name) 
 		category = Category.find_by_name(category_name)	
 		if category

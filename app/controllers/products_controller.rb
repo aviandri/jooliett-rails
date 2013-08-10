@@ -13,6 +13,4 @@ class ProductsController < ApplicationController
   def show
   	@master_product = MasterProduct.find(params[:id])
   end
-
-
 end
