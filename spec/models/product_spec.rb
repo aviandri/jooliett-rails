@@ -53,15 +53,16 @@ describe Product do
 
   describe "is available" do
     before(:each) do
-      @product = FactoryGirl.create(:product, :quantity => 2)
+      @product = FactoryGirl.create(:product, :quantity => 2)      
       @order_item = FactoryGirl.create(:order_item, :quantity => 1, :product_id => @product.id)
+      @order = FactoryGirl.create(:order, :order_items => [@order_item], :status => "pending")
     end
 
     it "should return true if product is available" do
       @product.available?.should eq(true)
     end
 
-    it "should return false if product not available" do
+    it "should return false if product not available" do      
       @product.quantity = 1
       @product.available?.should eq(false)
     end
@@ -74,8 +75,9 @@ describe Product do
 
 
     it "should return false if product not available multiple order item" do
-      @product.quantity = 2
-      FactoryGirl.create(:order_item, :quantity => 1, :product_id => @product.id)
+      @product.quantity = 2      
+      order_item = FactoryGirl.create(:order_item, :quantity => 1, :product_id => @product.id)
+      order = FactoryGirl.create(:order, :order_items => [order_item], :status => "pending")
       @product.available?.should eq(false)
     end
   end
@@ -161,4 +163,6 @@ describe Product do
       @product.available?.should eq(true)
     end
   end
+
+
 end

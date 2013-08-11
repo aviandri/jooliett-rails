@@ -71,7 +71,7 @@
               <% if current_user %>
                 <ul class="nav" role="navigation">
                   <li class="dropdown pull-right">
-                    <a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">aviandri@gmail.com <b class="caret"></b></a>
+                    <a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <b class="caret"></b></a>
                     <!-- Dropdown Menu -->
                     <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">                  
                       <li role="presentation">
@@ -184,6 +184,9 @@
       </div>
     </div>
 
+<% if Rails.env.production? %>
+  <%= render 'layouts/analytics' %>
+<% end %>
    <!-- begin olark code -->
 <script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
 f[z]=function(){

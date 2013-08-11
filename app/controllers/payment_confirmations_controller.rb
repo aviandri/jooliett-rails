@@ -10,14 +10,17 @@ class PaymentConfirmationsController < ApplicationController
 		order.status = "confirmed"
 		order.save
 		@payment_confirmation.order = order
-		@payment_confirmation.save
-		binding.pry
+		unless @payment_confirmation.save
+			flash[:errors] = []      		
+        	flash[:errors] << "Please Fill In All the fields"
+      		redirect_to :action => "show", :invoice_code => @payment_confirmation.invoice_code
+		end
 	end
 
 	private 
 
 	def payment_confirmation_param
-		params.require(:payment_confirmation).permit(:invoice_code, :account_holder, :bank_name, :amount)
+		params.require(:payment_confirmation).permit(:invoice_code, :account_holder, :bank_name, :amount, :account_number)
 	end
 
 end

@@ -190,6 +190,8 @@ $ ->
 					.attr("class", "btnflat-fluid action")
 					.text("Checkout")
 				$("div.qcart-action").append(button)	
+			if Modernizr.mq("only screen and (max-width:767px)")
+				alert("Item have been added to your Bag")
 		colorId = $("div.color-tag").data("color-id")
 		productSizeId = $("div.size-tag").attr('data-size-id')
 		if productSizeId == ''

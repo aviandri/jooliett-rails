@@ -12,29 +12,31 @@
     <div class="container checkout summary" style="width: 940px;margin-right: auto;margin-left: auto">
       <div class="row-fluid" style="width: 100%">
         <div class="span12" style="float: left;min-height: 1px;margin-left: 20px;width: 100%">
-          <h2 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 40px;color: inherit;text-rendering: optimizelegibility;font-size: 31.5px">Thanks For Your Purchase, <%= @order.user.name %></h2>
-          <p style="margin: 0 0 10px">Thank you for your order. Below is confirmation of your order details. Once you have placed your payment, please confirm your payment to <a href="mailto:cs@jooliett.com">cs@jooliett.com</a> or clicking this link <%= link_to "Confirm Payment", :controller => "payment_confirmations", :action => "show", :invoice_code => @order.invoice_code, :only_path => false%>  Payment should be made in 24 hours (1days). If you cannot transfer and confirm within that time, your orders will be expired. If you have any questions, please contact us at <a href="mailto:cs@jooliett.com">cs@jooliett.com</a></p>
-          <h3 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 40px;color: inherit;text-rendering: optimizelegibility;font-size: 24.5px">Here is your purchase details
-          </h3><table class="table table-condensed table-bordered" style="max-width: 100%;background-color: transparent;border-collapse: separate;border-spacing: 0;width: 100%;margin-bottom: 20px;border: 1px solid #ddd;border-left: 0;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px"><th colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;background-color: #efefef;text-transform: uppercase">Order Details</th>
+          <h2 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 40px;color: inherit;text-rendering: optimizelegibility;font-size: 31.5px">Dear <%= @confirmation.order.user.name %>, We have recived your payment</h2>
+
+          <table class="table table-condensed table-bordered" style="max-width: 100%;background-color: transparent;border-collapse: separate;border-spacing: 0;width: 100%;margin-bottom: 20px;border: 1px solid #ddd;border-left: 0;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px"><th colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;background-color: #efefef;text-transform: uppercase">Track Your Order</th>
+            <tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">No resi JNE : <%= @confirmation.jne_code%></td>
+            </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><a href="http://www.jne.co.id">http://www.jne.co.id<a></td>
+            </tr></table><table class="table table-condensed table-bordered" style="max-width: 100%;background-color: transparent;border-collapse: separate;border-spacing: 0;width: 100%;margin-bottom: 20px;border: 1px solid #ddd;border-left: 0;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px"><th colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;background-color: #efefef;text-transform: uppercase">Order Details</th>
             <tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Order ID</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @order.invoice_code %></td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @confirmation.order.invoice_code %></td>
             </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Purchase Date</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @order.created_at.strftime("%a %b %d") %> </td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @confirmation.order.created_at.strftime("%a %b %d") %></td>
             </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Bank Account To Transfer</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @order.payment_detail.payment_type.full_description %></td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @confirmation.order.payment_detail.payment_type.full_description %></td>
             </tr></table><table class="table table-condensed table-bordered" style="max-width: 100%;background-color: transparent;border-collapse: separate;border-spacing: 0;width: 100%;margin-bottom: 20px;border: 1px solid #ddd;border-left: 0;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px"><th colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;background-color: #efefef;text-transform: uppercase">Your Details</th>
             <tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Email Address</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @order.user.email %></td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @confirmation.order.user.email %></td>
             </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Phone Number</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @order.shipping_detail.mobile %></td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @confirmation.order.shipping_detail.mobile %></td>
             </tr><tr><td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Shipping Address</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @order.shipping_detail.full_address%></td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= @confirmation.order.shipping_detail.full_address%></td>
             </tr></table>
-        <table class="table table-bordered table-condensed" style="max-width: 100%;background-color: transparent;border-collapse: separate;border-spacing: 0;width: 100%;margin-bottom: 20px;border: 1px solid #ddd;border-left: 0;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px"><tr><th colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;background-color: #efefef;text-transform: uppercase">Product</th>
+              <table class="table table-bordered table-condensed" style="max-width: 100%;background-color: transparent;border-collapse: separate;border-spacing: 0;width: 100%;margin-bottom: 20px;border: 1px solid #ddd;border-left: 0;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px"><tr><th colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;background-color: #efefef;text-transform: uppercase">Product</th>
               <th class="span2" style="float: none;min-height: 1px;margin-left: 0;width: 124px;padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;display: table-cell;background-color: #efefef;text-transform: uppercase">Quantity</th>
               <th class="span2" style="float: none;min-height: 1px;margin-left: 0;width: 124px;padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;font-weight: bold;border-left: 1px solid #ddd;display: table-cell;background-color: #efefef;text-transform: uppercase">Total</th>
             </tr>
-            <% @order.order_items.each do |order_item| %>
+            <% @confirmation.order.order_items.each do |order_item| %>
             <tr>
               <td colspan="2" style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= order_item.product.full_description %></td>
               <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd"><%= order_item.quantity %></td>
@@ -45,34 +47,28 @@
             </tr>
             <tr>
               <td colspan="3" style="text-align: right;padding: 4px 5px;line-height: 20px;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Shipping :</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.shipping_detail.city.delivery_cost_string %></td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @confirmation.order.shipping_detail.city.delivery_cost_string %></td>
             </tr>
             <tr>
               <td colspan="3" style="text-align: right;padding: 4px 5px;line-height: 20px;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Payment Code :</td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.payment_detail.pay_code %></td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @confirmation.order.payment_detail.pay_code %></td>
             </tr>
 
                           
             <tr>
               <td colspan="3" style="text-align: right;padding: 4px 5px;line-height: 20px;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">Total : </td>
-              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @order.total_price_string %> </td>
+              <td style="padding: 4px 5px;line-height: 20px;text-align: left;vertical-align: top;border-top: 1px solid #ddd;border-left: 1px solid #ddd">IDR <%= @confirmation.order.total_price_string %> </td>
             </tr></table>
 
-
-            <h4 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 20px;color: #f2108a;text-rendering: optimizelegibility;font-size: 17.5px;padding: 0 0 10px 0">Confirming your payment?</h4>
-          <p style="margin: 0 0 10px">Please finish your payment and confirm it by visiting this link :</p>
-          <p style="margin: 0 0 10px"><%= link_to "Confirm Payment", :controller => "payment_confirmations", :action => "show", :invoice_code => @order.invoice_code, :only_path => false%> </p>
-
-          <br/>
-          <br/>
-          <p style="width:100%;">Love, Miss J</p>
+            <h4 style="margin: 10px 0;font-family: proxima_light, sans-serif;font-weight: bold;line-height: 20px;color: #f2108a;text-rendering: optimizelegibility;font-size: 17.5px;padding: 0 0 10px 0">Thank You, looking forword for your next purchase</h4>
+          <p style="margin: 0 0 10px">If you experience any problem, please contact us at <a href="mailto:cs@jooliett.com" style="color: #08c;text-decoration: none">cs@jooliett.com</a></p> <p style="width:100%;">Love, Miss J</p>         
         </div><!-- ./span12 -->
       </div><!-- ./ row-fluid -->      
     </div><!-- ./container -->
     <div class="footer" align="center" style="margin-top:50px;">
       <table width="600" style="border-top: 1px solid #999;max-width: 100%;background-color: transparent;border-collapse: collapse;border-spacing: 0" cellpadding="10"><tbody><tr><td align="center">
                 <span style="font-family:'Arial';color:#999;font-size:11px">
-                 <span>Sent to <a href="mailto:<%= @order.user.email %>" target="_blank" style="color: #08c;text-decoration: none"><%= @order.user.email %></a> â </span>
+                 <span>Sent to <a href="mailto:<%= @confirmation.order.user.email %>" target="_blank" style="color: #08c;text-decoration: none"><%= @confirmation.order.user.email %></a> â </span>
                  <br/><span style="font-family:'Arial';color:#999;font-size:11px">To ensure that our messages get to your inbox (and don't go to your junk mail), please add <b><a href="mailto:cs@jooliett.com" target="_blank" style="color: #08c;text-decoration: none">cs@jooliett.com</a></b> to your address book.
              </span></span></td>
             </tr></tbody></table></div>

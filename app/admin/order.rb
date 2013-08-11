@@ -17,6 +17,9 @@ ActiveAdmin.register Order do
 	    column :invoice_code
 	    column :created_at
 	    column :updated_at
+      column("Action") do |order|
+        link_to("Send Confirmation Email", new_admin_confirmation_path(:order_id => order.id))         
+      end    
 
 	    default_actions                   
 	end  

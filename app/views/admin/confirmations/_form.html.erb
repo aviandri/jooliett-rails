@@ -1,0 +1,13 @@
+<%= semantic_form_for [:admin, @confirmation] do |f| %>
+    <%= f.inputs "Confirmation" do %>
+     <% if params[:action] == "new" %>       
+      	<% @order = Order.find(params[:order_id])  %>
+      	<%= f.input :order, :collection => {@order.id => @order.id }%>
+	  	<%= f.input :jne_code %>
+	 <% else %>
+	 	<%= f.input :order, :input_html => {:disabled => true}%>		
+	  	<%= f.input :jne_code %>   
+     <% end %>    
+ 	  <%= f.actions %>
+ 	<% end %>
+<% end %>
