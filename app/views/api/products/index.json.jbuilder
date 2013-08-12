@@ -3,6 +3,8 @@ json.master_products @master_products.each do |master_product|
   json.name	master_product.name
   json.description master_product.description
   json.price master_product.price_string
+  json.status master_product.status
+  json.available master_product.available?
   unless json.discount_price.blank?
     json.discount_price master_product.discount_price_string
   end

@@ -22,7 +22,8 @@
           <div class="row-fluid">
             <% master_products_slice.each do |master_product| %>
             <div class="span3">
-              <div class="prod">
+              <div class="prod side-corner-tag">
+                <%= ribbon_tag(master_product) %>
                 <%= link_to product_path(:id => master_product.id) do %>
                   <%= image_tag(master_product.primary_product_color.primary_image.image.url, :class => "image") do %>
                   <% end %>

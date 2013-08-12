@@ -2,7 +2,8 @@ ActiveAdmin.register MasterProduct do
 
 form(:html => {:multipart => true}) do |f|
 	f.inputs do
-	f.input :name         
+	f.input :name 
+	f.input :status, :as => :select, :collection => ["last item"]        
 	f.input :description, :as => :html_editor
 	f.input :price
 	f.input :discount_price

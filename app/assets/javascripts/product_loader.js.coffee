@@ -5,8 +5,15 @@ ProductLoader =
 			if i % 4 == 0
 				product_container = $("<div></div>").attr("class", "row-fluid")			
 			product_item_container = $("<div></div>").attr("class", "span3")
-			product_div = $("<div></div>").attr("class", "prod")
+			product_div = $("<div></div>").attr("class", "prod side-corner-tag")
 			
+			if product.available == false
+				ribbon_div = $("<p></p>").attr("class", "danger").append("<span></span>").text("Sold Out")
+				product_div.append(ribbon_div)
+			else if product.status == "last item"
+				ribbon_div = $("<p></p>").attr("class", "warn").append("<span></span>").text("Last Item")
+				product_div.append(ribbon_div)
+
 			prod_link = $("<a></a>").attr("href","/products/#{product.id}")
 			prod_image = $("<img></img>").attr("src", product.images.medium)
 			prod_link.append(prod_image)
