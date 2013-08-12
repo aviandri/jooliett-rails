@@ -45,7 +45,7 @@
                 <div class="control-group %>">
                   <label class="control-label" for="inputForCity">States</label>
                   <div class="controls">
-                    <%= select_tag :states, options_from_collection_for_select(State.all, "id", "name"), :id => "states" %>
+                    <%= select_tag :states, options_from_collection_for_select(State.all.order(:name), "id", "name"), :id => "states", :include_blank => true %>
                     <span class="help-inline"><%= error_message(@shipping_detail, "city") %>
                     </span>                                                          
                   </div>
