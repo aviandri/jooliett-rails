@@ -147,21 +147,21 @@
                  <div class="control-group">
                   <div class="controls">
                     <label class="checkbox">
-                      <% if devise_mapping.rememberable? -%>
+                      <% if devise_mapping.rememberable? %>
               <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-              <% end %>
+              <% end %>                 
                     </label>                    
                   </div>
-              </div>
-          <% end %> 
+              </div>              
           </div>           
           <div class="modal-footer">
         <button class="btnflat default" data-dismiss="modal" aria-hidden="true">Close</button>
         <button class="btnflat action">Login</button>
       </div>
       </div>
-      
+      <% end %> 
     </div>
+
 
     <!-- Footer -->
     <div id="footer">
