@@ -23,7 +23,6 @@ ProductLoader =
 							.attr("class", "prod-title").text(product.name)
 			
 			prod_price_meta = $("<p></p>").attr("class", "prod-price-meta"))			
-
 			
 
 			if product.discount_price != ""				
@@ -49,8 +48,7 @@ $ ->
 		if $(window).scrollTop() == $(document).height() - $(window).height()
 			page = parseInt($("#more-button").attr("data-page")) + 1	
 			category = $("#more-button").attr("data-category")
-			callback = (response) ->	
-				console.log(response)		
+			callback = (response) ->			
 				ProductLoader.loadMoreProduct(response)
 				if response.master_products.length == 0			
 					$("#more-button").remove()
@@ -58,6 +56,11 @@ $ ->
 					$(".more").find("button").attr("data-page", response.page)						
 					$("#more-button").prop("disabled", false);	
 					$("#more-button").text("See More")
+				$("#more-button").removeAttr("data-status");				
+				
 			$("#more-button").prop("disabled", true);	
-			$.get "/api/products?page=#{page}&category_name=#{category}", callback, 'json'
+			status = $("#more-button").attr("data-status")
+			unless status == "loading"
+				$.get "/api/products?page=#{page}&category_name=#{category}", callback, 'json'
+			$("#more-button").attr("data-status", "loading");				
 			$("#more-button").text("Loading..")		
