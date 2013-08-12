@@ -2,6 +2,10 @@ require 'sidekiq/web'
 JooliettRails::Application.routes.draw do
   root :to => 'covers#index'
   devise_for :users, :controllers => { :registrations => "users", :sessions => "sessions" }  
+
+  authenticate :admin_user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
   
   resources :users
   
@@ -51,7 +55,5 @@ JooliettRails::Application.routes.draw do
   get "payment_confirmations/:invoice_code" => "payment_confirmations#show"
   resources :payment_confirmations, :only => [:create]
   resources :videos, :only => [:index]
-  mount Sidekiq::Web, at: "/sidekiq"
-
-
+  
 end
