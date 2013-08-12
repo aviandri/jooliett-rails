@@ -33,8 +33,10 @@ class Order < ActiveRecord::Base
 	end
 
 	def invalidate_order
-		self.status = "cancelled"
-		self.save
+		if self.status == "pending"
+			self.status = "cancelled"
+			self.save
+		end
 	end
 
 	def complete_order
