@@ -61,7 +61,7 @@
 
             <div class="row-fluid">
               <div class="span12">
-                <h4>Color Options</h4>
+                <h4>Choose Your Color</h4>
                 <div class="wrapper color-tag" data-color-id="<%= @master_product.primary_product_color.id %>">
                   <% @master_product.product_colors_sorted.each do |product_color| %>
                       <span class="color-tag" data-color-id="<%= product_color.id %>" data-color-hex="<%= product_color.hex%>" data-color-text="<%= text_color(product_color.color) %>" >
@@ -72,7 +72,7 @@
             </div>
             <div class="row-fluid">
               <div class="span5">                
-                <h4>Size</h4>
+                <h4>Choose Your Size</h4>
                 <div class="wrapper size-tag" data-size-id="">
                   <% if @master_product.primary_product_color.available? %>
                   <% @master_product.primary_product_color.products.each do |product| %>
