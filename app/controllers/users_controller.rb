@@ -4,10 +4,15 @@ class UsersController < Devise::RegistrationsController
 	end
 
 	def create
-		super		
-		order = Order.find(session[:order_id])
-		order.user = current_user
-		order.save
+		super	
+		if session[:order_id].blank?
+			flash[:errors] = ["Thank you for registering, Now Let's Shop!"]
+			return covers_path
+		else
+			order = Order.find(session[:order_id])
+			order.user = current_user
+			order.save
+		end			
 	end
 
 	private

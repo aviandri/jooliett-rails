@@ -15,13 +15,13 @@
 </head>
  <body <%= yield :body_custom_style %> >
     <div class="statusbar error">
-      <% unless flash[:errors].blank? %>
+      <% unless flash[:errors].blank?%>
         <div class="container">
           <% flash[:errors].each do |value| %>
             <div class="content">
                 <span><%= value %></span>
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
-            </div>
+            </div>      
           <% end %>
         </div>
       <% end %>
