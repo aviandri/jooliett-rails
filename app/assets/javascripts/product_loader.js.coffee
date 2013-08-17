@@ -15,7 +15,7 @@ ProductLoader =
 				product_div.append(ribbon_div)
 
 			prod_link = $("<a></a>").attr("href","/products/#{product.id}")
-			prod_image = $("<img></img>").attr("src", product.images.medium)
+			prod_image = $("<img></img>").attr("src", product.images.full)
 			prod_link.append(prod_image)
 
 			prod_meta_div = $("<div></div>").attr("class", "prod-meta")
