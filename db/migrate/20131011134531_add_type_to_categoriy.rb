@@ -1,5 +1,5 @@
 class AddTypeToCategoriy < ActiveRecord::Migration
   def change
-    add_column :categoriys, :type, :string
+    add_column :categories, :type, :string
   end
 end

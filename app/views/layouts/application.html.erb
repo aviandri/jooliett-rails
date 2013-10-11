@@ -57,10 +57,23 @@
                   </li>
 
                   <li role="presentation" class="divider"></li>
-
-                  <% category_items.each do |category_item| %>
+                  <% Type.all_name_execept_new_arrival.each do |name| %>
                     <li role="presentation">
-                      <%= link_to category_item.name, {:controller => "/products", :action => :index, :category_name => category_item.name }, "role" => "menuitem", "tabindex" => "-1" %>
+                      <%= link_to name, {:controller => "/products", :action => :index, :category_name => name }, "role" => "menuitem", "tabindex" => "-1" %>
+                    </li>                    
+                  <% end %>
+                </ul>
+              </li>
+              <li class="divider-vertical"></li>
+              <li class="dropdown">
+                <a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">By Event
+                  <b class="caret"></b>
+                </a>
+                <!-- Dropdown Menu -->
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">                
+                  <% Event.all.each do |event| %>
+                    <li role="presentation">
+                      <%= link_to event.name, {:controller => "/products", :action => :index, :category_name => event.name }, "role" => "menuitem", "tabindex" => "-1" %>
                     </li>                    
                   <% end %>
                 </ul>
