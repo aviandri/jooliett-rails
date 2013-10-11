@@ -963,8 +963,41 @@ td.shopcart-total {
 	margin-bottom: 0px;
 }
 
+[class^="sosmed-"],
+[class*=" sosmed-"]{
+  display: inline-block;
+  width: 32px;
+  height: 32px
+  margin-top: 1px;
+  *margin-right: .3em;
+  line-height: 32px;
+  vertical-align: text-top;
+  background-image: url('<%= asset_path 'social-media.png' %>');
+  background-repeat: no-repeat;
+}
 
+.sosmed-facebook {
+	background-position: 0 0px;
+	width: 32px;
+	height: 32px;
+}
 
+.sosmed-twitter {
+	background-position: 0 -44px;
+	width: 32px;
+	height: 32px;
+}
+
+.sosmed-instagram {
+	background-position: 0 -88px;
+	width: 32px;
+	height: 32px;
+}
+
+.footer-item{
+	display: table-cell;
+	vertical-align: middle;
+}
 
 @media(min-width: 1100px) {
 	/*.carousel .item {  		
