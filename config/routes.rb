@@ -49,6 +49,7 @@ JooliettRails::Application.routes.draw do
   resources :pages, :only => [] do
     collection do
       get :how_to_order
+      get :about_us
     end
   end
 

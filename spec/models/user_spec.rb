@@ -14,4 +14,5 @@ describe User do
  	  	user.errors.messages.should include(:name, :password, :email)    
  	  end
  	end 	
+ 	
 end

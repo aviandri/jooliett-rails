@@ -29,9 +29,13 @@
                   <% end %>
                 <% end %>
 
-                <div class="prod-meta">
+                <div class="prod-meta pagination-centered">
+                  <div class="grid-colors">
+                    <% master_product.product_colors_sorted.each do |product_color| %>
+                      <span class="color-preview" style="background-color:<%= product_color.color.hex %>"></span>                        
+                    <% end %>                                                                    
+                  </div>
                   <span class="prod-title"><%= master_product.name%></span>
-
                   <p class="prod-price-meta">
                   <% if master_product.discount_price.nil? %>
                     <span class="discount-prod-price">IDR <%= master_product.sales_price_string %></span>
