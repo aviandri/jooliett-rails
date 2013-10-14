@@ -68,19 +68,31 @@ Product =
 			prod_image = $("<img></img>").attr("src", product.images.full)
 			prod_link.append(prod_image)
 
-			prod_meta_div = $("<div></div>").attr("class", "prod-meta")
+			prod_meta_div = $("<div></div>").attr("class", "prod-meta pagination-centered")
 			prod_meta_div.append($("<span></span>")
 							.attr("class", "prod-title").text(product.name)
 			
-			prod_price_meta = $("<p></p>").attr("class", "prod-price-meta"))			
+			prod_price_meta = $("<p></p>").attr("class", "prod-price-meta"))	
 
-			prod_price_meta.append($("<span></span>")
+			prod_grid_color = $("<div></div>").attr("class", "grid-colors")		
+
+			for product_color in product.colors
+				prod_color_span = $("<span></span>").attr("class", "color-preview").css("background-color", product_color.color_hex)
+				prod_grid_color.append(prod_color_span)
+			
+
+			if product.discount_price != ""				
+				prod_price_meta.append($("<span></span>")
 							.attr("class", "discount-prod-price").text("IDR #{product.discount_price}"))
-
-			if product.discount_price != null
 				prod_price_meta.append($("<span></span>")
 							.attr("class", "prod-price").text(" IDR #{product.price}"))			
+			else 
+				prod_price_meta.append($("<span></span>")
+							.attr("class", "discount-prod-price").text("IDR #{product.price}"))			
+
+			prod_meta_div.prepend(prod_grid_color)
 			prod_meta_div.append(prod_price_meta)
+
 			product_div.append(prod_link)	
 			product_div.append(prod_meta_div)
 
