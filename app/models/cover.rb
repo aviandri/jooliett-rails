@@ -3,6 +3,8 @@ class Cover < ActiveRecord::Base
 
 	scope :active, -> {where("status" => "active")}
 
+	scope :sort_by_updated_at, order("updated_at")
+
 
 	def url
 		image.desktop
