@@ -191,8 +191,8 @@ $ ->
 				$("div.size-tag").empty()
 				Product.repopulateSizes(response.product_sizes)
 			else
-				Product.repopulateSizes(null)
 				$("div.size-tag").empty()
+				Product.repopulateSizes(null)
 				$("div.color-tag").attr("data-product-available", "false")		
 		$.get '/api/product_colors/'+colorId, callback, 'json'		
 		Product.inverseColorSpan($(this))
