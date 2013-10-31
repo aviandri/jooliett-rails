@@ -7,7 +7,8 @@ ActiveAdmin.register Product do
 	    column :master_product     
 	    column :product_color
 	    column :product_size
-	    column :quantity                             
+	    column :quantity            
+	    column("available quantity"){|q|q.available_quantity}               
 	    default_actions                   
   	end  
 
