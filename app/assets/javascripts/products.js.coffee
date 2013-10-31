@@ -109,7 +109,6 @@ Product =
 						.attr("class","size-outofstock")
 						.text("Out of stock (Please choose different color)")
 			container_div.append(span_tag)	
-			return	
 		else				
 			for product_size in sizes
 				span_tag = $("<span></span>")
@@ -193,6 +192,7 @@ $ ->
 				Product.repopulateSizes(response.product_sizes)
 			else
 				Product.repopulateSizes(null)
+				$("div.size-tag").empty()
 				$("div.color-tag").attr("data-product-available", "false")		
 		$.get '/api/product_colors/'+colorId, callback, 'json'		
 		Product.inverseColorSpan($(this))
