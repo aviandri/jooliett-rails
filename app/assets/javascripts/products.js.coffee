@@ -103,16 +103,21 @@ Product =
 		
 
 	repopulateSizes: (sizes) ->
-		console.log(sizes)
 		container_div = $("div.size-tag")
-		for product_size in sizes
-			if product_size.available == true
+		if sizes == null
+			span_tag = $("<span></span>")
+						.attr("class","size-outofstock")
+						.text("Out of stock (Please choose different color)")
+			container_div.append(span_tag)		
+		else				
+			for product_size in sizes
 				span_tag = $("<span></span>")
 							.attr("class","size-tag")
 							.attr("data-size-id", product_size.id)							
 				link_tag = $("<a></a>").attr("href","#action").text(product_size.name)
 				span_tag.append(link_tag)
-				container_div.append(span_tag)
+				container_div.append(span_tag)						
+
 
 	inverseColorSpan:(span) ->
 		$("span.color-tag").each ->
@@ -179,9 +184,15 @@ $ ->
 			unless Modernizr.mq("only screen and (max-width:479px)")
 				$('.zoomLens img').attr('src', productImages.getPrimaryImage().full_img)		
 				$('div.zoomWindow').css("background-image", "url(#{productImages.getPrimaryImage().full_img})")
-			Product.populateThumb(productImages.getThumbImages())
-			$("div.size-tag").empty()
-			Product.repopulateSizes(response.product_sizes)
+			
+			if response.available == true				
+				$("div.color-tag").attr("data-product-available", "true")		
+				Product.populateThumb(productImages.getThumbImages())
+				$("div.size-tag").empty()
+				Product.repopulateSizes(response.product_sizes)
+			else
+				Product.repopulateSizes(null)
+				$("div.color-tag").attr("data-product-available", "false")		
 		$.get '/api/product_colors/'+colorId, callback, 'json'		
 		Product.inverseColorSpan($(this))
 
@@ -213,8 +224,14 @@ $ ->
 				alert("Item have been added to your Bag")
 		colorId = $("div.color-tag").data("color-id")
 		productSizeId = $("div.size-tag").attr('data-size-id')
+		
+		available = $("div.color-tag").data('product-available')	
+		if available == false
+			alert("Out of stock")
+			return
 		if productSizeId == ''
 			alert("Please Choose Product Size")
+			return
 		else
 			json = {'product_color_id' : colorId, 'product_size_id' : productSizeId}		
 			$.ajax '/api/carts/add', type: 'POST', data: JSON.stringify(json), success: callback, contentType: "application/json", dataType: "json"		

@@ -64,7 +64,7 @@
             <div class="row-fluid">
               <div class="span12">
                 <h4>Choose Your Color</h4>
-                <div class="wrapper color-tag" data-color-id="<%= @master_product.primary_product_color.id %>">
+                <div class="wrapper color-tag" data-color-id="<%= @master_product.primary_product_color.id %>" data-product-available="<%= "#{@master_product.primary_product_color.available?}"%>">
                   <% @master_product.product_colors_sorted.each do |product_color| %>
                       <span class="color-tag" data-color-id="<%= product_color.id %>" data-color-hex="<%= product_color.hex%>" data-color-text="<%= text_color(product_color.color) %>" >
                         <a href="#action" style="background-color:<%=product_color.color.hex %>;<%= text_color_style(product_color.color) %>"><%= product_color.color.name %></a></span>
@@ -83,7 +83,7 @@
                     <% end %>
                   <% end %>
                   <% else %>
-                  <span class="size-outofstock">Out of stock (Please choose different color)</span>
+                    <span class="size-outofstock">Out of stock (Please choose different color)</span>
                   <% end %> 
                 </div>
               </div>

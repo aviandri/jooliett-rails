@@ -8,6 +8,8 @@ json.product_images do
 	end
 end
 
+json.available @product_color.available?
+
 json.product_sizes do
 	json.array! @product_color.products do |product|
 		json.id	product.product_size.id
