@@ -108,7 +108,8 @@ Product =
 			span_tag = $("<span></span>")
 						.attr("class","size-outofstock")
 						.text("Out of stock (Please choose different color)")
-			container_div.append(span_tag)		
+			container_div.append(span_tag)	
+			return	
 		else				
 			for product_size in sizes
 				span_tag = $("<span></span>")
